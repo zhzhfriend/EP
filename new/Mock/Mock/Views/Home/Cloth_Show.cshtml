@@ -1,0 +1,55 @@
+<<<<<<< HEAD
+﻿@{
+    ViewBag.Title = "Cloth_Show";
+}
+@model Mock.Models.Entities.Cloth
+           
+<h2>Cloth_Show</h2>
+  <table width="50%" align="center">
+                     <tr>
+                        <th width="72">
+                           服装C
+                        </th>
+                        <td>  @Html.CheckBoxFor(m => m.C)
+                        </td>
+                    </tr>
+</table>
+<table>
+           @for (int i = 0; i <= 15; i++)
+            {
+                <tr>
+                     //这里用到了i
+                </tr>
+            }
+   </table>
+<input type="checkbox" name="fruit1" value ="apple" >A<br>
+<input type="checkbox" name="fruit2" value ="orange">B<br>
+<input type="checkbox" name="fruit3" value ="mango">C<br>
+<input type="submit" value="提交">
+=======
+﻿@{
+    ViewBag.Title = "Cloth_Show";
+}
+
+<h2>Cloth_Show</h2>
+
+<!DOCTYPE html>
+<html>
+<tr bgcolor="#003399">
+	<td width="15" nowrap="nowrap">&nbsp;</td>
+	<td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="javascript:;">HOME</a></td>
+	<td>&nbsp;</td>
+	</tr>
+<div style="left: 200px; position: absolute; top: 200px; font-size:xx-large;color:#87481f">系统</div>
+<div>
+<table border="1" style="background-color:#00FF00"width="100%" >
+ <tr line_heiht=24px><td></td></tr>
+ <tr bgcolor=#87481f></tr>
+ </table>
+</div>
+<div align="center"><br>
+<input type="checkbox" name="option1" value="Milk"> Milk<br>
+<input type="checkbox" name="option2" value="Butter" checked> Butter<br>
+<input type="checkbox" name="option3" value="Cheese"> Cheese
+</html>
+>>>>>>> bf808edf9bfe9873c120d3c9d3c47baaf197c834

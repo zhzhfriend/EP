@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EPcloth" Class="modelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=AP-CHN-LP100066\ZZ;Initial Catalog=EPcloth;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EPclothConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RealName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserFunSet" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreateDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserSession" Member="UserSessions" ThisKey="Id" OtherKey="UserId" Type="UserSession" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserSession" Member="UserSessions">
+    <Type Name="UserSession">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoginDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RemoteIP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDT" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserSession" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClothDetail" Member="ClothDetails">
+    <Type Name="ClothDetail">
+      <Column Name="SYTLE_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BIG_NO" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CHICUN_SHUXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHICHU_DAXIAO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OTHER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ADD_ENABLE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DicEntry" Member="DicEntries">
+    <Type Name="DicEntry">
+      <Column Name="ENTRY_CODE" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ENTRY_NAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VALUE_RANGE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SUB_LENGTH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ENTRY_STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ADD_ENABLE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dictionary" Member="Dictionaries">
+    <Type Name="Dictionary">
+      <Column Name="ENTRY_CODE" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUB_CODE" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUB_DESCRIBE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SUB_STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SUB_ORDER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USE_FLAG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DownCloth" Member="DownCloths">
+    <Type Name="DownCloth">
+      <Column Name="SYTLE_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BIG_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STYLE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="C_CLASS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KUOXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KUANSONGFENGGE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="QUNCHANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YISHENZAOXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YAOGAO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GONGYI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="COMMENTS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YANGYI_LOCATION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="YANGYI_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KUANSHI_LOCATION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KUANSHI_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANXING_LOCAITON" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANXING_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GONGYIWENJIAN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GONGYIWENJIAN_INFO" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FULIAOKA" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FULIAOKA_INFO" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperClothLog" Member="OperClothLogs">
+    <Type Name="OperClothLog">
+      <Column Name="c_class" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SYTLE_NO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BIG_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="COUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OPER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[USER]" Member="USER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UpCloth" Member="UpCloths">
+    <Type Name="UpCloth">
+      <Column Name="SYTLE_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BIG_NO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STYLE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="C_CLASS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KUOXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KUANSONGFENGGE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YISHENPIANSHU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YISHENZAOXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LINGXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="XIUXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PIANSHU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHANGDUAN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YIXIUZAOXING" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="COMMENTS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="YANGYI_LOCATION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="YANGYI_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KUANSHI_LOCATION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KUANSHI_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANXING_LOCAITON" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANXING_INFO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GONGYIWENJIAN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GONGYIWENJIAN_INFO" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FULIAOKA" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FULIAOKA_INFO" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,71 @@
+﻿*
+{
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+}
+body 
+{
+   /* background-color:#0B2C62;*/
+    /*background-color :#62160b;*/
+}
+div.test_name
+{
+	padding:290px 0px 0px 320px;
+	height:100;
+    font-size:80px;
+    color:Blue;
+}
+div.lab
+{	
+	padding:0px 0px 0px 320px;
+}
+div.Main
+{
+    /*background-image:url(Images/loginBg.png);*/
+    background-color :rgb(184,151,72);
+    background-repeat:no-repeat;
+    /*width:1000px;
+    margin:0 auto 0 auto;
+    height:760px;*/
+    position:absolute;
+    top:250px;
+    left:450px;
+    /*min-height:560px;*/
+    display:block;
+}
+div.LoginPanel
+{
+    padding:50px 0px 20px 50px;
+}
+div.LoginPanel table
+{
+    float:left;
+    width:300px;
+    line-height:200%;
+}
+div.LoginPanel table th
+{
+    font-weight:bold;
+    font-size:16px;
+}
+
+div.Login
+{
+    float:left;
+    width:109px;
+}
+div.Login input
+{
+    background-image:url(Images/loginBtn.png);
+    width:109px;
+    height:98px;
+}
+div.ClearBoth
+{
+    clear:both;
+}
+div.ErrorMessage
+{
+    color:Red;
+    font-size:14px;
+}
