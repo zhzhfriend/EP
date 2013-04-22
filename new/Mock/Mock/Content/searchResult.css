@@ -1,0 +1,50 @@
+﻿.searchResult {
+    width: 1290px;
+    margin: 5px auto 0px auto;
+}
+
+    .searchResult li.span2 {
+        margin: 16px 14px 0px 14px;
+        width: 228px;
+        height: 189px;
+        min-height: 189px;
+        border: 1px solid rgb(147,120,105);
+    }
+
+    .searchResult .span2 .pic {
+        width: 125px;
+        height: 136px;
+        float: left;
+    }
+
+    .searchResult .span2 .right {
+        margin-left: 125px;
+        padding-top: 20px;
+    }
+
+        .searchResult .span2 .right div {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            font-family: 宋体;
+            color: #958061;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    .searchResult .clothesNO {
+        font-family: 宋体;
+        color: #958061;
+        font-size: 16px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+        .searchResult .clothesNO .left {
+            width: 192px;
+            float: left;
+        }
+
+        .searchResult .clothesNO .detailLink {
+            margin-left: 192px;
+        }

@@ -34,12 +34,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,13 +71,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AnnounceController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClothController.cs" />
     <Compile Include="Controllers\Cloth_ShowController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowclothController.cs" />
     <Compile Include="Data\model.cs">
       <DependentUpon>model.dbml</DependentUpon>
     </Compile>
@@ -81,7 +96,10 @@
     </Compile>
     <Compile Include="Models\Entities\AnnounceInfo.cs" />
     <Compile Include="Models\Entities\CategoryInfo.cs" />
-    <Compile Include="Models\Entities\Cloth.cs" />
+    <Compile Include="Models\Entities\ClothDetail.cs" />
+    <Compile Include="Models\Entities\DownCloth.cs" />
+    <Compile Include="Models\Entities\OperClothLog.cs" />
+    <Compile Include="Models\Entities\UpCloth.cs" />
     <Compile Include="Models\Entities\UserloginModel.cs" />
     <Compile Include="Models\Interfaces\IAnnounceService.cs" />
     <Compile Include="Models\Interfaces\ICategoryService.cs" />
@@ -99,6 +117,14 @@
     <Compile Include="Utils\UserUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-responsive.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\searchbox.css" />
+    <Content Include="Content\searchResult.css" />
     <Content Include="Content\show.css" />
     <Content Include="Content\Images\bottomBg.png" />
     <Content Include="Content\Images\EquipmentRegister.png" />
@@ -144,6 +170,24 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\activeNavBG.png" />
+    <Content Include="Images\adminInfo.png" />
+    <Content Include="Images\biaoti.png" />
+    <Content Include="Images\bottomBg.png" />
+    <Content Include="Images\cloth.png" />
+    <Content Include="Images\clothes0.png" />
+    <Content Include="Images\clothes1.png" />
+    <Content Include="Images\clothes2.png" />
+    <Content Include="Images\clothes3.png" />
+    <Content Include="Images\clothes4.png" />
+    <Content Include="Images\detailLink.png" />
+    <Content Include="Images\detailLink1.png" />
+    <Content Include="Images\dropdownBg.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\quickBoxBG.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\submit.png" />
+    <Content Include="Images\title.jpg" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -195,7 +239,10 @@
     </None>
     <Content Include="Views\Employee\show.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Cloth.cshtml" />
     <None Include="Views\Home\Cloth_Show.cshtml" />
+    <Content Include="Views\Home\_head.cshtml" />
+    <Content Include="Views\Home\_searchbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

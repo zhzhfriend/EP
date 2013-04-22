@@ -1,0 +1,323 @@
+﻿@model Mock.Models.Entities.UpClothListModel
+<div class="searchbox">
+    <table>
+        <tr>
+            <th>品类</th>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_1" value="79001" name="外套" />@Html.CheckBoxFor(m=>m.)
+                            外套</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_2" value="79002" name="衬衫" />
+                            衬衫</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_3" value="79003" name="小衫" />
+                            小衫</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_4" value="79004" name="风衣"/>
+                            风衣</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_5" value="79005" name="大衣" />
+                            大衣</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_6" value="79006" name="棉衣"/>
+                            棉衣/羽绒服</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_7" value="79007"  name="皮衣"/>
+                            皮衣</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_a_8"  value="79008" name="连衣裙" />
+                            连衣裙</label></li>
+
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div class="split"></div>
+    <table>
+        <tr>
+            <th rowspan="4" class="title">衣身</th>
+            <td class="subTitle">廓型</td>
+            <td colspan="3">
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_b_1"  value="81001" name="H"/>
+                            H</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_b_2"  value="81002" name="X" />
+                            X</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_b_3" value="81003" name="A" />
+                            A</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_b_4"  value="81004" name="O" />
+                            O</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">宽松风格</td>
+            <td colspan="3">
+                <ul class="nav width210">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_c_1" value="82001" name="宽松" />
+                            宽松 (B>105)</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_c_2" value="82002" name="较宽松"/>
+                            较宽松 (B=95~105)</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_c_3"  value="82003" name="贴体"/>
+                            贴体 (B<95)</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">片数</td>
+            <td colspan="3">
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_d_1"  value="83001" name="2开身" />
+                            2开身</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_d_2" value="83002"  name="3开身"/>
+                            3开身</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_d_3"  value="83003"  name="4开身" />
+                            4开身</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_d_4"  value="83004" name="多开身"/>
+                            多开身</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">造型特征</td>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox"   id="chk_e_1"  value="84001"  name="分割"/>
+                            分割</label>
+                    </li>
+                    <li>
+                        <div class="dropdown width93">
+                            <input type="checkbox"  id="chk_e_2"  value="84002" name="肩部"/>肩部
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_e_3" value="84003"  name="省道"/>
+                            省道</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_e_4"  value="84004" name="折裥" />
+                            折裥</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_e_5"  value="84005"  name="抽摺" />
+                            抽摺</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_e_6"  value="84006" name="约克" />
+                            约克</label></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div class="split"></div>
+    <table>
+        <tr>
+            <th>领型</th>
+            <td>
+                <ul class="nav width110">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_f_1"  value="85001" name="无领"  />
+                            无领</label>
+                    </li>
+                    <li>
+                        <div class="dropdown width93">
+                            <input type="checkbox"  id="chk_f_2" value="85002" name="圆领" />圆领
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"   id="chk_f_3"  value="85003" name="驳折领" />
+                            驳折领</label>
+                    </li>
+                    <li>
+                        <div class="dropdown width93">
+                            <input type="checkbox"  id="chk_f_4"  value="85004" name="西装领"  />西装领
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_f_5"  value="85005" name="连帽"/>
+                            连帽</label>
+                    </li>
+                    <li>
+                        <div class="dropdown width93">
+                            <input type="checkbox" id="chk_f_6"  value="85006" name="两片"/>两片
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_f_7"  value="85007" name="翻折领" />
+                            翻折领</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_f_8"  value="85008" name="翻立领"/>
+                            翻立领</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_f_9"  value="85009" name="坦领" />
+                            坦领</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_f_10"  value="85010" name="立领" />
+                            立领</label></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div class="split"></div>
+    <table>
+        <tr>
+            <th rowspan="4">衣袖</th>
+            <td class="subTitle">袖型</td>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_g_1"  value="86001" name="装袖"/>装袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_g_2"  value="86002" name="无袖"/>无袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_g_3"  value="86003" name="连身袖"/>连身袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_g_4"  value="86004"  name="插肩袖"/>插肩袖</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">片数</td>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_h_1"  value="87001" name="一片" />一片</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_h_2"  value="87002" name="二片" />二片</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_h_3"  value="87003" name="多片"/>多片</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">长短</td>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_i_1"  value="88001" name="无袖" />无袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_i_2" value="88002" name="短袖"/>短袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_i_3" value="88003" name="五分袖"/>五分袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_i_4" value="88004" name="七分袖"/>七分袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_i_5" value="88005" name="长袖"/>长袖</label></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="subTitle">造型特征</td>
+            <td>
+                <ul class="nav width130">
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_j_1" value="89001" name="直身袖"/>直身袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_j_2" value="89002" name="弯身袖"/>弯身袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_j_3" value="89003"  name="泡泡袖"/>泡泡袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_j_4"  value="89004"  name="喇叭袖"/>喇叭袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_j_5"  value="89005"  name="蝙蝠袖"/>蝙蝠袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="chk_j_6"  value="89006"  name="羊腿袖"/>羊腿袖</label></li>
+                    <li>
+                        <label>
+                            <input type="checkbox"  id="chk_j_7"  value="89007" name="灯笼袖"/>灯笼袖</label></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div class="split"></div>
+    <table class="lastTable">
+        <tr>
+            <th>经典款</th>
+            <td class="width40">系列
+            </td>
+            <td>
+                <div class="dropdown width150">EP<input type="checkbox" />C</div>
+            </td>
+            <th class="left">历年畅销款</th>
+            <td class="width40">年份</td>
+            <td class="right">
+                <div class="dropdown width150">
+                    <input type="checkbox" />2012年春夏
+                </div>
+            </td>
+            <th>排序方式</th>
+            <td>
+                <div class="dropdown width150">
+                    <input type="checkbox" />按年份排序
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="searchBoxSelectedItem">
+    <div class="right">
+        <img src="@Url.Content("~/Images/Search.png")" onclick />
+    </div>
+    特征信息：
+</div>
+<div class="clearfix"></div>

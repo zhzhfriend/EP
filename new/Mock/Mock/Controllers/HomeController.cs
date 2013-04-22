@@ -34,14 +34,9 @@ namespace Mock.Controllers
             var a = model.PassWord;
 
             var users=this.DataContext.Users.Where(t => t.IsDeleted == false).SingleOrDefault(t => t.Name == model.UserName && t.PassWord == model.PassWord);
-            var result = from t in this.DataContext.Users
-                         where  t.Name == model.UserName 
-                          && t.PassWord == model.PassWord
-                         select t;
-            int evenNumCount = result.Count();
-            if (evenNumCount == 1)
+            if (user != null)
             {
-                return View("Cloth_Show");
+                return View("Cloth");
             }
             return RedirectToAction("Index");
         }

@@ -1,0 +1,45 @@
+﻿@model Mock.Models.Entities.UpClothListModel
+@{
+    ViewBag.Title = "Cloth";
+}
+@section head{@{Html.RenderPartial("_head");}}
+@section searchbox{@{Html.RenderPartial("_searchbox");}}
+<div class="searchResult">
+    <ul class="nav">
+        @for (var i = 0; i < 30; i++)
+        {
+            <li class="span2">
+                <div>
+                    <div class="pic">
+                        <img src="@Url.Content(String.Format("~/Images/clothes{0}.png", i % 5))" alt="This is pic" width="119" height="141"/>
+                    </div>
+                    <div class="right">
+                        <div>
+                            样衣图片
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                        <div>
+                            款式图
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                        <div>
+                            版型图
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clothesNO">
+                    <div class="left">
+                        <div>样板编号:GIP1030-1</div>
+                        <div>大货编号：E12EC1103A</div>
+                    </div>
+                    <div class="detailLink">
+                        <img src="@Url.Content("~/Images/detailLink1.png")" />
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <div class="clearfix"></div>
+</div>
