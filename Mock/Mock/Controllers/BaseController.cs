@@ -13,17 +13,13 @@ namespace Mock.Controllers
         //
         // GET: /Base/
 
-        private modelDataContext _DataContext = null;
-        protected modelDataContext DataContext
+        private EPContext _DataContext = null;
+        protected EPContext DataContext
         {
             get
             {
                 if (_DataContext == null)
-                    _DataContext = new modelDataContext();
-
-                var options = new DataLoadOptions();
-                options.LoadWith<user_info>(p => p.id);
-                _DataContext.LoadOptions = options;
+                    _DataContext = new EPContext();
 
                 return _DataContext;
             }

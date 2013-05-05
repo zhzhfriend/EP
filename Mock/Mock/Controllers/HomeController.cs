@@ -11,16 +11,6 @@ namespace Mock.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
-        //public ActionResult Index()
-        //{
-        //    ICategoryService cServ = ServiceBuilde.BuildCategoryService();
-        //    ViewData["Categories"] = cServ.GetAll();
-        //    return View("index");
-
-        //}
         public ActionResult Index()
         {
             return View("Index");
@@ -29,15 +19,18 @@ namespace Mock.Controllers
         [HttpPost]
         public ActionResult Index(UserloginModel model)
         {
-            var user = model.UserName;
-            var a = model.PassWord;
-
-            if (user=="admin"&& a=="1")
+            if (ModelState.IsValid)
             {
-                return View("Cloth_Show");
+                if (model.UserName == "admin" && model.PassWord == "1")
+                    return View("Cloth_Show");
+                else
+                    ModelState.AddModelError("Error", "Invalid UserName/Password");
             }
-
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("Error", "UserName/Password Can't be Empty");
+            }
+            return View(model);
         }
     }
 }
