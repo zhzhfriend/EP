@@ -1,0 +1,49 @@
+﻿using EPManageWeb.Controllers;
+using EPManageWeb.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using EPManageWeb.Helper;
+
+namespace EPManageWeb.Controllers
+{
+    public class HomeController : BaseController
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(UserLoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = DbContext.Users.SingleOrDefault(t => t.UserName == model.UserName && t.Password == model.PassWord);
+
+                if (user != null)
+                {
+                    if (user.IsDeleted == false)
+                    {
+                        UserAuthnicationHelper.Login(user, HttpContext);
+
+                        return RedirectToAction("Index", "Main");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Error", "您的账户已被删除，请联系管理员");
+                    }
+                }
+                else
+                    ModelState.AddModelError("Error", "用户名或密码错误");
+            }
+            else
+            {
+                ModelState.AddModelError("Error", "用户名和密码不得为空");
+            }
+            return View(model);
+        }
+    }
+}

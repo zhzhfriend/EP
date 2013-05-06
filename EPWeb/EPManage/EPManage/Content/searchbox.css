@@ -1,0 +1,107 @@
+﻿div.searchbox {
+    width: 100%;
+    border: 1px solid #9c8855;
+}
+
+    div.searchbox table th {
+        width: 140px;
+        font-size: 20px;
+        color: #9c8855;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+
+    div.searchbox > div {
+        width: 1280px;
+        margin: 0px auto 0px auto;
+    }
+
+    div.searchbox .right {
+        margin-left: 140px;
+    }
+
+    div.searchbox div.searchItems {
+        margin-left: 140px;
+    }
+
+    div.searchbox table td li {
+        float: left;
+        font-size: 20px;
+        color: #9c8855;
+    }
+
+    div.searchbox td.subTitle {
+        width: 130px;
+        font-size: 20px;
+        color: #9c8855;
+    }
+
+div.split {
+    border: 1px solid #9c8855;
+}
+.width110 li {
+    width: 110px;
+}
+.width130 li {
+    width: 130px;
+}
+
+.width210 li {
+    width: 210px;
+}
+
+.width179 li {
+    width: 179px;
+}
+.lastTable {
+    width:100%;
+}
+.lastTable td, .lastTable th {
+    width:16%;
+}
+th.left {
+    border-left: 1px solid #9c8855;
+    font-size: 20px;
+    color: rgb(147,120,105);
+}
+td.right {
+    border-right: 1px solid #9c8855;
+}
+div.searchBoxSelectedItem {
+    width:1192px;
+    margin:0px auto 0px auto;
+    font-size: 20px;
+    color: rgb(147,120,105);
+    border-bottom:1px solid #9c8855;
+    margin-top:10px;
+    margin-bottom:5px;
+    padding-bottom:5px;
+}
+    div.searchBoxSelectedItem .right {
+        text-align:right;
+        float:right;
+        margin-top:-9px;
+    }
+div.dropdown {
+    font-size:14px;
+    border:1px solid #9c8855;
+    background-image:url(../Images/dropdownBg.png);
+    background-position:right top;
+    background-repeat:no-repeat;
+    height:26px;
+    min-height:26px;
+}
+.width93 {
+    width:93px;
+}
+
+.width150 {
+    width:150px;
+}
+td.width40 {
+    width:40px;
+    font-size: 16px;
+    color: rgb(147,120,105);
+    text-align:right;
+}

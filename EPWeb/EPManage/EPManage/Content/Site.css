@@ -1,0 +1,69 @@
+﻿body, .container {
+    background-color: rgb(248,249,246);
+    width: 1326px;
+    margin: 0px auto 0px auto;
+}
+
+.head {
+    width: 100%;
+    margin: 0 auto 0 auto;
+}
+
+    .head .left {
+        width: 220px;
+        float: left;
+    }
+
+    .head .center {
+        margin: 0px 180px 0px 225px;
+        padding-top: 15px;
+    }
+
+        .head .center .quickSearch .title {
+            font-family: 黑体;
+            padding: 9px 19px 9px 19px;
+            font-size: 22px;
+            background-color: rgb(167,130,60);
+            color: white;
+            font-weight: bold;
+            float:left;
+        }
+        .head .center .quickSearchBox {
+            margin-left:250px;
+            padding-left:5px;
+            padding-top:5px;
+            width:429px;
+            height:41px;
+            min-height:41px;
+            background-image:url(../Images/quickBoxBG.png);
+        }
+            .head .center .quickSearchBox input[type=text] {
+                border:none;
+                font-size:22px;
+                width:370px;
+            }
+        .head .center .nav {
+            margin-bottom: 0px;
+            margin-top: 2px;
+        }
+            .head .center .nav li {
+                width: 16%;
+                text-align: left;
+            }
+
+            .head .center .nav span {
+                font-family: 黑体;
+                font-size: 22px;
+                padding: 9px 13px 22px 13px;
+            }
+
+                .head .center .nav span.active {
+                    background-image:url(../Images/activeNavBg.png);
+                    background-position:bottom center;
+                    background-repeat:no-repeat;
+                }
+
+    .head .right {
+        width: 175px;
+        float: right;
+    }

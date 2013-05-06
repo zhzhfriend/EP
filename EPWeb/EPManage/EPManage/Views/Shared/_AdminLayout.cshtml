@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container head">
+    @RenderSection("head")
+</div>
+@RenderSection("searchbox", false)
+<div class="body container">
+    @RenderBody()
+</div>
+<img src="@Url.Content("~/Images/bottomBg.png")" />

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap.min.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap-responsive.min.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/site.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/searchbox.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/searchresult.css")" rel="stylesheet"/>
+</head>
+<body>
+
+    @RenderBody()
+
+    <script type="text/javascript" src="@Scripts.Url("~/script/js/jquery-1.9.1.min.js")"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
