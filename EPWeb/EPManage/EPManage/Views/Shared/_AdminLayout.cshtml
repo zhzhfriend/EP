@@ -1,7 +1,10 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Js
+{
+     @RenderSection("Js",false)
+}
 <div class="container head">
     @RenderSection("head")
 </div>

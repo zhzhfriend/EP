@@ -11,5 +11,6 @@ namespace EPManageWeb.Entities
     {
         public DbSet<SessionUser> SessionUsers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ClothesType> ClothesTypes { get; set; }
     }
 }
