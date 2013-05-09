@@ -1,0 +1,65 @@
+﻿@model EPManageWeb.Models.ClothesEditModel
+@{
+    ViewBag.Title = "款式信息";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
+}
+<div class="container">
+    <div class="span1">基本信息</div>
+    <div class="span3">
+        <div>@Html.LabelFor(t => t.SampleNO) @Html.TextBoxFor(t => t.SampleNO)</div>
+        <div>@Html.LabelFor(t => t.StyleNO) @Html.TextBoxFor(t => t.StyleNO)</div>
+        <div>@Html.LabelFor(t => t.StylePicsIds)
+            <div data="StylePicsIds" class="uploadbutton">上传</div>
+            <div>已上传:@Html.HiddenFor(t => t.StylePicsIds)</div>
+            <ul class="thumbnails" id="images_StylePicsIds"></ul>
+        </div>
+        <div>@Html.LabelFor(t => t.ClothesPicsIds)
+            <div data="ClothesPicsIds" class="uploadbutton">上传</div>
+            <div>已上传:@Html.HiddenFor(t => t.ClothesPicsIds)</div>
+            <ul class="thumbnails" id="images_ClothesPicsIds"></ul>
+        </div>
+        <div>@Html.LabelFor(t => t.ModelVersionPicsIds)
+            <div data="ModelVersionPicsIds" class="uploadbutton">上传</div>
+            <div>已上传:@Html.HiddenFor(t => t.ModelVersionPicsIds)</div>
+            <ul class="thumbnails" id="images_ModelVersionPicsIds"></ul>
+        </div>
+    </div>
+    <div class="span3">
+        <div>尺寸表</div>
+        <table>
+            <tr>
+                <th>部位</th>
+                <th>尺寸</th>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>@Html.LabelFor(t => t.ProductedCount)</th>
+                <td>@Html.TextBoxFor(t => t.ProductedCount)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(t => t.SaledCount)</th>
+                <td>@Html.TextBoxFor(t => t.SaledCount)</td>
+            </tr>
+        </table>
+    </div>
+    <div class="span1">工艺要求</div>
+    <div class="span3">
+        <div>@Html.LabelFor(t => t.Comment)</div>
+        <div>@Html.TextAreaFor(t => t.Comment)</div>
+        <div>@Html.LabelFor(t => t.TechnologyFileIds)
+            <div data="TechnologyFileIds" class="uploadbutton">上传</div>
+            <div>已上传:@Html.HiddenFor(t => t.TechnologyFileIds)</div>
+        </div>
+        <div>@Html.LabelFor(t => t.AccessoriesFileIds)
+            <div data="AccessoriesFileIds" class="uploadbutton">上传</div>
+            <div>已上传:@Html.HiddenFor(t => t.AccessoriesFileIds)</div>
+        </div>
+    </div>
+</div>

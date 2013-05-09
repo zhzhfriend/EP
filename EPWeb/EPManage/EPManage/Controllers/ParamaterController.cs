@@ -15,12 +15,7 @@ namespace EPManageWeb.Controllers
                 .Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.PartTypes")
                 .SingleOrDefault(t => t.Id == id);
 
-            if (type != null)
-            {
-                return View(type);
-            }
-            else
-                return View("Error");
+            return View(type);
         }
 
     }

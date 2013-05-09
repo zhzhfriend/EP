@@ -17,9 +17,9 @@
             <li><span class="active">上装</span></li>
             <li><span>下装</span></li>
             <li><span>毛衫</span></li>
-            <li><span>添加款式</span></li>
-            <li><span>使用统计</span></li>
-            <li><span>编辑记录</span></li>
+            <li><span>@Html.ActionLink("添加款式", "Add")</span></li>
+            <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
+            <li><span>@Html.ActionLink("编辑记录", "Index", new { id = 1 })</span></li>
         </ul>
     </div>
 </div>

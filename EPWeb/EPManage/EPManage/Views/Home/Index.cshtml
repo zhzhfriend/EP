@@ -9,9 +9,7 @@
 <div class="hero-unit">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        <div class="alert">
-            @Html.ValidationSummary()
-        </div>
+        @Html.ValidationSummary(null, new { @class = "alert" })
         <div class="control-group">
             <label class="control-label" for="inputEmail">@Html.LabelFor(t => t.UserName) </label>
             <div class="controls">

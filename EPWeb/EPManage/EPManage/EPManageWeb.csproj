@@ -192,6 +192,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ParamaterController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Entities\EPDataContext.cs" />
     <Compile Include="Entities\Models\BaseModel.cs" />
     <Compile Include="Entities\Models\ClothesPart.cs" />
@@ -221,6 +223,7 @@
       <DependentUpon>201305081606472_add_clothesparttype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -305,6 +308,7 @@
     <Content Include="Images\quickBoxBG.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\submit.png" />
+    <Content Include="Scripts\ajaxupload.3.6.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -320,6 +324,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\uploadpics.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -365,10 +370,14 @@
     <Content Include="Views\Main\_searchbox.cshtml" />
     <Content Include="Views\Paramater\Index.cshtml" />
     <Content Include="Views\Paramater\EditClothesPartType.cshtml" />
+    <Content Include="Views\Main\Statistic.cshtml" />
+    <Content Include="Views\Statistic\Index.cshtml" />
+    <Content Include="Views\Main\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
