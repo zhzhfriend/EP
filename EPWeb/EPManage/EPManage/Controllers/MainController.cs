@@ -28,7 +28,8 @@ namespace EPManageWeb.Controllers
         [HttpPost]
         public ActionResult Search(string param)
         {
-            List<ClothesDetailModel> clothes = DbContext.Clothes.ToList().Select(t => new ClothesDetailModel(t)).ToList();
+            //List<ClothesDetailModel> clothes = DbContext.Clothes.ToList().Select(t => new ClothesDetailModel(t)).ToList();
+            List<ClothesDetailModel> clothes = SaveClothesHelper.Search(param).Select(t => new ClothesDetailModel(t)).ToList();
             return View(clothes);
         }
 
@@ -60,6 +61,7 @@ namespace EPManageWeb.Controllers
             };
             DbContext.Clothes.Add(c);
             DbContext.SaveChanges();
+            SaveClothesHelper.Save(c);
             return new JsonResult() { Data = true };
         }
 

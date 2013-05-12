@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Helper\CookiesAuthorize.cs" />
     <Compile Include="Helper\EPViewePage.cs" />
+    <Compile Include="Helper\SaveClothesHelper.cs" />
     <Compile Include="Helper\UserAuthnicationHelper.cs" />
     <Compile Include="Migrations\201305061539297_Add_class_session_user.cs" />
     <Compile Include="Migrations\201305061539297_Add_class_session_user.Designer.cs">
@@ -387,6 +388,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="LuceneIndex\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>

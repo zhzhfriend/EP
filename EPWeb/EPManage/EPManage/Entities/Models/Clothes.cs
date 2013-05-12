@@ -31,5 +31,7 @@ namespace EPManageWeb.Entities.Models
         public String TechnologyFile { get; set; }
         [MaxLength(1000)]
         public String ClothesSize { get; set; }
+        [MaxLength(1000)]
+        public String Tags { get; set; }
     }
 }
