@@ -1,0 +1,12 @@
+﻿.clothesSizeDropDown {
+    display:none;
+}
+.addClothes {
+    width:950px;
+}
+.width20 {
+    width: 20px;
+}
+table.addClothes td {
+    vertical-align:top;
+}

@@ -8,19 +8,17 @@
     <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap.min.css")" rel="stylesheet"/>
     <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap-responsive.min.css")" rel="stylesheet"/>
     <link href="@Styles.Url("~/Content/themes/base/jquery-ui.css")" rel="stylesheet"/>
-    <link href="@Styles.Url("~/Content/site.css")" rel="stylesheet"/>
-    <link href="@Styles.Url("~/Content/searchbox.css")" rel="stylesheet"/>
-    <link href="@Styles.Url("~/Content/searchresult.css")" rel="stylesheet"/>
-    <link href="@Styles.Url("~/Content/sortable.css")" rel="stylesheet"/>
-    
+    @RenderSection("Css",false)
+   
 </head>
 <body>
 
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-    @RenderSection("Js",false)
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    @RenderSection("Js", false)
+    
 </body>
 </html>

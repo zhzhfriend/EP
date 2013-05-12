@@ -2,14 +2,17 @@
 @{
     ViewBag.Title = "登陆";
 }
-
-
-
-
-<div class="hero-unit">
+@section Css
+{
+    <link href="@Styles.Url("~/Content/login.css")" rel="stylesheet"/>
+}
+<div class="container">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        @Html.ValidationSummary(null, new { @class = "alert" })
+        if (this.HasErrorMessage)
+        {
+            @Html.ValidationSummary(null, new { @class = "alert" })
+        }
         <div class="control-group">
             <label class="control-label" for="inputEmail">@Html.LabelFor(t => t.UserName) </label>
             <div class="controls">
@@ -29,4 +32,3 @@
         </div>
     }
 </div>
-

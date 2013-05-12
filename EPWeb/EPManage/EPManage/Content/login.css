@@ -1,0 +1,10 @@
+﻿.container {
+    width:600px;
+    height:400px;
+    min-height:400px;
+	margin-top: -200px;
+    margin-left:-300px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}

@@ -13,6 +13,9 @@ namespace EPManageWeb.Controllers
     {
         public ActionResult Index()
         {
+            if (UserAuthnicationHelper.CheckUserLogin(HttpContext))
+                return RedirectToAction("Index", "Main");
+
             return View();
         }
 
@@ -34,13 +37,18 @@ namespace EPManageWeb.Controllers
                     else
                     {
                         ModelState.AddModelError("Error", "您的账户已被删除，请联系管理员");
+                        AddError("您的账户已被删除，请联系管理员");
                     }
                 }
                 else
+                {
+                    AddError("用户名或密码错误");
                     ModelState.AddModelError("Error", "用户名或密码错误");
+                }
             }
             else
             {
+                AddError("用户名和密码不得为空");
                 ModelState.AddModelError("Error", "用户名和密码不得为空");
             }
             return View(model);

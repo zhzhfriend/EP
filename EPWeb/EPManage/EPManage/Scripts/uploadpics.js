@@ -1,8 +1,7 @@
 ﻿$(document).ready(function () {
-    //var button = $('#button1');
     $('.uploadbutton').each(function (index, item) {
         new AjaxUpload(item, {
-            action: '/upload/Index',
+            action: '/upload/Index?type=' + $(item).attr('type'),
             name: 'myfile',
             responseType: 'json',
             onSubmit: function (file, ext) {
@@ -24,10 +23,19 @@
                 window.clearInterval(interval);
                 this.enable();
                 if (response.Success) {
-                    var img = $('#images_' + button.attr('data'));
-                    $('<li><img src="' + response.FileName + '" width="75"/><p class="delImg">删除</p></li>').appendTo(img);
+                    if ($(button).attr('type') == 'TechnologyFile' ||
+                        $(button).attr('type') == 'AccessoriesFile' ||
+                        $(button).attr('type') == 'SampleFile') {
+                        $(('#file_' + $(button).attr('type'))).html('上传文件:' + response.FileName);
+                        var hiddenField = '#' + $(button).attr('type');
+                        $(hiddenField).val(response.FileName);
+                    }
+                    else {
+                        var img = $('#images_' + button.attr('data'));
+                        $('<li><img src="' + response.FileName + '" width="75"/><p class="delImg">删除</p></li>').appendTo(img);
 
-                    bindImageEvent();
+                        bindImageEvent();
+                    }
                 }
                 else {
                     alert('上传失败，失败原因：' + response.ErrMsg);

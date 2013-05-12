@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -126,37 +132,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
-    </Reference>
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -196,15 +174,18 @@
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Entities\EPDataContext.cs" />
     <Compile Include="Entities\Models\BaseModel.cs" />
+    <Compile Include="Entities\Models\Clothes.cs" />
     <Compile Include="Entities\Models\ClothesPart.cs" />
     <Compile Include="Entities\Models\ClothesPartType.cs" />
     <Compile Include="Entities\Models\ClothesType.cs" />
     <Compile Include="Entities\Models\SessionUser.cs" />
+    <Compile Include="Entities\Models\UploadFile.cs" />
     <Compile Include="Entities\Models\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CookiesAuthorize.cs" />
+    <Compile Include="Helper\EPViewePage.cs" />
     <Compile Include="Helper\UserAuthnicationHelper.cs" />
     <Compile Include="Migrations\201305061539297_Add_class_session_user.cs" />
     <Compile Include="Migrations\201305061539297_Add_class_session_user.Designer.cs">
@@ -222,16 +203,33 @@
     <Compile Include="Migrations\201305081606472_add_clothesparttype.Designer.cs">
       <DependentUpon>201305081606472_add_clothesparttype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201305111610492_add_class_clothes.cs" />
+    <Compile Include="Migrations\201305111610492_add_class_clothes.Designer.cs">
+      <DependentUpon>201305111610492_add_class_clothes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305120626012_change_Clothes_structure.cs" />
+    <Compile Include="Migrations\201305120626012_change_Clothes_structure.Designer.cs">
+      <DependentUpon>201305120626012_change_Clothes_structure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305121228393_AddClothpart.cs" />
+    <Compile Include="Migrations\201305121228393_AddClothpart.Designer.cs">
+      <DependentUpon>201305121228393_AddClothpart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
+    <Compile Include="Models\FileType.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\addClothes.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\detail.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\searchbox.css" />
     <Content Include="Content\searchResult.css" />
     <Content Include="Content\sortable.css" />
@@ -291,6 +289,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\debug.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\activeNavBG.png" />
     <Content Include="Images\adminInfo.png" />
@@ -308,11 +308,15 @@
     <Content Include="Images\quickBoxBG.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\submit.png" />
+    <Content Include="Scripts\addClothes.js" />
+    <Content Include="Scripts\addClothesSize.js" />
     <Content Include="Scripts\ajaxupload.3.6.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-jtemplates.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -323,7 +327,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\stepcarousel.js" />
     <Content Include="Scripts\uploadpics.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -367,12 +373,16 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Main\_head.cshtml" />
-    <Content Include="Views\Main\_searchbox.cshtml" />
+    <Content Include="Views\Main\_searchbox_old.cshtml" />
     <Content Include="Views\Paramater\Index.cshtml" />
     <Content Include="Views\Paramater\EditClothesPartType.cshtml" />
     <Content Include="Views\Main\Statistic.cshtml" />
     <Content Include="Views\Statistic\Index.cshtml" />
     <Content Include="Views\Main\Add.cshtml" />
+    <Content Include="Views\Main\Test.cshtml" />
+    <Content Include="Views\Main\Detail.cshtml" />
+    <Content Include="Views\Main\Search.cshtml" />
+    <Content Include="Views\Main\_searchbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -394,6 +404,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201305081606472_add_clothesparttype.resx">
       <DependentUpon>201305081606472_add_clothesparttype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305111610492_add_class_clothes.resx">
+      <DependentUpon>201305111610492_add_class_clothes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305120626012_change_Clothes_structure.resx">
+      <DependentUpon>201305120626012_change_Clothes_structure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305121228393_AddClothpart.resx">
+      <DependentUpon>201305121228393_AddClothpart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

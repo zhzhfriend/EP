@@ -1,45 +1,37 @@
-﻿@{
+﻿@model  EPManageWeb.Entities.Models.ClothesType
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@section head{@{Html.RenderPartial("_head");}}
+@section head{@{
+    <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
+    Html.RenderPartial("_head");}}
 @section searchbox{@{Html.RenderPartial("_searchbox");}}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-jtemplates.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>
+}
 <div class="searchResult">
-    <ul class="nav">
-        @for (var i = 0; i < 30; i++)
-        {
-            <li class="span2">
-                <div>
-                    <div class="pic">
-                        <img src="@Url.Content(String.Format("~/Images/clothes{0}.png", i % 5))" alt="This is pic" width="119" height="141"/>
-                    </div>
-                    <div class="right">
-                        <div>
-                            样衣图片
-                            <img src="@Url.Content("~/Images/detailLink.png")" />
-                        </div>
-                        <div>
-                            款式图
-                            <img src="@Url.Content("~/Images/detailLink.png")" />
-                        </div>
-                        <div>
-                            版型图
-                            <img src="@Url.Content("~/Images/detailLink.png")" />
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clothesNO">
-                    <div class="left">
-                        <div>样板编号:GIP1030-1</div>
-                        <div>大货编号：E12EC1103A</div>
-                    </div>
-                    <div class="detailLink">
-                        <img src="@Url.Content("~/Images/detailLink1.png")" />
-                    </div>
-                </div>
-            </li>
-        }
-    </ul>
+    <div id="container"></div>
     <div class="clearfix"></div>
+    <img src="@Url.Content("~/Images/bottomBg.png")" />
+</div>
+<!-- Modal -->
+<div id="myModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">款式信息</h3>
+    </div>
+    <div class="modal-body" id="divAddClothes">
+        @{Html.RenderPartial("Add", new ClothesEditModel());}
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        @Html.ActionLink("保存", "Add", null, new { @class = "btn btn-primary", id = "btnAddClothes" })
+    </div>
 </div>

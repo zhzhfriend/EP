@@ -13,5 +13,7 @@ namespace EPManageWeb.Entities.Models
         [MaxLength(10)]
         public String Name { get; set; }
         public int Order { get; set; }
+
+        public ClothesPart ClothesPart { get; set; }
     }
 }

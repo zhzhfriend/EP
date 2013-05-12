@@ -1,0 +1,144 @@
+﻿@model ClothesDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section head{
+    <link href="@Styles.Url("~/Content/detail.css")" rel="stylesheet"/>
+}
+<div class="row bottomline">
+    <div class="span1">EP</div>
+    <div class="span9">样板编号：@Model.SampleNO 大货编号： @Model.StyleNO 访问次数：222</div>
+    <div class="span2">@Html.ActionLink("下载样板文件", "Download", new { id = Model.Id, type = "SampleFile" }, new { @class = "btn btn-primary btn-large" })</div>
+</div>
+<div class="dvleft">
+    <div class="title">款式图</div>
+    <div class="pictures">
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="@Model.StyleImages[0]" />
+                </div>
+                @for (int i = 1; i < Model.StyleImages.Count; i++)
+                {
+                    <div class="item">
+                        <img src="@Model.StyleImages[i]" />
+                    </div>
+                }
+            </div>
+            @if (Model.StyleImages.Count > 1)
+            {
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            }
+        </div>
+    </div>
+    <div class="title">成衣图片</div>
+    <div class="pictures">
+        <div id="myCarousel2" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="@Model.ClothesImages[0]" />
+                </div>
+                @for (int i = 1; i < Model.ClothesImages.Count; i++)
+                {
+                    <div class="item">
+                        <img src="@Model.ClothesImages[i]" />
+                    </div>
+                }
+            </div>
+            @if (Model.ClothesImages.Count > 1)
+            {
+                <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+            }
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>销售总数</th>
+                <td>@Model.SaledCount</td>
+            </tr>
+            <tr>
+                <th>生产总数</th>
+                <td>@Model.ProductedCount</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dvright">
+    <table id="sampleTable">
+        <tr>
+            <th>版型图</th>
+            <td>
+                <div id="myCarousel3" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <img src="@Model.ModelVersionImages[0]" />
+                        </div>
+                        @for (int i = 1; i < Model.ModelVersionImages.Count; i++)
+                        {
+                            <div class="item">
+                                <img src="@Model.ModelVersionImages[i]" />
+                            </div>
+                        }
+                    </div>
+                    @if (Model.ModelVersionImages.Count > 1)
+                    {
+                        <a class="carousel-control left" href="#myCarousel3" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel3" data-slide="next">&rsaquo;</a>
+                    }
+                </div>
+            </td>
+            <th>尺寸表</th>
+            <td class="clothSizeTd">
+                <table id="clothSizeTable" class="table table-bordered table-condensed">
+                    @if (Model.ClothesSizePairs != null)
+                    {
+                        foreach (KeyValuePair<string, string> t in Model.ClothesSizePairs)
+                        {
+                        <tr>
+                            <td>@t.Key</td>
+                            <td>@t.Value</td>
+                        </tr>
+                        }
+                    }
+                </table>
+                <div>单位:cm</div>
+            </td>
+        </tr>
+    </table>
+    <table class="comments table table-condensed table-bordered">
+        <tr>
+            <th colspan="2">工艺要求</th>
+        </tr>
+        <tr>
+            <td class="span2">工艺简述</td>
+            <td>@Model.Comment</td>
+        </tr>
+        <tr>
+            <td>工艺单文件</td>
+            @if (!String.IsNullOrEmpty(Model.TechnologyFile))
+            {
+                <td>@Model.TechnologyFile @Html.ActionLink("下载", "DownLoad", new { id = Model.Id, type = "TechnologyFile" })</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+        <tr>
+            <td>辅料卡文件</td>
+            @if (!String.IsNullOrEmpty(Model.AssessoriesFile))
+            {
+                <td>@Model.AssessoriesFile @Html.ActionLink("下载", "DownLoad", new { id = Model.Id, type = "AssessoriesFile" })</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+    </table>
+</div>

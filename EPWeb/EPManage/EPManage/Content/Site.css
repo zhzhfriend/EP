@@ -67,3 +67,11 @@
         width: 175px;
         float: right;
     }
+
+.width1000Modal {
+    width:1000px;
+    margin-left:-500px;
+}
+#addClothTemplate {
+    display:none;
+}

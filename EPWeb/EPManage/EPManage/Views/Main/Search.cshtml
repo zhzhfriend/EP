@@ -1,0 +1,54 @@
+﻿@model System.Collections.Generic.List<ClothesDetailModel>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = null;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul class="nav">
+        @foreach (var t in Model)
+        {
+            <li class="span2">
+                <div>
+                    <div class="pic">
+                        <a href="Main/Detail/@t.Id" target="_blank">
+                            <img src="@t.ClothesImages[0]" alt="pic" width="119" height="141"/></a>
+                    </div>
+                    <div class="right">
+                        <div>
+                            样衣图片
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                        <div>
+                            款式图
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                        <div>
+                            版型图
+                            <img src="@Url.Content("~/Images/detailLink.png")" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clothesNO">
+                    <div class="left">
+                        <div>样板编号:@t.SampleNO</div>
+                        <div>大货编号：E12EC1103A</div>
+                    </div>
+                    <div class="detailLink">
+                        <img src="@Url.Content("~/Images/detailLink1.png")" />
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div class="alert">
+        未找到结果
+    </div>
+}
+
