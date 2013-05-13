@@ -14,9 +14,11 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Index(int id)
         {
-            ClothesType clothesType = DbContext.ClothesTypes.Include("ClothesParts").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
+            ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
             if (clothesType == null)
-                clothesType = DbContext.ClothesTypes.Include("ClothesParts").Include("ClothesParts.PartTypes").FirstOrDefault();
+                clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").FirstOrDefault();
+
+            ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
 
             if (clothesType != null)
                 return View(clothesType);
@@ -28,7 +30,6 @@ namespace EPManageWeb.Controllers
         [HttpPost]
         public ActionResult Search(string param)
         {
-            //List<ClothesDetailModel> clothes = DbContext.Clothes.ToList().Select(t => new ClothesDetailModel(t)).ToList();
             List<ClothesDetailModel> clothes = SaveClothesHelper.Search(param).Select(t => new ClothesDetailModel(t)).ToList();
             return View(clothes);
         }
@@ -50,14 +51,15 @@ namespace EPManageWeb.Controllers
                 ProductedCount = model.ProductedCount,
                 SaledCount = model.SaledCount,
                 SampleNO = model.SampleNO,
-                StyleNO = model.StyleNO,
+                ProductNO = model.ProductNO,
                 AssessoriesFile = model.AccessoriesFile,
                 ClothesPics = model.ClothesPics,
                 ClothesSize = model.ClothSize,
                 ModelVersionPics = model.ModelVersionPics,
                 SampleFile = model.SampleFile,
                 StylePics = model.StylePics,
-                TechnologyFile = model.TechnologyFile
+                TechnologyFile = model.TechnologyFile,
+                Tags = model.ClothesTags
             };
             DbContext.Clothes.Add(c);
             DbContext.SaveChanges();
@@ -76,6 +78,15 @@ namespace EPManageWeb.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
+
+            if (clothesType == null) return new HttpNotFoundResult();
+
+            return View(clothesType);
+        }
 
         [HttpGet]
         [CookiesAuthorize]
@@ -86,6 +97,45 @@ namespace EPManageWeb.Controllers
                 return View(new ClothesDetailModel(clothes));
             else
                 return new HttpNotFoundResult();
+        }
+
+        [HttpPost]
+        [CookiesAuthorize]
+        public ActionResult AddClothesPartType(string name, int partId)
+        {
+            var clothes = DbContext.ClothesParts.Include("PartTypes").SingleOrDefault(t => t.Id == partId);
+            var type = new ClothesPartType() { Name = name, Order = clothes.PartTypes.Count };
+            clothes.PartTypes.Add(type);
+            DbContext.SaveChanges();
+            return new JsonResult() { Data = new ClothesPartType() { Id = type.Id, Name = name } };
+        }
+
+        [HttpPost]
+        [CookiesAuthorize]
+        public ActionResult DeleteClothesPartType(int id)
+        {
+            var clothPartType = DbContext.ClothesPartTypes.SingleOrDefault(t => t.Id == id);
+            if (clothPartType != null)
+            {
+                DbContext.ClothesPartTypes.Remove(clothPartType);
+                DbContext.SaveChanges();
+                return new JsonResult() { Data = true };
+            }
+            return new JsonResult() { Data = false };
+        }
+
+        [HttpPost]
+        [CookiesAuthorize]
+        public ActionResult Order(int partId, string items)
+        {
+            var itemsIds = items.Split(new char[] { ',' }).Where(t => !String.IsNullOrEmpty(t)).Select(t => int.Parse(t)).ToList();
+            var clothPart = DbContext.ClothesParts.Include("PartTypes").SingleOrDefault(t => t.Id == partId);
+            for (int i = 0; i < itemsIds.Count; i++)
+            {
+                clothPart.PartTypes.Single(t => t.Id == itemsIds[i]).Order = i;
+            }
+            DbContext.SaveChanges();
+            return new JsonResult() { Data = true };
         }
 
         [HttpGet]

@@ -13,7 +13,7 @@ namespace EPManageWeb.Entities.Models
         [MaxLength(50)]
         public string SampleNO { get; set; }
         [MaxLength(50)]
-        public string StyleNO { get; set; }
+        public string ProductNO { get; set; }
         public int ProductedCount { get; set; }
         public int SaledCount { get; set; }
         public String Comment { get; set; }

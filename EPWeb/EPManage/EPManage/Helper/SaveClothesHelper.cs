@@ -26,7 +26,8 @@ namespace EPManageWeb.Helper
                 Document document = new Document();
                 document.Add(new Field(Fields.Id.ToString(), clothes.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SampleNO.ToString(), clothes.SampleNO, Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.Tags.ToString(), clothes.Tags, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.Tags.ToString().Replace(',', ' '), clothes.Tags, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ProductNO.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
 
                 writer.AddDocument(document);
                 writer.Optimize();
@@ -35,9 +36,13 @@ namespace EPManageWeb.Helper
 
         public static List<Clothes> Search(string content)
         {
+            if (String.IsNullOrEmpty(content)) content = "ALL";
+
+            content = content.Replace(',', ' ');
             List<Clothes> clothes = new List<Clothes>();
 
             QueryParser parser = new QueryParser(version, Fields.Tags.ToString(), new StandardAnalyzer(version));
+            parser.DefaultOperator = QueryParser.Operator.OR;
             Query query = parser.Parse(content);
             IndexSearcher searcher = new IndexSearcher(directory);
             TopDocs hits = searcher.Search(query, 100);
@@ -45,8 +50,8 @@ namespace EPManageWeb.Helper
             {
                 clothes.Add(new Clothes()
                 {
-                    Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Tags.ToString()).StringValue),
-                    StyleNO = searcher.Doc(t.Doc).GetField(Fields.StyleNO.ToString()).StringValue,
+                    Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Id.ToString()).StringValue),
+                    ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue,
                     SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue
                 });
             }
@@ -57,7 +62,7 @@ namespace EPManageWeb.Helper
         {
             Id,
             SampleNO,
-            StyleNO,
+            ProductNO,
             Tags
         }
     }

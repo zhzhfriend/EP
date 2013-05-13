@@ -2,6 +2,45 @@
 <div class="searchbox">
     @foreach (var type in Model.ClothesParts)
     {
+        if (type.Children != null && type.Children.Count > 0)
+        {
+        <table>
+            <tr>
+                <th rowspan="@type.Children.Count" class="title">@type.Name</th>
+                <td class="subTitle">@type.Children[0].Name</td>
+                <td colspan="3">
+                    <ul class="nav width130">
+                        @foreach (var t in type.Children[0].PartTypes)
+                        {
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="@t.Name" />
+                                    @t.Name</label></li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+            @for (var i = 1; i < type.Children.Count; i++)
+            {
+                <tr>
+                    <td class="subTitle">@type.Children[i].Name</td>
+                    <td colspan="3">
+                        <ul class="nav width210">
+                            @foreach (var t in type.Children[i].PartTypes)
+                            {
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="@t.Name" />
+                                        @t.Name</label></li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </table>
+        }
+        else
+        {
         <table>
             <tr>
                 <th>@type.Name</th>
@@ -18,13 +57,14 @@
                 </td>
             </tr>
         </table>
+        }
         <div class="split"></div>
     }
 </div>
 <div class="searchBoxSelectedItem">
     <div class="right">
         @*<img src="@Url.Content("~/Images/Search.png")" />*@
-        <button id="search" class="btn btn-info">搜索</button>
+        @Html.ActionLink("搜索", "Search", null, new {@class="btn btn-info", id="search" })
     </div>
     <div>
         <ul id="searchParameters" class="nav nav-pills">

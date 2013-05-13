@@ -31,26 +31,102 @@ namespace EPManageWeb.Migrations
 
         private void AddClothesTypes(EPManageWeb.Entities.EPDataContext context)
         {
+            AddClothType_ShangZhuang(context);
+
+            if (context.ClothesTypes.Count(t => t.Name == "下装") == 0)
+            {
+                context.ClothesTypes.Add(new ClothesType()
+                {
+                    Name = "下装",
+                    Children = new List<ClothesType>
+                    {
+                        new ClothesType(){ Name="裙子"},
+                        new ClothesType(){ Name="裤子"}
+                    }
+                });
+            }
+
+            if (context.ClothesTypes.Count(t => t.Name == "毛衫") == 0)
+            {
+                context.ClothesTypes.Add(new ClothesType() { Name = "毛衫" });
+            }
+        }
+
+        private void AddClothType_ShangZhuang(EPManageWeb.Entities.EPDataContext context)
+        {
             if (context.ClothesTypes.Count(t => t.Name == "上装") == 0)
             {
+
                 ClothesType c = new ClothesType() { Name = "上装" };
+                c.ClothesParts = new List<ClothesPart>();
+                var p = new ClothesPart() { Name = "品类", ClothType = c };
+                p.PartTypes = new List<ClothesPartType>();
+                p.PartTypes.Add(new ClothesPartType() { Name = "外套", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "衬衫", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "小衫", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "风衣", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "大衣", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "棉衣/羽绒服", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "皮衣", ClothesPart = p });
+                p.PartTypes.Add(new ClothesPartType() { Name = "连衣裙", ClothesPart = p });
+                c.ClothesParts.Add(p);
 
-                List<ClothesPart> parts = new List<ClothesPart>();
+                var p1 = new ClothesPart() { Name = "衣身", ClothType = c };
+                p1.Children = new List<ClothesPart>();
 
-                ClothesPart p = new ClothesPart() { Name = "品类", ClothType = c };
-                List<ClothesPartType> partTypes = new List<ClothesPartType>();
-                partTypes.Add(new ClothesPartType() { Name = "外套", ClothesPart = p });
-                partTypes.Add(new ClothesPartType() { Name = "衬衫", ClothesPart = p });
-                partTypes.Add(new ClothesPartType() { Name = "小衫", ClothesPart = p });
-                partTypes.Add(new ClothesPartType() { Name = "风衣", ClothesPart = p });
-                partTypes.Add(new ClothesPartType() { Name = "大衣", ClothesPart = p });
-                partTypes.Add(new ClothesPartType() { Name = "棉衣/羽绒服", ClothesPart = p });
-                p.PartTypes = partTypes;
-                parts.Add(p);
-                c.ClothesParts = parts;
+                var p11 = new ClothesPart() { Name = "廓形", Parent = p1 };
+                p11.PartTypes = new List<ClothesPartType>();
+                p11.PartTypes.Add(new ClothesPartType() { Name = "H", ClothesPart = p11 });
+                p11.PartTypes.Add(new ClothesPartType() { Name = "X", ClothesPart = p11 });
+                p11.PartTypes.Add(new ClothesPartType() { Name = "A", ClothesPart = p11 });
+                p11.PartTypes.Add(new ClothesPartType() { Name = "O", ClothesPart = p11 });
+                p1.Children.Add(p11);
+
+                var p12 = new ClothesPart() { Name = "宽松风格", Parent = p1 };
+                p12.PartTypes = new List<ClothesPartType>();
+                p12.PartTypes.Add(new ClothesPartType() { Name = "宽松(B>105)", ClothesPart = p12 });
+                p12.PartTypes.Add(new ClothesPartType() { Name = "较宽松(B=95~105)", ClothesPart = p12 });
+                p12.PartTypes.Add(new ClothesPartType() { Name = "贴体(B=84~95)", ClothesPart = p12 });
+                p1.Children.Add(p12);
+
+                var p13 = new ClothesPart() { Name = "片数", Parent = p1 };
+                p13.PartTypes = new List<ClothesPartType>();
+                p13.PartTypes.Add(new ClothesPartType() { Name = "2开身", ClothesPart = p13 });
+                p13.PartTypes.Add(new ClothesPartType() { Name = "3开身", ClothesPart = p13 });
+                p13.PartTypes.Add(new ClothesPartType() { Name = "4开身", ClothesPart = p13 });
+                p13.PartTypes.Add(new ClothesPartType() { Name = "多开身", ClothesPart = p13 });
+                p1.Children.Add(p13);
+
+                var p14 = new ClothesPart() { Name = "造型特征", Parent = p1 };
+                p14.PartTypes = new List<ClothesPartType>();
+                p14.PartTypes.Add(new ClothesPartType() { Name = "分割", ClothesPart = p14 });
+                p14.PartTypes.Add(new ClothesPartType() { Name = "省道", ClothesPart = p14 });
+                p14.PartTypes.Add(new ClothesPartType() { Name = "折裥", ClothesPart = p14 });
+                p14.PartTypes.Add(new ClothesPartType() { Name = "抽摺", ClothesPart = p14 });
+                p14.PartTypes.Add(new ClothesPartType() { Name = "约克", ClothesPart = p14 });
+                p1.Children.Add(p14);
+
+                c.ClothesParts.Add(p1);
+
+                var p2 = new ClothesPart() { Name = "领型", ClothType = c };
+                p2.PartTypes = new List<ClothesPartType>();
+                p2.PartTypes.Add(new ClothesPartType() { Name = "无领", ClothesPart = p2 });
+                p2.PartTypes.Add(new ClothesPartType() { Name = "圆领", ClothesPart = p2 });
+                p2.PartTypes.Add(new ClothesPartType() { Name = "驳折领", ClothesPart = p2 });
+                p2.PartTypes.Add(new ClothesPartType() { Name = "连帽子", ClothesPart = p2 });
+                p2.PartTypes.Add(new ClothesPartType() { Name = "翻折领", ClothesPart = p2 });
+                c.ClothesParts.Add(p2);
+
+                var p3 = new ClothesPart() { Name = "衣袖", ClothType = c };
+                p3.Children = new List<ClothesPart>();
+                p3.Children.Add(new ClothesPart() { Name = "袖型", Parent = p3 });
+                p3.Children.Add(new ClothesPart() { Name = "片数", Parent = p3 });
+                p3.Children.Add(new ClothesPart() { Name = "长短", Parent = p3 });
+                p3.Children.Add(new ClothesPart() { Name = "造型特征", Parent = p3 });
+                c.ClothesParts.Add(p3);
 
                 context.ClothesTypes.Add(c);
-                
+
             }
         }
     }

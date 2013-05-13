@@ -1,8 +1,15 @@
 ﻿$(document).ready(function () {
+    $('#myModal').on('show', function () {
+        if (getUserSelectedItems().length == 0) {
+            alert('您尚未选择特征信息');
+            return false;
+        }
+    });
+
     $('#btnAddClothes').click(function () {
         var data = {
             'SampleNO': $('#SampleNO').val(),
-            'StyleNO': $('#StyleNO').val(),
+            'ProductNO': $('#ProductNO').val(),
             'StylePics': getImages('#images_StylePics'),
             'ClothesPics': getImages('#images_ClothesPics'),
             'ModelVersionPics': getImages('#images_ModelVersionPics'),
@@ -18,7 +25,7 @@
         $.post($('#btnAddClothes').attr('href'), data, function (data) {
             alert('保存成功');
             $('#myModal').modal('toggle');
-        }, 'json');
+        }, 'json').fail(function () { alert('保存失败'); });
         return false;
     });
 });

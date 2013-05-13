@@ -1,4 +1,5 @@
-﻿<div class="left">
+﻿@model EPManageWeb.Entities.Models.ClothesType
+<div class="left">
     <img src="@Url.Content("~/Images/Logo.png")" alt="EP Logo" />
 </div>
 <div class="right">
@@ -14,12 +15,20 @@
     </div>
     <div class="nav">
         <ul class="nav nav-pills">
-            <li><span class="active">上装</span></li>
-            <li><span>下装</span></li>
-            <li><span>毛衫</span></li>
+            @foreach (var t in ViewBag.ClothesTypes as List<EPManageWeb.Entities.Models.ClothesType>)
+            {
+                if (t.Id == Model.Id)
+                {
+                <li><span class="active">@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span></li>
+                }
+                else
+                {
+                <li><span>@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span></li>
+                }
+            }
             <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>
             <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
-            <li><span>@Html.ActionLink("编辑记录", "Index", new { id = 1 })</span></li>
+            <li><span>@Html.ActionLink("编辑记录", "Edit", new { id = Model.Id })</span></li>
         </ul>
     </div>
 </div>

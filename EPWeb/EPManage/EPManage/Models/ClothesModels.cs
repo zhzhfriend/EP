@@ -11,8 +11,8 @@ namespace EPManageWeb.Models
     {
         [Display(Name = "样板编号")]
         public String SampleNO { get; set; }
-        [Display(Name = "样式编号")]
-        public String StyleNO { get; set; }
+        [Display(Name = "大货编号")]
+        public String ProductNO { get; set; }
 
         [Display(Name = "款式图")]
         public String StylePics { get; set; }
@@ -38,6 +38,8 @@ namespace EPManageWeb.Models
 
         [Display(Name = "尺寸表")]
         public string ClothSize { get; set; }
+
+        public string ClothesTags { get; set; }
     }
 
     public class ClothesDetailModel : Clothes
@@ -51,7 +53,7 @@ namespace EPManageWeb.Models
 
         public new int Id { get { return _Clothes.Id; } }
         public new string SampleNO { get { return _Clothes.SampleNO; } }
-        public new string StyleNO { get { return _Clothes.StyleNO; } }
+        public new string StyleNO { get { return _Clothes.ProductNO; } }
         public new int ProductedCount { get { return _Clothes.ProductedCount; } }
         public new int SaledCount { get { return _Clothes.SaledCount; } }
         public new String Comment { get { return _Clothes.Comment; } }

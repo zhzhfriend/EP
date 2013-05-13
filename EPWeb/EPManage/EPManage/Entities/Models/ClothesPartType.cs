@@ -10,7 +10,7 @@ namespace EPManageWeb.Entities.Models
     {
         [Key]
         public int Id { get; set; }
-        [MaxLength(10)]
+        [MaxLength(100)]
         public String Name { get; set; }
         public int Order { get; set; }
 

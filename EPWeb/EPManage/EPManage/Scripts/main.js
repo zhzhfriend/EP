@@ -20,12 +20,14 @@ $(document).ready(function () {
     });
 
     $('#search').click(function () {
-        $('#container').empty();
-        $('#container').append('<div>正在加载数据</div>');
-        $.post('Main/Search', { param: getUserSelectedItems() }, function (data) {
+        $('#container').html('<div class="alert alert-info">正在加载数据</div>');
+        $.post($('#search').attr('href'), { param: getUserSelectedItems() }, function (data) {
             $('#container').empty();
             $('#container').append(data);
+        }).fail(function () {
+            $('#container').html('<div class="alert alert-error">加载数据失败</div>');
         });
+        return false;
     });
 
     $('#search').click();

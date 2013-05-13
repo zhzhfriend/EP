@@ -12,7 +12,7 @@ namespace EPManageWeb.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 10),
+                        Name = c.String(maxLength: 100),
                         Order = c.Int(nullable: false),
                         ClothesPart_Id = c.Int(),
                     })
