@@ -81,7 +81,7 @@ namespace EPManageWeb.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
+            ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.Children.PartTypes.Children").Include("ClothesParts.PartTypes").Include("ClothesParts.PartTypes.Children").SingleOrDefault(t => t.Id == id);
 
             if (clothesType == null) return new HttpNotFoundResult();
 

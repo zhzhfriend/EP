@@ -13,10 +13,10 @@ namespace EPManageWeb.Entities.Models
         [MaxLength(20)]
         public String Name { get; set; }
 
-        public ClothesType Parent { get; set; }
+        public virtual ClothesType Parent { get; set; }
 
-        public List<ClothesType> Children { get; set; }
+        public virtual List<ClothesType> Children { get; set; }
 
-        public List<ClothesPart> ClothesParts { get; set; }
+        public virtual List<ClothesPart> ClothesParts { get; set; }
     }
 }

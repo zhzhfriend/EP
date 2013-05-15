@@ -28,7 +28,63 @@
         }).fail(function () { alert('保存失败'); });
         return false;
     });
+
+    $('.btnType').click(function () {
+        $('#partTypeModal').modal();
+        $('#clothesPartChildren').html('正在加载.....');
+        $('#clothesPartChildren').data('data', $(this).attr('typeId'));
+        $.get('/ClothesPartTypes/index/' + $(this).attr('typeId'), {}, function (data) {
+            $('#clothesPartChildren').html(data);
+            $('#clothesPartChildren ul').sortable();
+            initAddNewClothesPartTypeBtn();
+        }).fail(function () { alert('加载失败'); }
+        );
+    });
+
+
+    $('#btnSaveClothesPartType').click(function () {
+        var items = Array();
+        $('#clothesPartChildren li').each(function (index, item) {
+            items.push($(item).attr('data'));
+        });
+        var data = { 'itemIds': items.join(','), 'clothesPartTypeId': $('#clothesPartTypeId').val() };
+        $.post('/ClothesPartTypes/SaveClothesPartTypes', data, function (data) {
+            $('#clothesPartChildren').html('<div class="alert alert-info">保存成功</div>');
+            setTimeout(function () { $('.btnclose').click(); }, 500);
+        }).fail(function () { alert('保存失败'); });
+        return false;
+    });
+
+    $('#partTypeModal').on('hide', function () {
+        $('li[typeId="' + $('#clothesPartChildren').data('data') + '"] span[class="caret"]').remove();
+        $.post('/ClothesPartTypes/ChildCount', { clothesPartTypeId: $('#clothesPartChildren').data('data') }, function (data) {
+            if (data != '0') {
+                $('li[typeId="' + $('#clothesPartChildren').data('data') + '"]').append('<span class="caret"></span>');
+            }
+        });
+        return true;
+    });
 });
+
+
+function initAddNewClothesPartTypeBtn() {
+    $('#btnAddNewClothesPartType').click(function () {
+        $.post('/ClothesPartTypes/Add', { 'clothesPartTypeId': $('#clothesPartTypeId').val(), name: $('#newClothesPartType').val() }, function (data) {
+            $('#clothesPartChildren').html(data);
+            $('#clothesPartChildren ul').sortable();
+            initAddNewClothesPartTypeBtn();
+        }).fail(function () { alert('添加失败'); });
+
+    });
+
+    $('.btnDelClothesPartTypeChild').click(function () {
+        $.post('/ClothesPartTypes/Del', { 'clothesPartTypeId': $('#clothesPartTypeId').val(), 'id': $(this).attr('data') }, function (data) {
+            $('#clothesPartChildren').html(data);
+            $('#clothesPartChildren ul').sortable();
+            initAddNewClothesPartTypeBtn();
+        }).fail(function () { alert('删除失败'); });
+    });
+}
 
 function initAllRemoveButtons() {
 

@@ -14,6 +14,10 @@ namespace EPManageWeb.Entities.Models
         public String Name { get; set; }
         public int Order { get; set; }
 
-        public ClothesPart ClothesPart { get; set; }
+        public virtual ClothesPart ClothesPart { get; set; }
+
+        public virtual ClothesPartType Parent { get; set; }
+
+        public virtual List<ClothesPartType> Children { get; set; }
     }
 }
