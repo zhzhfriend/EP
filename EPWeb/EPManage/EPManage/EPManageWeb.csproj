@@ -172,6 +172,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ParamaterController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Entities\EPDataContext.cs" />
     <Compile Include="Entities\Models\BaseModel.cs" />

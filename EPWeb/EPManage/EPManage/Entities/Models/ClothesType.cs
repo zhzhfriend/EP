@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Xml.Serialization;
 
 namespace EPManageWeb.Entities.Models
 {
     public class ClothesType : BaseModel
     {
         [Key]
+        [XmlIgnore]
         public int Id { get; set; }
         [MaxLength(20)]
         public String Name { get; set; }

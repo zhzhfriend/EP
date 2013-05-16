@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Serialization;
 
 namespace EPManageWeb.Entities.Models
 {
@@ -14,8 +15,11 @@ namespace EPManageWeb.Entities.Models
             ModifiedDT = DateTime.Now;
         }
 
+        [XmlIgnore]
         public DateTime CreateDT { get; set; }
+        [XmlIgnore]
         public DateTime ModifiedDT { get; set; }
+        [XmlIgnore]
         public bool IsDeleted { get; set; }
     }
 }
