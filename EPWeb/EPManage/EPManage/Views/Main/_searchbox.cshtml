@@ -15,7 +15,19 @@
                             <li>
                                 <label>
                                     <input type="checkbox" name="@t.Name" />
-                                    @t.Name</label></li>
+                                    @t.Name</label>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <select class="dropdown-select">
+                                        <option value="0">请选择</option>
+                                        @foreach (var t1 in t.Children)
+                                        {
+                                            <option value="@t1.Name">@t1.Name</option>
+                                        }
+                                    </select>
+                                }
+
+                            </li>
                         }
                     </ul>
                 </td>
@@ -31,7 +43,18 @@
                                 <li>
                                     <label>
                                         <input type="checkbox" name="@t.Name" />
-                                        @t.Name</label></li>
+                                        @t.Name</label>
+                                    @if (t.Children != null && t.Children.Count > 0)
+                                    {
+                                        <select class="dropdown-select">
+                                            <option value="0">请选择</option>
+                                            @foreach (var t1 in t.Children)
+                                            {
+                                                <option value="@t1.Name">@t1.Name</option>
+                                            }
+                                        </select>
+                                    }
+                                </li>
                             }
                         </ul>
                     </td>
@@ -51,7 +74,18 @@
                             <li>
                                 <label>
                                     <input type="checkbox" name="@t.Name" />
-                                    @t.Name</label></li>
+                                    @t.Name</label>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <select class="dropdown-select">
+                                        <option value="0">请选择</option>
+                                        @foreach (var t1 in t.Children)
+                                        {
+                                            <option value="@t1.Name">@t1.Name</option>
+                                        }
+                                    </select>
+                                }
+                            </li>
                         }
                     </ul>
                 </td>
@@ -64,7 +98,7 @@
 <div class="searchBoxSelectedItem">
     <div class="right">
         @*<img src="@Url.Content("~/Images/Search.png")" />*@
-        @Html.ActionLink("搜索", "Search", null, new {@class="btn btn-info", id="search" })
+        @Html.ActionLink("搜索", "Search", null, new { @class = "btn btn-info", id = "search" })
     </div>
     <div>
         <ul id="searchParameters" class="nav nav-pills">

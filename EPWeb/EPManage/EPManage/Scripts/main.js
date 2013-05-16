@@ -18,6 +18,28 @@ $(document).ready(function () {
             });
         }
     });
+    $('.dropdown-select').multiselect({
+        header: false,
+        minWidth: '100',
+        'class': 'a',
+        selectedList: 4,
+        'noneSelectedText': 'None'
+    });
+
+    $(".dropdown-select").on("multiselectclick", function (event, ui) {
+        if (ui.value != '0') {
+            if (ui.checked) {
+                $('#searchParameters').append('<li data="' + ui.value + '" class="btn btn-success">' + ui.value + '<button class="close">&times;</button></li>');
+                bindRemoveIcon();
+            }
+            else {
+                $('#searchParameters li').each(function (index, item) {
+                    if ($(item).html().indexOf(ui.value) > -1)
+                        $(item).remove();
+                });
+            }
+        }
+    });
 
     $('#search').click(function () {
         $('#container').html('<div class="alert alert-info">正在加载数据</div>');

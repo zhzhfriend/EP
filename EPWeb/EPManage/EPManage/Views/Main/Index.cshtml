@@ -5,12 +5,15 @@
 }
 @section head{@{
     <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/jquery.multiselect.css")" rel="stylesheet"/>
     Html.RenderPartial("_head");}}
 @section searchbox{@{Html.RenderPartial("_searchbox");}}
 @section Js
 {
     <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-jtemplates.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.multiselect.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
