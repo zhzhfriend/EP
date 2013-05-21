@@ -44,26 +44,26 @@ namespace EPManageWeb.Migrations
                        new ClothesType(){ Name="裙子",
                         ClothesParts = new List<ClothesPart>
                         {
-                         new ClothesPart(){ Name="裙身", PartTypes=new List<ClothesPartType>
+                         new ClothesPart(){ Name="裙身",  Children=new List<ClothesPart>
                          {
-                              new ClothesPartType(){ Name="廓形",
-                                  Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="廓形",
+                                  PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="直身裙"},
                                       new ClothesPartType(){ Name="A字裙"},
                                       new ClothesPartType(){ Name="A波浪"}
                                 }
                               },
-                              new ClothesPartType(){ Name="宽松风格",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="宽松风格",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="宽松(H>98)"},
                                       new ClothesPartType(){ Name="较宽松（H=93~98）"},
                                       new ClothesPartType(){ Name="贴体（H=88~93）"}
                                 }
                               },
-                              new ClothesPartType(){ Name="裙长",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="裙长",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="3分"},
                                       new ClothesPartType(){ Name="4分"},
@@ -74,8 +74,8 @@ namespace EPManageWeb.Migrations
 
                                 }
                               },
-                               new ClothesPartType(){ Name="造型特征",
-                                   Children=new List<ClothesPartType>
+                               new ClothesPart(){ Name="造型特征",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="分割",
                                           Children=new List<ClothesPartType>
@@ -92,18 +92,18 @@ namespace EPManageWeb.Migrations
                               }
                          }
                                      },
-                         new ClothesPart(){ Name="腰头", PartTypes=new List<ClothesPartType>
+                         new ClothesPart(){ Name="腰头", Children=new List<ClothesPart>
                          {
-                              new ClothesPartType(){ Name="腰高",
-                                  Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="腰高",
+                                  PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="低腰"},
                                       new ClothesPartType(){ Name="中腰"},
                                       new ClothesPartType(){ Name="高腰"}
                                 }
                               },
-                              new ClothesPartType(){ Name="工艺",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="工艺",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="装腰"},
                                       new ClothesPartType(){ Name="连腰"},
@@ -120,10 +120,10 @@ namespace EPManageWeb.Migrations
                        new ClothesType(){ Name="裤子",
                               ClothesParts = new List<ClothesPart>
                         {
-                         new ClothesPart(){ Name="裤身", PartTypes=new List<ClothesPartType>
+                         new ClothesPart(){ Name="裤身", Children=new List<ClothesPart>
                          {
-                              new ClothesPartType(){ Name="廓形",
-                                  Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="廓形",
+                                  PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="直筒裤"},
                                       new ClothesPartType(){ Name="窄脚裤"},
@@ -131,16 +131,16 @@ namespace EPManageWeb.Migrations
                                       new ClothesPartType(){ Name="哈伦裤"}
                                 }
                               },
-                              new ClothesPartType(){ Name="宽松风格",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="宽松风格",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="宽松(H>98)"},
                                       new ClothesPartType(){ Name="较宽松（H=93~98）"},
                                       new ClothesPartType(){ Name="贴体（H=88~93）"}
                                 }
                               },
-                              new ClothesPartType(){ Name="裙长",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="裙长",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="3分"},
                                       new ClothesPartType(){ Name="4分"},
@@ -151,8 +151,8 @@ namespace EPManageWeb.Migrations
 
                                 }
                               },
-                               new ClothesPartType(){ Name="造型特征",
-                                   Children=new List<ClothesPartType>
+                               new ClothesPart(){ Name="造型特征",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="分割",
                                           Children=new List<ClothesPartType>
@@ -169,18 +169,18 @@ namespace EPManageWeb.Migrations
                               }
                          }
                                      },
-                         new ClothesPart(){ Name="腰头", PartTypes=new List<ClothesPartType>
+                         new ClothesPart(){ Name="腰头", Children=new List<ClothesPart>
                          {
-                              new ClothesPartType(){ Name="腰高",
-                                  Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="腰高",
+                                  PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="低腰"},
                                       new ClothesPartType(){ Name="中腰"},
                                       new ClothesPartType(){ Name="高腰"}
                                 }
                               },
-                              new ClothesPartType(){ Name="工艺",
-                                   Children=new List<ClothesPartType>
+                              new ClothesPart(){ Name="工艺",
+                                   PartTypes=new List<ClothesPartType>
                                {
                                       new ClothesPartType(){ Name="装腰"},
                                       new ClothesPartType(){ Name="连腰"},
