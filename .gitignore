@@ -168,3 +168,4 @@ pip-log.txt
 
 #upload files
 upload/*
+/EPWeb/EPManage/EPManage/LuceneIndex

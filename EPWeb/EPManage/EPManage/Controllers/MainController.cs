@@ -14,9 +14,14 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Index(int id)
         {
-            ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
+            //ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
+            ClothesType clothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == id);
             if (clothesType == null)
-                clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").FirstOrDefault();
+                clothesType = DbContext.ClothesTypes.FirstOrDefault();
+                //clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").FirstOrDefault();
+
+            if (clothesType.Children != null && clothesType.Children.Count > 0)
+                clothesType = clothesType.Children[0];
 
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
 
