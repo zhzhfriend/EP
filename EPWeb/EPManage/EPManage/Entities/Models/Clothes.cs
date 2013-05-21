@@ -33,5 +33,6 @@ namespace EPManageWeb.Entities.Models
         public String ClothesSize { get; set; }
         [MaxLength(1000)]
         public String Tags { get; set; }
+        public int ViewCount { get; set; }
     }
 }

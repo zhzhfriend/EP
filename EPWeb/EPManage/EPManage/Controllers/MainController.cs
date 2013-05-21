@@ -94,9 +94,13 @@ namespace EPManageWeb.Controllers
         {
             var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
             if (clothes != null)
+            {
+                clothes.ViewCount = clothes.ViewCount + 1;
+                DbContext.SaveChanges();
                 return View(new ClothesDetailModel(clothes));
+            }
             else
-                return new HttpNotFoundResult();
+                return new ContentResult() { Content = "未找到相应的记录" };
         }
 
         [HttpPost]

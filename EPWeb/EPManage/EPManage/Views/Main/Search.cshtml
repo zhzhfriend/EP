@@ -1,10 +1,8 @@
 ﻿@model System.Collections.Generic.List<ClothesDetailModel>
-
 @{
     ViewBag.Title = "Search";
     Layout = null;
 }
-
 @if (Model != null && Model.Count > 0)
 {
     <ul class="nav">
@@ -30,15 +28,20 @@
                             <img src="@Url.Content("~/Images/detailLink.png")" />
                         </div>
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+                    </div>
                 </div>
                 <div class="clothesNO">
                     <div class="left">
-                        <div>样板编号:@t.SampleNO</div>
-                        <div>大货编号：E12EC1103A</div>
+                        <div>
+                            样板编号:@t.SampleNO</div>
+                        <div>
+                            大货编号：E12EC1103A</div>
                     </div>
                     <div class="detailLink">
-                        <img src="@Url.Content("~/Images/detailLink1.png")" />
+                        <a href="Main/Detail/@t.Id" target="_blank">
+                            <img src="@Url.Content("~/Images/detailLink1.png")" />
+                        </a>
                     </div>
                 </div>
             </li>
@@ -51,4 +54,3 @@ else
         未找到结果
     </div>
 }
-
