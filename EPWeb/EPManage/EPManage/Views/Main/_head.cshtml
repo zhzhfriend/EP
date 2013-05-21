@@ -9,8 +9,8 @@
     <div class="quickSearch">
         <div class="title">样板编号/大货编号</div>
         <div class="quickSearchBox">
-            <input type="text" />
-            <input type="image" src="@Url.Content("~/Images/submit.png")" />
+            <input type="text" id="txtSearchNO" />
+            <input type="image" id="imgSearch" src="@Url.Content("~/Images/submit.png")" />
         </div>
     </div>
     <div class="nav">
@@ -19,11 +19,35 @@
             {
                 if (t.Id == Model.Id)
                 {
-                <li><span class="active">@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span></li>
+                <li><span class="active">@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span>
+                    @if (t.Children != null && t.Children.Count > 0)
+                    {
+                        t.Children = t.Children.OrderBy(d => d.Id).ToList();
+                        <ul class="nav nav-pills">
+                            @foreach (var t1 in t.Children)
+                            {
+                                var isActive = t1.Id == Model.Id ? "active" : "";
+                                <li class="width50percent @isActive">@Html.ActionLink(t1.Name, "Index", new { id = t1.Id })</li>
+                            }
+                        </ul>
+                    }
+                </li>
                 }
                 else
                 {
-                <li><span>@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span></li>
+                <li><span>@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span>
+                    @if (t.Children != null && t.Children.Count > 0)
+                    {
+                        t.Children = t.Children.OrderBy(d => d.Id).ToList();
+                        <ul class="nav nav-pills">
+                            @foreach (var t1 in t.Children)
+                            {
+                               var isActive = t1.Id == Model.Id ? "active" : "";
+                                <li class="width50percent @isActive">@Html.ActionLink(t1.Name, "Index", new { id = t1.Id })</li>
+                            }
+                        </ul>
+                    }
+                </li>
                 }
             }
             <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>

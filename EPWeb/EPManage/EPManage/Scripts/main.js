@@ -42,18 +42,33 @@ $(document).ready(function () {
     });
 
     $('#search').click(function () {
-        $('#container').html('<div class="alert alert-info">正在加载数据</div>');
-        $.post($('#search').attr('href'), { param: getUserSelectedItems() }, function (data) {
-            $('#container').empty();
-            $('#container').append(data);
-        }).fail(function () {
-            $('#container').html('<div class="alert alert-error">加载数据失败</div>');
+        searchClothes(function () {
+            return { 'tags': getUserSelectedItems() };
+        });
+        return false;
+    });
+
+    $('#imgSearch').click(function () {
+        searchClothes(function () {
+            return data = { "id": $('#txtSearchNO').val() };
         });
         return false;
     });
 
     $('#search').click();
 });
+
+function searchClothes(getDataParamsFunc) {
+    $('#container').html('<div class="alert alert-info">正在加载数据</div>');
+    var data = getDataParamsFunc();
+    $.post($('#search').attr('href'), data, function (data) {
+        $('#container').empty();
+        $('#container').append(data);
+    }).fail(function () {
+        $('#container').html('<div class="alert alert-error">加载数据失败</div>');
+    });
+    return false;
+}
 
 function getUserSelectedItems() {
     var items = Array();

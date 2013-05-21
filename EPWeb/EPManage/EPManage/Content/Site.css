@@ -26,30 +26,42 @@
             background-color: rgb(167,130,60);
             color: white;
             font-weight: bold;
-            float:left;
+            float: left;
         }
+
         .head .center .quickSearchBox {
-            margin-left:250px;
-            padding-left:5px;
-            padding-top:5px;
-            width:429px;
-            height:41px;
-            min-height:41px;
-            background-image:url(../Images/quickBoxBG.png);
+            margin-left: 250px;
+            padding-left: 5px;
+            padding-top: 5px;
+            width: 429px;
+            height: 41px;
+            min-height: 41px;
+            background-image: url(../Images/quickBoxBG.png);
         }
+
             .head .center .quickSearchBox input[type=text] {
-                border:none;
-                font-size:22px;
-                width:370px;
+                border: none;
+                font-size: 22px;
+                width: 370px;
             }
+
         .head .center .nav {
             margin-bottom: 0px;
             margin-top: 2px;
         }
+
             .head .center .nav li {
                 width: 16%;
                 text-align: left;
             }
+
+                .head .center .nav li.width50percent {
+                    width:50%;
+                }
+
+                .head .center .nav li.active {
+                    background:#f2f2f2;
+                }
 
             .head .center .nav span {
                 font-family: 黑体;
@@ -58,9 +70,9 @@
             }
 
                 .head .center .nav span.active {
-                    background-image:url(../Images/activeNavBg.png);
-                    background-position:bottom center;
-                    background-repeat:no-repeat;
+                    background-image: url(../Images/activeNavBg.png);
+                    background-position: bottom center;
+                    background-repeat: no-repeat;
                 }
 
     .head .right {
@@ -69,9 +81,10 @@
     }
 
 .width1000Modal {
-    width:1000px;
-    margin-left:-500px;
+    width: 1000px;
+    margin-left: -500px;
 }
+
 #addClothTemplate {
-    display:none;
+    display: none;
 }

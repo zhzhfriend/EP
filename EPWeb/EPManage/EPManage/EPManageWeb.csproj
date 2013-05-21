@@ -225,6 +225,7 @@
     <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\SearchDocument.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

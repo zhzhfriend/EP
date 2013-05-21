@@ -64,6 +64,7 @@ namespace EPManageWeb.Models
         public new String StylePics { get { return _Clothes.StylePics; } }
         public new String TechnologyFile { get { return _Clothes.TechnologyFile; } }
         public new String ClothesSize { get { return _Clothes.ClothesSize; } }
+        public new String ProductNO { get { return _Clothes.ProductNO; } }
 
         public List<String> ClothesImages
         {

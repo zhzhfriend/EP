@@ -33,9 +33,9 @@ namespace EPManageWeb.Controllers
 
         [CookiesAuthorize]
         [HttpPost]
-        public ActionResult Search(string param)
+        public ActionResult Search(SearchDocument searchDocument)
         {
-            List<ClothesDetailModel> clothes = SaveClothesHelper.Search(param).Select(t => new ClothesDetailModel(t)).ToList();
+            List<ClothesDetailModel> clothes = SaveClothesHelper.Search(searchDocument).Select(t => new ClothesDetailModel(t)).ToList();
             return View(clothes);
         }
 
