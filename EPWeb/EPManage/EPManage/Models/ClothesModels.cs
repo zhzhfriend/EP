@@ -40,6 +40,8 @@ namespace EPManageWeb.Models
         public string ClothSize { get; set; }
 
         public string ClothesTags { get; set; }
+
+        public int ClothesTypeId { get; set; }
     }
 
     public class ClothesDetailModel : Clothes
@@ -65,7 +67,7 @@ namespace EPManageWeb.Models
         public new String TechnologyFile { get { return _Clothes.TechnologyFile; } }
         public new String ClothesSize { get { return _Clothes.ClothesSize; } }
         public new String ProductNO { get { return _Clothes.ProductNO; } }
-
+        public new int ViewCount { get { return _Clothes.ViewCount; } }
         public List<String> ClothesImages
         {
             get

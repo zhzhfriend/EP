@@ -1,18 +1,17 @@
 namespace EPManageWeb.Migrations
 {
-
+    using EPManageWeb.Entities.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using EPManageWeb.Entities.Models;
-    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<EPManageWeb.Entities.EPDataContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(EPManageWeb.Entities.EPDataContext context)
@@ -25,14 +24,14 @@ namespace EPManageWeb.Migrations
         {
             if (context.Users.SingleOrDefault(t => t.UserName == "admin") == null)
             {
-                context.Users.AddOrUpdate(new User() { Id = 1, UserName = "admin", Password = "admin", CreateDT = DateTime.Now, ModifiedDT = DateTime.Now });
+                context.Users.AddOrUpdate(new User() { Id = 1, UserName = "admin", Password = "admin", CreateDT = DateTime.Now, ModifiedDT = DateTime.Now, RealName = "王利峰" });
             }
         }
 
         private void AddClothesTypes(EPManageWeb.Entities.EPDataContext context)
         {
             AddClothType_ShangZhuang(context);
-           // AddClothType_XiaZhuang(context);
+            // AddClothType_XiaZhuang(context);
 
             if (context.ClothesTypes.Count(t => t.Name == "下装") == 0)
             {
@@ -312,32 +311,5 @@ namespace EPManageWeb.Migrations
 
             }
         }
-
-        //private void AddClothType_XiaZhuang(EPManageWeb.Entities.EPDataContext context)
-        //{
-        //    if (context.ClothesTypes.Count(t => t.Name == "下装") == 0)
-        //    {
-        //        ClothesType c = new ClothesType() { Name = "下装" };
-        //        ClothesType d = new ClothesType() { Name = "裙子", Parent = c};
-
-        //        d.ClothesParts = new List<ClothesPart>();
-        //        var p1 = new ClothesPart() { Name = "裙身", ClothType = d };
-        //        p1.Children = new List<ClothesPart>();
-
-
-        //        var p11 = new ClothesPart() { Name = "廓形", Parent = p1 };
-        //        p11.PartTypes = new List<ClothesPartType>();
-
-        //        p11.PartTypes.Add(new ClothesPartType() { Name = "直身裙", ClothesPart = p11 });
-        //        p11.PartTypes.Add(new ClothesPartType() { Name = "A字裙", ClothesPart = p11 });
-        //        p11.PartTypes.Add(new ClothesPartType() { Name = "波浪", ClothesPart = p11 });
-        //        p11.Children = new List<ClothesPart>();
-        //        p1.Children.Add(p11);
-
-        //        d.ClothesParts.Add(p1);
-        //        context.ClothesTypes.Add(c);
-
-        //    }
-        //}
     }
 }

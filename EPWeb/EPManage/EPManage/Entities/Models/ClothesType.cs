@@ -20,5 +20,7 @@ namespace EPManageWeb.Entities.Models
         public virtual List<ClothesType> Children { get; set; }
 
         public virtual List<ClothesPart> ClothesParts { get; set; }
+
+        public virtual List<Clothes> Clothes { get; set; }
     }
 }

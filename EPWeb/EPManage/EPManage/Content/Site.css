@@ -78,6 +78,12 @@
     .head .right {
         width: 175px;
         float: right;
+        background-image:url(../Images/AdminInfo.png);
+        min-height:51px;
+        height:51px;
+        padding-top:60px;
+        font-size:16px;
+        font-weight:900;
     }
 
 .width1000Modal {

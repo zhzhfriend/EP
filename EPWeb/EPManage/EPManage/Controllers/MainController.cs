@@ -14,11 +14,9 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Index(int id)
         {
-            //ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").SingleOrDefault(t => t.Id == id);
             ClothesType clothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == id);
             if (clothesType == null)
                 clothesType = DbContext.ClothesTypes.FirstOrDefault();
-                //clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.PartTypes").FirstOrDefault();
 
             if (clothesType.Children != null && clothesType.Children.Count > 0)
                 clothesType = clothesType.Children[0];
@@ -64,7 +62,8 @@ namespace EPManageWeb.Controllers
                 SampleFile = model.SampleFile,
                 StylePics = model.StylePics,
                 TechnologyFile = model.TechnologyFile,
-                Tags = model.ClothesTags
+                Tags = model.ClothesTags,
+                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == model.ClothesTypeId)
             };
             DbContext.Clothes.Add(c);
             DbContext.SaveChanges();
@@ -170,7 +169,6 @@ namespace EPManageWeb.Controllers
                 }
             }
         }
-
         private string GetPathFile(Clothes clothes, string type)
         {
             switch (type)

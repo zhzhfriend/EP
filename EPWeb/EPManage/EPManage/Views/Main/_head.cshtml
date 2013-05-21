@@ -3,7 +3,7 @@
     <img src="@Url.Content("~/Images/Logo.png")" alt="EP Logo" />
 </div>
 <div class="right">
-    <img src="@Url.Content("~/Images/AdminInfo.png")"/>
+    @HttpContext.Current.Items["RealName"]
 </div>
 <div class="center">
     <div class="quickSearch">
@@ -42,7 +42,7 @@
                         <ul class="nav nav-pills">
                             @foreach (var t1 in t.Children)
                             {
-                               var isActive = t1.Id == Model.Id ? "active" : "";
+                                var isActive = t1.Id == Model.Id ? "active" : "";
                                 <li class="width50percent @isActive">@Html.ActionLink(t1.Name, "Index", new { id = t1.Id })</li>
                             }
                         </ul>

@@ -1,6 +1,7 @@
 ﻿function bindRemoveIcon() {
-    $('.close').click(function (item) {
-        $(this.parentNode).remove();
+    $('.itemclose').click(function (item) {
+        $('input[name="' + $(this).parent().attr('data') + '"]').click()
+        $('input[value="' + $(this).parent().attr('data') + '"]').click()
     });
 }
 $(document).ready(function () {
@@ -8,7 +9,7 @@ $(document).ready(function () {
     $('input[type="checkbox"]').click(function (item) {
         var name = $(this).attr('name');
         if ($(this)[0].checked) {
-            $('#searchParameters').append('<li data="' + name + '" class="btn btn-success">' + name + '<button class="close">&times;</button></li>');
+            $('#searchParameters').append('<li data="' + name + '" class="btn btn-success">' + name + '<button class="close itemclose">&times;</button></li>');
             bindRemoveIcon();
         }
         else {
@@ -20,7 +21,7 @@ $(document).ready(function () {
     });
     $('.dropdown-select').multiselect({
         header: false,
-        minWidth: '100',
+        minWidth: '130',
         'class': 'a',
         selectedList: 4,
         'noneSelectedText': 'None'
@@ -29,7 +30,7 @@ $(document).ready(function () {
     $(".dropdown-select").on("multiselectclick", function (event, ui) {
         if (ui.value != '0') {
             if (ui.checked) {
-                $('#searchParameters').append('<li data="' + ui.value + '" class="btn btn-success">' + ui.value + '<button class="close">&times;</button></li>');
+                $('#searchParameters').append('<li data="' + ui.value + '" class="btn btn-success">' + ui.value + '<button class="close itemclose">&times;</button></li>');
                 bindRemoveIcon();
             }
             else {
@@ -43,14 +44,14 @@ $(document).ready(function () {
 
     $('#search').click(function () {
         searchClothes(function () {
-            return { 'tags': getUserSelectedItems() };
+            return { 'tags': getUserSelectedItems(), 'clothesTypeId': $('#clothesTypeId').val() };
         });
         return false;
     });
 
     $('#imgSearch').click(function () {
         searchClothes(function () {
-            return data = { "id": $('#txtSearchNO').val() };
+            return data = { "NO": $('#txtSearchNO').val(), 'clothesTypeId': $('#clothesTypeId').val() };
         });
         return false;
     });

@@ -94,10 +94,48 @@
         }
         <div class="split"></div>
     }
+    <table class="lastTable">
+        <tr>
+            <th>经典款</th>
+            <td class="width40">系列
+            </td>
+            <td>
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    <option value="EP">EP</option>
+                    <option value="EP-JEANS">EP-JEANS</option>
+                </select>
+            </td>
+            <th class="left">历年畅销款</th>
+            <td class="width40">年份</td>
+            <td class="right">
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    <option value="">2010年秋东</option>
+                    <option value="">2010年春夏</option>
+                    <option value="">2011年秋东</option>
+                    <option value="">2011年春夏</option>
+                    <option value="">2012年秋东</option>
+                    <option value="">2012年春夏</option>
+                    <option value="">2013年秋东</option>
+                    <option value="">2013年春夏</option>
+                </select>
+            </td>
+            <th>排序方式</th>
+            <td>
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    <option value="">按年份</option>
+                    <option value="">使用频率</option>
+                    <option value="">销量</option>
+                </select>
+            </td>
+        </tr>
+    </table>
 </div>
+
 <div class="searchBoxSelectedItem">
     <div class="right">
-        @*<img src="@Url.Content("~/Images/Search.png")" />*@
         @Html.ActionLink("搜索", "Search", null, new { @class = "btn btn-info", id = "search" })
     </div>
     <div>

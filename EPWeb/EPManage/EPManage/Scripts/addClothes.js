@@ -20,7 +20,8 @@
             'TechnologyFile': $('#TechnologyFile').val(),
             'AccessoriesFile': $('#AccessoriesFile').val(),
             'SampleFile': $('#SampleFile').val(),
-            'ClothesTags': getUserSelectedItems()
+            'ClothesTags': getUserSelectedItems(),
+            'clothesTypeId': $('#clothesTypeId').val()
         };
         $.post($('#btnAddClothes').attr('href'), data, function (data) {
             alert('保存成功');

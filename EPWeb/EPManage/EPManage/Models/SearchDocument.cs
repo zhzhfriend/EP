@@ -8,27 +8,28 @@ namespace EPManageWeb.Models
 {
     public class SearchDocument
     {
-        public String SampleNO { get; set; }
-        public String ProductNO { get; set; }
+        public String NO { get; set; }
         public String Tags { get; set; }
+        public int ClothesTypeId { get; set; }
 
         public String ToSearchDocument()
         {
             StringBuilder sb = new StringBuilder();
-            if (!String.IsNullOrEmpty(SampleNO))
+            sb.AppendFormat("ClothesTypeId:{0}", ClothesTypeId);
+            if (!String.IsNullOrEmpty(NO))
             {
-                sb.AppendFormat("SampleNO:{0}", SampleNO);
-            }
-            if (!String.IsNullOrEmpty(ProductNO))
-            {
-                sb.AppendFormat("ProductNO:{0}", ProductNO);
+                if (sb.Length > 0)
+                    sb.Append(" AND ");
+
+                sb.AppendFormat("(SampleNO:{0} OR ProductNO:{0})", NO);
             }
             if (!String.IsNullOrEmpty(Tags))
             {
-                sb.AppendFormat("Tags:{0}", Tags);
+                if (sb.Length > 0)
+                    sb.Append(" AND ");
+
+                sb.AppendFormat("Tags:{0}", Tags.Replace(',', ' '));
             }
-            if (sb.Length == 0)
-                sb.Append("Tags:ALL");
             return sb.ToString();
         }
     }

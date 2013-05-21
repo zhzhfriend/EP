@@ -189,37 +189,9 @@
     <Compile Include="Helper\EPViewePage.cs" />
     <Compile Include="Helper\SaveClothesHelper.cs" />
     <Compile Include="Helper\UserAuthnicationHelper.cs" />
-    <Compile Include="Migrations\201305061539297_Add_class_session_user.cs" />
-    <Compile Include="Migrations\201305061539297_Add_class_session_user.Designer.cs">
-      <DependentUpon>201305061539297_Add_class_session_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305081403285_add_clothestype.cs" />
-    <Compile Include="Migrations\201305081403285_add_clothestype.Designer.cs">
-      <DependentUpon>201305081403285_add_clothestype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305081421494_add_clothespart.cs" />
-    <Compile Include="Migrations\201305081421494_add_clothespart.Designer.cs">
-      <DependentUpon>201305081421494_add_clothespart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305081606472_add_clothesparttype.cs" />
-    <Compile Include="Migrations\201305081606472_add_clothesparttype.Designer.cs">
-      <DependentUpon>201305081606472_add_clothesparttype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305121228393_AddClothpart.cs" />
-    <Compile Include="Migrations\201305121228393_AddClothpart.Designer.cs">
-      <DependentUpon>201305121228393_AddClothpart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305131245109_add_class_clothes.cs" />
-    <Compile Include="Migrations\201305131245109_add_class_clothes.Designer.cs">
-      <DependentUpon>201305131245109_add_class_clothes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305141537273_add_clothparttype_children.cs" />
-    <Compile Include="Migrations\201305141537273_add_clothparttype_children.Designer.cs">
-      <DependentUpon>201305141537273_add_clothparttype_children.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201305141544392_add_clothparttype_children1.cs" />
-    <Compile Include="Migrations\201305141544392_add_clothparttype_children1.Designer.cs">
-      <DependentUpon>201305141544392_add_clothparttype_children1.cs</DependentUpon>
+    <Compile Include="Migrations\201305211614434_add_classes.cs" />
+    <Compile Include="Migrations\201305211614434_add_classes.Designer.cs">
+      <DependentUpon>201305211614434_add_classes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
@@ -628,29 +600,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201305061539297_Add_class_session_user.resx">
-      <DependentUpon>201305061539297_Add_class_session_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305081403285_add_clothestype.resx">
-      <DependentUpon>201305081403285_add_clothestype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305081421494_add_clothespart.resx">
-      <DependentUpon>201305081421494_add_clothespart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305081606472_add_clothesparttype.resx">
-      <DependentUpon>201305081606472_add_clothesparttype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305121228393_AddClothpart.resx">
-      <DependentUpon>201305121228393_AddClothpart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305131245109_add_class_clothes.resx">
-      <DependentUpon>201305131245109_add_class_clothes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305141537273_add_clothparttype_children.resx">
-      <DependentUpon>201305141537273_add_clothparttype_children.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201305141544392_add_clothparttype_children1.resx">
-      <DependentUpon>201305141544392_add_clothparttype_children1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201305211614434_add_classes.resx">
+      <DependentUpon>201305211614434_add_classes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

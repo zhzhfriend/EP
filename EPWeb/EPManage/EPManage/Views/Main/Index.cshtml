@@ -34,7 +34,20 @@
         @{Html.RenderPartial("Add", new ClothesEditModel());}
     </div>
     <div class="modal-footer">
+        <input type="hidden" name="clothesTypeId" id="clothesTypeId" value="@Model.Id" />
         <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
         @Html.ActionLink("保存", "Add", null, new { @class = "btn btn-primary", id = "btnAddClothes" })
+    </div>
+</div>
+
+<div id="viewPicsModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="viewPicsModalLabel">款式信息</h3>
+    </div>
+    <div class="modal-body" id="viewPicsModalBody">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
     </div>
 </div>
