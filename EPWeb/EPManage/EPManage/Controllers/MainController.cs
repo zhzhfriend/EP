@@ -68,6 +68,14 @@ namespace EPManageWeb.Controllers
                 ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == model.ClothesTypeId)
             };
             DbContext.Clothes.Add(c);
+
+            DbContext.OperationLogs.Add(new OperationLog()
+           {
+               User = CurrentUser,
+               Clothes = c,
+               OperationType = OperationType.AddClothes.ToString()
+           });
+
             DbContext.SaveChanges();
             SaveClothesHelper.Save(c);
             return new JsonResult() { Data = true };

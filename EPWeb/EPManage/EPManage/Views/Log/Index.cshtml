@@ -6,7 +6,7 @@
 }
 @section head{}
 
-<table>
+<table class="table table-striped table-bordered">
     <tr>
         <th>样板编号</th>
         <th>大货编号</th>
@@ -20,7 +20,7 @@
             <td>@t.Clothes.SampleNO</td>
             <td>@t.Clothes.ProductNO</td>
             <td>@t.CreateDT</td>
-            <td>@t.OperationType</td>
+            <td>@t.OperationTypeToString()</td>
             <td>@t.User.RealName</td>
         </tr>
     }

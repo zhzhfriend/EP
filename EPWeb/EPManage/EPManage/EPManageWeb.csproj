@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Helper\CookiesAuthorize.cs" />
     <Compile Include="Helper\EPViewePage.cs" />
+    <Compile Include="Helper\OperationLogExtension.cs" />
     <Compile Include="Helper\SaveClothesHelper.cs" />
     <Compile Include="Helper\UserAuthnicationHelper.cs" />
     <Compile Include="Migrations\201305211614434_add_classes.cs" />
