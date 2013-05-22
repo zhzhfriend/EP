@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201305221154591_add_class_operationLog.Designer.cs">
       <DependentUpon>201305221154591_add_class_operationLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201305221518194_add_pinglei_to_clothes.cs" />
+    <Compile Include="Migrations\201305221518194_add_pinglei_to_clothes.Designer.cs">
+      <DependentUpon>201305221518194_add_pinglei_to_clothes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -602,6 +606,7 @@
     <Content Include="Views\ClothesPartTypes\Index.cshtml" />
     <Content Include="Views\Main\Pics.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Statistic\Pinglei.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -621,6 +626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201305221154591_add_class_operationLog.resx">
       <DependentUpon>201305221154591_add_class_operationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305221518194_add_pinglei_to_clothes.resx">
+      <DependentUpon>201305221518194_add_pinglei_to_clothes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

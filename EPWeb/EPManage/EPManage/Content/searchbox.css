@@ -86,7 +86,7 @@ div.searchBoxSelectedItem {
         text-align:right;
         float:right;
     }
-div.dropdown {
+/*div.dropdown {
     font-size:14px;
     border:1px solid #9c8855;
     background-image:url(../Images/dropdownBg.png);
@@ -94,7 +94,7 @@ div.dropdown {
     background-repeat:no-repeat;
     height:26px;
     min-height:26px;
-}
+}*/
 .width93 {
     /*width:93px;*/
 }

@@ -34,6 +34,8 @@ namespace EPManageWeb.Entities.Models
         [MaxLength(1000)]
         public String Tags { get; set; }
         public int ViewCount { get; set; }
+
+        public String PingLei { get; set; }
         
         public virtual ClothesType ClothesType { get; set; }
 
