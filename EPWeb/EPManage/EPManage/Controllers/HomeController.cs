@@ -53,5 +53,12 @@ namespace EPManageWeb.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            UserAuthnicationHelper.Logout(HttpContext);
+            return RedirectToAction("Index");
+        }
     }
 }
