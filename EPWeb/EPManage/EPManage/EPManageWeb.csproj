@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201305211614434_add_classes.Designer.cs">
       <DependentUpon>201305211614434_add_classes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201305220815285_add_user_type.cs" />
+    <Compile Include="Migrations\201305220815285_add_user_type.Designer.cs">
+      <DependentUpon>201305220815285_add_user_type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -602,6 +606,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201305211614434_add_classes.resx">
       <DependentUpon>201305211614434_add_classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305220815285_add_user_type.resx">
+      <DependentUpon>201305220815285_add_user_type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

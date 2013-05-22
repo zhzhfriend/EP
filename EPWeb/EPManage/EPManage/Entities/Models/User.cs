@@ -12,7 +12,7 @@ namespace EPManageWeb.Entities.Models
         public String UserName { get; set; }
         public String Password { get; set; }
         public String RealName { get; set; }
-        public UserType UserType { get; set; }
+        public String UserType { get; set; }
 
         public DbSet<SessionUser> Sessions { get; set; }
 

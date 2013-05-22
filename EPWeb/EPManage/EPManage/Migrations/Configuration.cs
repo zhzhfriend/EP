@@ -24,7 +24,7 @@ namespace EPManageWeb.Migrations
         {
             if (context.Users.SingleOrDefault(t => t.UserName == "admin") == null)
             {
-                context.Users.AddOrUpdate(new User() { Id = 1, UserName = "admin", Password = "admin", CreateDT = DateTime.Now, ModifiedDT = DateTime.Now, RealName = "王利峰" });
+                context.Users.AddOrUpdate(new User() { Id = 1, UserName = "admin", Password = "admin", UserType = UserType.Admin.ToString(), CreateDT = DateTime.Now, ModifiedDT = DateTime.Now, RealName = "王利峰" });
             }
         }
 
