@@ -31,7 +31,7 @@ namespace EPManageWeb.Helper
                 document.Add(new Field(Fields.SampleNO.ToString(), clothes.SampleNO, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Tags.ToString(), clothes.Tags.Replace(',', ' '), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ProductNO.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
-                //document.Add(new Field(Fields.Year.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.Year.ToString(), ExtractYearFromTags(clothes), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesPics.ToString(), clothes.ClothesPics, Field.Store.YES, Field.Index.ANALYZED));
@@ -69,6 +69,15 @@ namespace EPManageWeb.Helper
                 });
             }
             return clothes;
+        }
+
+        private static string ExtractYearFromTags(Clothes clothes)
+        {
+            if (!String.IsNullOrEmpty(clothes.Tags))
+            {
+                return System.Text.RegularExpressions.Regex.Match(clothes.Tags, @"\d{4}").Value;
+            }
+            return string.Empty;
         }
 
         enum Fields
