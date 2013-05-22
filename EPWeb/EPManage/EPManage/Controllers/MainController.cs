@@ -50,23 +50,29 @@ namespace EPManageWeb.Controllers
         {
             if (!ValidClothesSize(model.ClothSize)) return new JsonResult() { Data = false };
 
+            var tags = model.ClothesTags.Split(new char[] { ',' }).ToList();
+            var pinglei = DbContext.ClothesPartTypes.SingleOrDefault(t => tags.Contains(t.Name));
+
             Clothes c = new Clothes()
             {
                 Comment = model.Comment,
                 ProductedCount = model.ProductedCount,
                 SaledCount = model.SaledCount,
-                SampleNO = model.SampleNO,
-                ProductNO = model.ProductNO,
-                AssessoriesFile = model.AccessoriesFile,
-                ClothesPics = model.ClothesPics,
-                ClothesSize = model.ClothSize,
-                ModelVersionPics = model.ModelVersionPics,
-                SampleFile = model.SampleFile,
-                StylePics = model.StylePics,
-                TechnologyFile = model.TechnologyFile,
-                Tags = model.ClothesTags,
+                SampleNO = model.SampleNO ?? string.Empty,
+                ProductNO = model.ProductNO ?? string.Empty,
+                AssessoriesFile = model.AccessoriesFile ?? string.Empty,
+                ClothesPics = model.ClothesPics ?? string.Empty,
+                ClothesSize = model.ClothSize ?? string.Empty,
+                ModelVersionPics = model.ModelVersionPics ?? string.Empty,
+                SampleFile = model.SampleFile ?? string.Empty,
+                StylePics = model.StylePics ?? string.Empty,
+                TechnologyFile = model.TechnologyFile ?? string.Empty,
+                Tags = model.ClothesTags ?? string.Empty,
                 ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == model.ClothesTypeId)
             };
+            if (pinglei != null)
+                c.PingLei = pinglei.Name;
+
             DbContext.Clothes.Add(c);
 
             DbContext.OperationLogs.Add(new OperationLog()

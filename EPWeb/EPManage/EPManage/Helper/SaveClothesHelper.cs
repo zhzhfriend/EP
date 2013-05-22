@@ -31,12 +31,12 @@ namespace EPManageWeb.Helper
                 document.Add(new Field(Fields.SampleNO.ToString(), clothes.SampleNO, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Tags.ToString(), clothes.Tags.Replace(',', ' '), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ProductNO.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.Year.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
+                //document.Add(new Field(Fields.Year.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesPics.ToString(), clothes.ClothesPics, Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ModelVersionPics.ToString(), clothes.ModelVersionPics.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.StylePics.ToString(), clothes.StylePics.ToString(), Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ModelVersionPics.ToString(), clothes.ModelVersionPics, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.StylePics.ToString(), clothes.StylePics, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.UsedCount.ToString(), clothes.ViewCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 writer.AddDocument(document);
                 writer.Optimize();
