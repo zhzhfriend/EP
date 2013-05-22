@@ -169,3 +169,7 @@ pip-log.txt
 #upload files
 upload/*
 /EPWeb/EPManage/EPManage/LuceneIndex
+
+/EPWeb/EPManage/EPManage/Upload
+
+/EPWeb/EPManage/EPManage/Main/~LuceneIndex

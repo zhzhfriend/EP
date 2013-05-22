@@ -26,6 +26,10 @@ namespace EPManageWeb.Migrations
             {
                 context.Users.AddOrUpdate(new User() { Id = 1, UserName = "admin", Password = "admin", UserType = UserType.Admin.ToString(), CreateDT = DateTime.Now, ModifiedDT = DateTime.Now, RealName = "王利峰" });
             }
+            if (context.Users.SingleOrDefault(t => t.UserName == "user") == null)
+            {
+                context.Users.AddOrUpdate(new User() { UserName = "user", Password = "user", UserType = UserType.User.ToString(), CreateDT = DateTime.Now, ModifiedDT = DateTime.Now, RealName = "王利峰" });
+            }
         }
 
         private void AddClothesTypes(EPManageWeb.Entities.EPDataContext context)
