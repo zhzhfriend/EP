@@ -16,6 +16,8 @@ namespace EPManageWeb.Entities.Models
 
         public DbSet<SessionUser> Sessions { get; set; }
 
+        public virtual DbSet<OperationLog> Logs { get; set; }
+
     }
 
     public enum UserType

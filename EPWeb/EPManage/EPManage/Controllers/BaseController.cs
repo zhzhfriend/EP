@@ -1,4 +1,5 @@
 ﻿using EPManageWeb.Entities;
+using EPManageWeb.Entities.Models;
 using EPManageWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,15 @@ namespace EPManageWeb.Controllers
             ViewBag.Infos = Messages.Where(t => t.Type == MessageType.Error).ToList();
         }
 
-        
+        protected User CurrentUser
+        {
+            get
+            {
+                var userId = (int)System.Web.HttpContext.Current.Items["UserId"];
+                return DbContext.Users.Single(t => t.Id == userId);
+            }
+        }
+
+
     }
 }

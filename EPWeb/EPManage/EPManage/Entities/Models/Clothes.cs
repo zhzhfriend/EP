@@ -36,5 +36,7 @@ namespace EPManageWeb.Entities.Models
         public int ViewCount { get; set; }
         
         public virtual ClothesType ClothesType { get; set; }
+
+        public virtual List<OperationLog> Logs { get; set; }
     }
 }

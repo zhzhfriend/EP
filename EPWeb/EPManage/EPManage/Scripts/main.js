@@ -65,6 +65,7 @@ function searchClothes(getDataParamsFunc) {
     $.post($('#search').attr('href'), data, function (data) {
         $('#container').empty();
         $('#container').append(data);
+        bindDetailIcon();
     }).fail(function () {
         $('#container').html('<div class="alert alert-error">加载数据失败</div>');
     });
@@ -77,4 +78,13 @@ function getUserSelectedItems() {
         items.push($(item).attr('data'));
     });
     return items.join(',');
+}
+
+function bindDetailIcon() {
+    $('.detailIcon').click(function () {
+        $.post('/Main/Pics', { id: $(this).attr('data'), type: $(this).attr('data-type') }, function (data) {
+            $('#viewPicsModalBody').html(data);
+            $('#viewPicsModal').modal();
+        }).fail(function (data) { alert('加载失败'); });
+    });
 }

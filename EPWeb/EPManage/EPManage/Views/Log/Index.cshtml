@@ -1,0 +1,27 @@
+﻿@model List<EPManageWeb.Entities.Models.OperationLog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{}
+
+<table>
+    <tr>
+        <th>样板编号</th>
+        <th>大货编号</th>
+        <th>日期</th>
+        <th>操作</th>
+        <th>用户</th>
+    </tr>
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.Clothes.SampleNO</td>
+            <td>@t.Clothes.ProductNO</td>
+            <td>@t.CreateDT</td>
+            <td>@t.OperationType</td>
+            <td>@t.User.RealName</td>
+        </tr>
+    }
+</table>

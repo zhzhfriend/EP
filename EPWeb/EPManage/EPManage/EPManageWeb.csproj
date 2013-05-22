@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClothesPartTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ParamaterController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Entities\Models\ClothesPart.cs" />
     <Compile Include="Entities\Models\ClothesPartType.cs" />
     <Compile Include="Entities\Models\ClothesType.cs" />
+    <Compile Include="Entities\Models\OperationLog.cs" />
     <Compile Include="Entities\Models\SessionUser.cs" />
     <Compile Include="Entities\Models\UploadFile.cs" />
     <Compile Include="Entities\Models\User.cs" />
@@ -196,6 +198,10 @@
     <Compile Include="Migrations\201305220815285_add_user_type.cs" />
     <Compile Include="Migrations\201305220815285_add_user_type.Designer.cs">
       <DependentUpon>201305220815285_add_user_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305221154591_add_class_operationLog.cs" />
+    <Compile Include="Migrations\201305221154591_add_class_operationLog.Designer.cs">
+      <DependentUpon>201305221154591_add_class_operationLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
@@ -593,6 +599,8 @@
     <Content Include="Views\Main\Edit.cshtml" />
     <Content Include="Scripts\ui\.jshintrc" />
     <Content Include="Views\ClothesPartTypes\Index.cshtml" />
+    <Content Include="Views\Main\Pics.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -609,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201305220815285_add_user_type.resx">
       <DependentUpon>201305220815285_add_user_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305221154591_add_class_operationLog.resx">
+      <DependentUpon>201305221154591_add_class_operationLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

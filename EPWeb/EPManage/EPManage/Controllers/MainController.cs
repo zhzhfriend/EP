@@ -157,6 +157,10 @@ namespace EPManageWeb.Controllers
                 return new HttpNotFoundResult();
             else
             {
+                var log = new OperationLog() { Clothes = clothes, User = CurrentUser, OperationType = OperationType.DownLoadFile.ToString() };
+                DbContext.OperationLogs.Add(log);
+                DbContext.SaveChanges();
+
                 var filePath = GetPathFile(clothes, type);
                 if (String.IsNullOrEmpty(filePath) || filePath == "NOTFOUND") return new HttpNotFoundResult();
 
@@ -171,6 +175,26 @@ namespace EPManageWeb.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        public ActionResult Pics(int id, string type)
+        {
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
+            var pics = string.Empty;
+            if (clothes != null)
+            {
+                switch (type)
+                {
+                    case "clothes": pics = clothes.ClothesPics; break;
+                    case "modelversion": pics = clothes.ModelVersionPics; break;
+                    case "style": pics = clothes.StylePics; break;
+                    default: break;
+                }
+
+            }
+            return View(pics.Split(new char[] { ',' }));
+        }
+
         private string GetPathFile(Clothes clothes, string type)
         {
             switch (type)
