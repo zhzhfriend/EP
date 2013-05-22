@@ -48,6 +48,8 @@ namespace EPManageWeb.Controllers
         [HttpPost]
         public ActionResult Add(ClothesEditModel model)
         {
+            if (!ValidClothesSize(model.ClothSize)) return new JsonResult() { Data = false };
+
             Clothes c = new Clothes()
             {
                 Comment = model.Comment,
@@ -189,6 +191,11 @@ namespace EPManageWeb.Controllers
                 case "AssessoriesFile": return "辅料卡";
                 default: return "NOTFOUND";
             }
+        }
+
+        private bool ValidClothesSize(string size)
+        {
+            return true;
         }
     }
 }

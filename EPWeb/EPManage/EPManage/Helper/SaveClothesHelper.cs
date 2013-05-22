@@ -24,7 +24,7 @@ namespace EPManageWeb.Helper
 
         public static void Save(Clothes clothes)
         {
-            using (IndexWriter writer = new IndexWriter(directory, analyzer, true, new IndexWriter.MaxFieldLength(1000)))
+            using (IndexWriter writer = new IndexWriter(directory, analyzer, !directory.FileExists("segments.gen"), new IndexWriter.MaxFieldLength(1000)))
             {
                 Document document = new Document();
                 document.Add(new Field(Fields.Id.ToString(), clothes.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));

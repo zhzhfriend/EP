@@ -14,7 +14,7 @@ namespace EPManageWeb.Controllers
         public ActionResult Index()
         {
             if (UserAuthnicationHelper.CheckUserLogin(HttpContext))
-                return RedirectToAction("Index", "Main");
+                return RedirectToAction("Index", "Main", new { id = 1 });
 
             return View();
         }
@@ -32,7 +32,7 @@ namespace EPManageWeb.Controllers
                     {
                         UserAuthnicationHelper.Login(user, HttpContext);
 
-                        return RedirectToAction("Index", "Main");
+                        return RedirectToAction("Index", "Main", new { id = 1 });
                     }
                     else
                     {
