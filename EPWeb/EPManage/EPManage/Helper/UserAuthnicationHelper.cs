@@ -69,6 +69,7 @@ namespace EPManageWeb.Helper
                                 HttpContext.Current.Items.Add("UserId", s.UserId);
                                 HttpContext.Current.Items.Add("RealName", s.User.RealName);
                                 HttpContext.Current.Items.Add("IP", s.RemoteIP);
+                                HttpContext.Current.Items.Add("UserType", (UserType)Enum.Parse(typeof(UserType), s.User.UserType, true));
                                 return true;
                             }
                         }

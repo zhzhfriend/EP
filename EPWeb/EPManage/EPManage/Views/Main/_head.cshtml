@@ -50,9 +50,12 @@
                 </li>
                 }
             }
-            <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>
-            <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
-            <li><span>@Html.ActionLink("编辑记录", "Edit", new { id = Model.Id })</span></li>
+            @if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
+            {
+                <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>
+                <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
+                <li><span>@Html.ActionLink("编辑记录", "Edit", new { id = Model.Id })</span></li>
+            }
         </ul>
     </div>
 </div>
