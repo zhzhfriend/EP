@@ -24,10 +24,18 @@ namespace EPManageWeb.Controllers
 
         public ActionResult Type(String type)
         {
+            List<ClothesPartType> clothesTypes = new List<ClothesPartType>();
+            DbContext.ClothesParts.Where(t => t.Name == "品类").ToList().ForEach(t =>
+            {
+                clothesTypes.AddRange(t.PartTypes);
+            });
+
+            ViewBag.ClothesTypes = clothesTypes;
+
             var clothesType = DbContext.ClothesPartTypes.SingleOrDefault(t => t.Name == type);
             if (clothesType != null)
             {
-                return View(DbContext.Clothes.Where(t => t.PingLei == type).ToList());
+                return View("Index",DbContext.Clothes.Where(t => t.PingLei == type).ToList());
             }
             else
             {
