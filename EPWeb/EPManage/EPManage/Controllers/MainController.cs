@@ -50,8 +50,8 @@ namespace EPManageWeb.Controllers
         {
             if (!ValidClothesSize(model.ClothSize)) return new JsonResult() { Data = false };
 
-            var tags = model.ClothesTags.Split(new char[] { ',' }).ToList();
-            var pinglei = DbContext.ClothesPartTypes.SingleOrDefault(t => tags.Contains(t.Name));
+
+            var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == model.ClothesTypeId);
 
             Clothes c = new Clothes()
             {
@@ -71,7 +71,12 @@ namespace EPManageWeb.Controllers
                 ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == model.ClothesTypeId)
             };
             if (pinglei != null)
-                c.PingLei = pinglei.Name;
+            {
+                var tags = model.ClothesTags.Split(new char[] { ',' }).ToList();
+                var pingleiType = pinglei.PartTypes.SingleOrDefault(t => tags.Contains(t.Name));
+                if (pingleiType != null)
+                    c.PingLei = pingleiType.Name;
+            }
 
             DbContext.Clothes.Add(c);
 
