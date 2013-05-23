@@ -167,6 +167,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClothesController.cs" />
     <Compile Include="Controllers\ClothesPartTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -607,6 +608,8 @@
     <Content Include="Views\Main\Pics.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Statistic\Pinglei.cshtml" />
+    <Content Include="Views\Shared\_head.cshtml" />
+    <Content Include="Views\Clothes\SearchByNO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

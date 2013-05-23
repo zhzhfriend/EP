@@ -12,10 +12,10 @@
         <td>
             <div class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">品类</a>
-                @if (ViewBag.ClothesTypes != null && (ViewBag.ClothesTypes as IList<EPManageWeb.Entities.Models.ClothesPartType>).Count > 0)
+                @if (ViewBag.Pingleis != null && (ViewBag.Pingleis as IList<EPManageWeb.Entities.Models.ClothesPartType>).Count > 0)
                 {
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        @foreach (var t in (ViewBag.ClothesTypes as IList<EPManageWeb.Entities.Models.ClothesPartType>))
+                        @foreach (var t in (ViewBag.Pingleis as IList<EPManageWeb.Entities.Models.ClothesPartType>))
                         {
                             <li>@Html.ActionLink(t.Name, "type", new { type = t.Name })</li>
                         }

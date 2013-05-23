@@ -24,8 +24,10 @@ namespace EPManageWeb.Controllers
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
 
             if (clothesType != null)
+            {
+                ViewBag.CurrentClothesType = clothesType;
                 return View(clothesType);
-
+            }
             return new HttpNotFoundResult();
         }
 
@@ -104,6 +106,7 @@ namespace EPManageWeb.Controllers
             return View();
         }
         [HttpGet]
+        [CookiesAuthorize]
         public ActionResult Edit(int id)
         {
             ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.Children.PartTypes.Children").Include("ClothesParts.PartTypes").Include("ClothesParts.PartTypes.Children").SingleOrDefault(t => t.Id == id);
@@ -120,6 +123,7 @@ namespace EPManageWeb.Controllers
             var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
             if (clothes != null)
             {
+                ViewBag.CurrentClothesType = clothes.ClothesType;
                 clothes.ViewCount = clothes.ViewCount + 1;
                 DbContext.SaveChanges();
                 return View(new ClothesDetailModel(clothes));

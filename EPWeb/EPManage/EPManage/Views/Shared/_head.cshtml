@@ -1,7 +1,4 @@
-﻿@{
-    var currentClothesType = ViewBag.CurrentClothesType ?? new EPManageWeb.Entities.Models.ClothesType();
-}
-<div class="left">
+﻿<div class="left">
     <img src="@Url.Content("~/Images/Logo.png")" alt="EP Logo" />
 </div>
 <div class="right">
@@ -21,45 +18,26 @@
         <ul class="nav nav-pills">
             @foreach (var t in ViewBag.ClothesTypes as List<EPManageWeb.Entities.Models.ClothesType>)
             {
-                if (t.Id == currentClothesType.Id)
-                {
-                <li><span class="active">@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span>
+                
+                <li><span>@Html.ActionLink(@t.Name, "Index", "Main", new { id = t.Id }, null)</span>
                     @if (t.Children != null && t.Children.Count > 0)
                     {
                         t.Children = t.Children.OrderBy(d => d.Id).ToList();
                         <ul class="nav nav-pills">
                             @foreach (var t1 in t.Children)
                             {
-                                var isActive = t1.Id == currentClothesType.Id ? "active" : "";
-                                <li class="width50percent @isActive">@Html.ActionLink(t1.Name, "Index", new { id = t1.Id })</li>
+                                <li class="width50percent">@Html.ActionLink(t1.Name, "Index", "Main", new { id = t1.Id }, null)</li>
                             }
                         </ul>
                     }
                 </li>
-                }
-                else
-                {
-                <li><span>@Html.ActionLink(@t.Name, "Index", new { id = t.Id })</span>
-                    @if (t.Children != null && t.Children.Count > 0)
-                    {
-                        t.Children = t.Children.OrderBy(d => d.Id).ToList();
-                        <ul class="nav nav-pills">
-                            @foreach (var t1 in t.Children)
-                            {
-                                var isActive = t1.Id == currentClothesType.Id ? "active" : "";
-                                <li class="width50percent @isActive">@Html.ActionLink(t1.Name, "Index", new { id = t1.Id })</li>
-                            }
-                        </ul>
-                    }
-                </li>
-                }
             }
             @if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
             {
                 <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>
                 <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
                 <li><span>@Html.ActionLink("日志记录", "Index", "Log")</span></li>
-                <li><span>@Html.ActionLink("编辑记录", "Edit", "Main", new { id = Model.Id }, new { target = "_blank" })</span></li>
+                <li><span><a href="#">编辑记录</a></span></li>
             }
         </ul>
     </div>

@@ -49,12 +49,12 @@ $(document).ready(function () {
         return false;
     });
 
-    $('#imgSearch').click(function () {
-        searchClothes(function () {
-            return data = { "NO": $('#txtSearchNO').val(), 'clothesTypeId': $('#clothesTypeId').val() };
-        });
-        return false;
-    });
+    //$('#imgSearch').click(function () {
+    //    searchClothes(function () {
+    //        return data = { "NO": $('#txtSearchNO').val(), 'clothesTypeId': $('#clothesTypeId').val() };
+    //    });
+    //    return false;
+    //});
 
     $('#search').click();
 });

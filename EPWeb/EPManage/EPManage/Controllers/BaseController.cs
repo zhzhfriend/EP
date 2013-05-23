@@ -13,6 +13,11 @@ namespace EPManageWeb.Controllers
     {
         protected EPDataContext DbContext = new EPDataContext();
 
+        protected BaseController()
+        {
+            ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
+        }
+
         public List<Message> Messages = new List<Message>();
 
         protected void AddError(String msg)

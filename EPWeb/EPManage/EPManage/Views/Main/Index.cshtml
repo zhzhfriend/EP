@@ -3,10 +3,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@section head{@{
+@section head{
     <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
     <link href="@Styles.Url("~/Content/jquery.multiselect.css")" rel="stylesheet"/>
-    Html.RenderPartial("_head");}}
+}
 @section searchbox{@{Html.RenderPartial("_searchbox");}}
 @section Js
 {

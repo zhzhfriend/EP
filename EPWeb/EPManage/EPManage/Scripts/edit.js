@@ -29,7 +29,7 @@
         return false;
     });
 
-    $('.btnType').click(function () {
+    $('.btnType').dblclick(function () {
         $('#partTypeModal').modal();
         $('#clothesPartChildren').html('正在加载.....');
         $('#clothesPartChildren').data('data', $(this).attr('typeId'));

@@ -4,24 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EPManageWeb.Entities.Models;
+using EPManageWeb.Helper;
 
 namespace EPManageWeb.Controllers
 {
     public class StatisticController : BaseController
     {
+        [CookiesAuthorize]
         public ActionResult Index(int id)
         {
             var clothes = DbContext.Clothes.ToList();
-            List<ClothesPartType> clothesTypes = new List<ClothesPartType>();
+            List<ClothesPartType> pingleis = new List<ClothesPartType>();
             DbContext.ClothesParts.Where(t => t.Name == "品类").ToList().ForEach(t =>
                 {
-                    clothesTypes.AddRange(t.PartTypes);
+                    pingleis.AddRange(t.PartTypes);
                 });
 
-            ViewBag.ClothesTypes = clothesTypes;
+            ViewBag.Pingleis = pingleis;
             return View(clothes);
         }
 
+        [CookiesAuthorize]
         public ActionResult Type(String type)
         {
             List<ClothesPartType> clothesTypes = new List<ClothesPartType>();
@@ -43,6 +46,7 @@ namespace EPManageWeb.Controllers
             }
         }
 
+        [CookiesAuthorize]
         public ActionResult Pinglei()
         {
             List<IGrouping<string, Clothes>> pinglei = DbContext.Clothes.GroupBy(t => t.PingLei).ToList();
