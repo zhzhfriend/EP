@@ -1,27 +1,40 @@
-﻿@model List<EPManageWeb.Entities.Models.OperationLog>
+﻿@model PageList<EPManageWeb.Entities.Models.OperationLog>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "日志查看";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@section head{}
-
-<table class="table table-striped table-bordered">
-    <tr>
-        <th>样板编号</th>
-        <th>大货编号</th>
-        <th>日期</th>
-        <th>操作</th>
-        <th>用户</th>
-    </tr>
-    @foreach (var t in Model)
-    {
+@section head{
+    <link href="@Styles.Url("~/Content/log.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/pager.css")" rel="stylesheet"/>
+}
+<div class="alert alert-success">
+    在本页面，您可查看所有用户操作过的日志
+</div>
+<table class="table table-striped table-bordered table-hover table-condensed">
+    <tbody>
         <tr>
-            <td>@t.Clothes.SampleNO</td>
-            <td>@t.Clothes.ProductNO</td>
-            <td>@t.CreateDT</td>
-            <td>@t.OperationTypeToString()</td>
-            <td>@t.User.RealName</td>
+            <th>样衣图片</th>
+            <th>样板编号</th>
+            <th>大货编号</th>
+            <th>日期</th>
+            <th>操作</th>
+            <th>用户</th>
         </tr>
-    }
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td class="imgTd">
+                    <img src="@Url.Content(@t.Clothes.FirstClothesPic())" width="200" height="150" /></td>
+                <td>@t.Clothes.SampleNO</td>
+                <td>@t.Clothes.ProductNO</td>
+                <td class="dateTd">@t.CreateDT</td>
+                <td>@t.OperationTypeToString()</td>
+                <td>@t.User.RealName</td>
+            </tr>
+        }
+    </tbody>
 </table>
+<div class="pager">
+    @Html.Raw(Html.Pager("page", Model.PageIndex, Model.PageSize, Model.TotalCount))
+</div>

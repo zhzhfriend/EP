@@ -4,6 +4,7 @@
     {
         if (type.Children != null && type.Children.Count > 0)
         {
+            type.Children[0].PartTypes = type.Children[0].PartTypes.OrderBy(t => t.Order).ToList();
         <table>
             <tr>
                 <th rowspan="@type.Children.Count" class="title">@type.Name</th>
@@ -34,6 +35,7 @@
             </tr>
             @for (var i = 1; i < type.Children.Count; i++)
             {
+                type.Children[i].PartTypes = type.Children[i].PartTypes.OrderBy(t => t.Order).ToList();
                 <tr>
                     <td class="subTitle">@type.Children[i].Name</td>
                     <td colspan="3">
@@ -64,6 +66,7 @@
         }
         else
         {
+            type.PartTypes = type.PartTypes.OrderBy(t => t.Order).ToList();
         <table>
             <tr>
                 <th>@type.Name</th>
@@ -71,6 +74,7 @@
                     <ul class="nav width130">
                         @foreach (var t in type.PartTypes)
                         {
+                            t.Children = t.Children.OrderBy(t1 => t1.Order).ToList();
                             <li>
                                 <label>
                                     <input type="checkbox" name="@t.Name" />
@@ -136,7 +140,7 @@
 
 <div class="searchBoxSelectedItem">
     <div class="right">
-        @Html.ActionLink("搜索", "Search", null, new { @class = "btn btn-info", id = "search" })
+        @Html.ActionLink("搜索", "Search", "clothes", null, new { @class = "btn btn-info", id = "search" })
     </div>
     <div>
         <ul id="searchParameters" class="nav nav-pills">

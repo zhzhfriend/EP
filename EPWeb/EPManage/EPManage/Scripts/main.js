@@ -19,6 +19,17 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('#lnkAddClothes').click(function () {
+        if (getUserSelectedItems().length == 0) {
+            alert('您尚未选择特征信息');
+        }
+        else {
+            $('#myModal').modal();
+            $('#myModal #divAddClothes').load('/Clothes/Add');
+        }
+        return false;
+    });
     $('.dropdown-select').multiselect({
         header: false,
         minWidth: '130',
@@ -49,13 +60,6 @@ $(document).ready(function () {
         return false;
     });
 
-    //$('#imgSearch').click(function () {
-    //    searchClothes(function () {
-    //        return data = { "NO": $('#txtSearchNO').val(), 'clothesTypeId': $('#clothesTypeId').val() };
-    //    });
-    //    return false;
-    //});
-
     $('#search').click();
 });
 
@@ -80,11 +84,3 @@ function getUserSelectedItems() {
     return items.join(',');
 }
 
-function bindDetailIcon() {
-    $('.detailIcon').click(function () {
-        $.post('/Main/Pics', { id: $(this).attr('data'), type: $(this).attr('data-type') }, function (data) {
-            $('#viewPicsModalBody').html(data);
-            $('#viewPicsModal').modal();
-        }).fail(function (data) { alert('加载失败'); });
-    });
-}

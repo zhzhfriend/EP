@@ -22,6 +22,13 @@ namespace EPManageWeb.Helper
         static Directory directory = FSDirectory.Open(HttpContext.Current.Server.MapPath(INDEX_PATH));
         static Analyzer analyzer = new WhitespaceAnalyzer();
 
+        public static void RemovePreviousIndex()
+        {
+            var luceneIndexFile = HttpContext.Current.Server.MapPath(String.Format("{0}/{1}", INDEX_PATH, "segments.gen"));
+            if (System.IO.File.Exists(luceneIndexFile))
+                System.IO.File.Delete(luceneIndexFile);
+        }
+
         public static void Save(Clothes clothes)
         {
             using (IndexWriter writer = new IndexWriter(directory, analyzer, !directory.FileExists("segments.gen"), new IndexWriter.MaxFieldLength(1000)))
@@ -34,9 +41,9 @@ namespace EPManageWeb.Helper
                 document.Add(new Field(Fields.Year.ToString(), ExtractYearFromTags(clothes), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ClothesPics.ToString(), clothes.ClothesPics, Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ModelVersionPics.ToString(), clothes.ModelVersionPics, Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.StylePics.ToString(), clothes.StylePics, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ClothesPics.ToString(), clothes.ClothesPics ?? string.Empty, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ModelVersionPics.ToString(), clothes.ModelVersionPics ?? string.Empty, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.StylePics.ToString(), clothes.StylePics ?? string.Empty, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.UsedCount.ToString(), clothes.ViewCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 writer.AddDocument(document);
                 writer.Optimize();

@@ -1,6 +1,6 @@
 ﻿@model EPManageWeb.Entities.Models.ClothesType
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = String.Format("修改 {0} 的属性", Model.Name);
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -14,7 +14,9 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/edit.js")"></script>
 }
 
-
+<div class="alert alert-success">
+    在本页面，您可通过拖动，双击等操作修改每个属性的可选项，以及添加每个属性的子属性。
+</div>
 <div class="searchbox">
     @foreach (var type in Model.ClothesParts)
     {
@@ -72,6 +74,7 @@
         }
         else
         {
+            type.PartTypes = type.PartTypes.OrderBy(t => t.Order).ToList();
         <table>
             <tr>
                 <th>@type.Name</th>

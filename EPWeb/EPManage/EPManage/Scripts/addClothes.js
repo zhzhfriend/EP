@@ -1,12 +1,24 @@
 ﻿$(document).ready(function () {
-    $('#myModal').on('show', function () {
-        if (getUserSelectedItems().length == 0) {
-            alert('您尚未选择特征信息');
+    $('#btnAddClothes').click(function () {
+        if ($('#SampleNO').val().length == 0) {
+            alert('样板编号必须填写');
             return false;
         }
-    });
-
-    $('#btnAddClothes').click(function () {
+        if ($('#ProductNO').val().length == 0) {
+            alert('大货编号必须填写');
+            return false;
+        }
+        if (getUserSelectedItems().length == 0) {
+            alert('好像你还没有选择任何的属性');
+            return false;
+        }
+        if (getClothesSize().length == 0) {
+            alert('衣服尺寸总该要填写吧');
+            return false;
+        }
+        if (getImages('#images_StylePics').length == 0 && !confirm('确认不上传款式图片?')) return false;
+        if (getImages('#images_ClothesPics').length == 0 && !confirm('确认不上传样衣图片?')) return false;
+        if (getImages('#images_ModelVersionPics').length == 0 && !confirm('确认不上传版型图?')) return false;
         var data = {
             'SampleNO': $('#SampleNO').val(),
             'ProductNO': $('#ProductNO').val(),
@@ -25,7 +37,7 @@
         };
         $.post($('#btnAddClothes').attr('href'), data, function (data) {
             alert('保存成功');
-            $('#myModal').modal('toggle');
+            $('#btnClose').click();
         }, 'json').fail(function () { alert('保存失败'); });
         return false;
     });

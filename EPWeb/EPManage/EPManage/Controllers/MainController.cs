@@ -35,7 +35,7 @@ namespace EPManageWeb.Controllers
         [HttpPost]
         public ActionResult Search(SearchDocument searchDocument)
         {
-            List<ClothesDetailModel> clothes = SaveClothesHelper.Search(searchDocument).Select(t => new ClothesDetailModel(t)).ToList();
+            List<Clothes> clothes = SaveClothesHelper.Search(searchDocument);
             return View(clothes);
         }
 
@@ -116,22 +116,6 @@ namespace EPManageWeb.Controllers
             return View(clothesType);
         }
 
-        [HttpGet]
-        [CookiesAuthorize]
-        public ActionResult Detail(int id)
-        {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
-            if (clothes != null)
-            {
-                ViewBag.CurrentClothesType = clothes.ClothesType;
-                clothes.ViewCount = clothes.ViewCount + 1;
-                DbContext.SaveChanges();
-                return View(new ClothesDetailModel(clothes));
-            }
-            else
-                return new ContentResult() { Content = "未找到相应的记录" };
-        }
-
         [HttpPost]
         [CookiesAuthorize]
         public ActionResult AddClothesPartType(string name, int partId)
@@ -171,75 +155,11 @@ namespace EPManageWeb.Controllers
             return new JsonResult() { Data = true };
         }
 
-        [HttpGet]
-        [CookiesAuthorize]
-        public ActionResult Download(int id, string type)
-        {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
-            if (clothes == null || String.IsNullOrEmpty(type))
-                return new HttpNotFoundResult();
-            else
-            {
-                var log = new OperationLog() { Clothes = clothes, User = CurrentUser, OperationType = OperationType.DownLoadFile.ToString() };
-                DbContext.OperationLogs.Add(log);
-                DbContext.SaveChanges();
+        
 
-                var filePath = GetPathFile(clothes, type);
-                if (String.IsNullOrEmpty(filePath) || filePath == "NOTFOUND") return new HttpNotFoundResult();
+        
 
-                if (filePath.LastIndexOf('.') > -1)
-                {
-                    var extenstion = filePath.Substring(filePath.LastIndexOf('.') + 1);
-                    return new FilePathResult(Server.MapPath(filePath), "application/octet-strea") { FileDownloadName = String.Format("{0}{1}.{2}", clothes.SampleNO, GetDownloadFileName(type), extenstion) };
-                }
-                else
-                {
-                    return new FilePathResult(Server.MapPath(filePath), "application/octet-strea") { FileDownloadName = String.Format("{0}{1}", clothes.SampleNO, GetDownloadFileName(type)) };
-                }
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Pics(int id, string type)
-        {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
-            var pics = string.Empty;
-            if (clothes != null)
-            {
-                switch (type)
-                {
-                    case "clothes": pics = clothes.ClothesPics; break;
-                    case "modelversion": pics = clothes.ModelVersionPics; break;
-                    case "style": pics = clothes.StylePics; break;
-                    default: break;
-                }
-
-            }
-            return View(pics.Split(new char[] { ',' }));
-        }
-
-        private string GetPathFile(Clothes clothes, string type)
-        {
-            switch (type)
-            {
-                case "SampleFile": return clothes.SampleFile;
-                case "TechnologyFile": return clothes.TechnologyFile;
-                case "AssessoriesFile": return clothes.AssessoriesFile;
-                default: return "NOTFOUND";
-            }
-        }
-
-        private string GetDownloadFileName(string type)
-        {
-            switch (type)
-            {
-                case "SampleFile": return "示例文件";
-                case "TechnologyFile": return "工艺单";
-                case "AssessoriesFile": return "辅料卡";
-                default: return "NOTFOUND";
-            }
-        }
-
+        
         private bool ValidClothesSize(string size)
         {
             return true;

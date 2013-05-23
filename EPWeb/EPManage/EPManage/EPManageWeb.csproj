@@ -173,8 +173,10 @@
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ParamaterController.cs" />
+    <Compile Include="Controllers\ReFlowController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\EPDataContext.cs" />
     <Compile Include="Entities\Models\BaseModel.cs" />
     <Compile Include="Entities\Models\Clothes.cs" />
@@ -188,9 +190,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ClothesExtentions.cs" />
     <Compile Include="Helper\CookiesAuthorize.cs" />
     <Compile Include="Helper\EPViewePage.cs" />
     <Compile Include="Helper\OperationLogExtension.cs" />
+    <Compile Include="Helper\PageList.cs" />
+    <Compile Include="Helper\Pager.cs" />
+    <Compile Include="Helper\RenderPager.cs" />
     <Compile Include="Helper\SaveClothesHelper.cs" />
     <Compile Include="Helper\UserAuthnicationHelper.cs" />
     <Compile Include="Migrations\201305211614434_add_classes.cs" />
@@ -226,10 +232,13 @@
     <Content Include="Content\detail.css" />
     <Content Include="Content\edit.css" />
     <Content Include="Content\jquery.multiselect.css" />
+    <Content Include="Content\log.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\pager.css" />
     <Content Include="Content\searchbox.css" />
     <Content Include="Content\searchResult.css" />
     <Content Include="Content\sortable.css" />
+    <Content Include="Content\statistic.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -291,6 +300,7 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\activeNavBG.png" />
     <Content Include="Images\adminInfo.png" />
+    <Content Include="Images\body_bg.jpg" />
     <Content Include="Images\bottomBg.png" />
     <Content Include="Images\cloth.png" />
     <Content Include="Images\clothes0.png" />
@@ -301,7 +311,9 @@
     <Content Include="Images\detailLink.png" />
     <Content Include="Images\detailLink1.png" />
     <Content Include="Images\dropdownBg.png" />
+    <Content Include="Images\logo.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\nopic.jpg" />
     <Content Include="Images\quickBoxBG.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\submit.png" />
@@ -330,6 +342,8 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Reg.js" />
+    <Content Include="Scripts\SearchResult.js" />
     <Content Include="Scripts\stepcarousel.js" />
     <Content Include="Scripts\ui\i18n\jquery-ui-i18n.js" />
     <Content Include="Scripts\ui\i18n\jquery.ui.datepicker-af.js" />
@@ -582,8 +596,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -597,19 +609,21 @@
     <Content Include="Views\Paramater\EditClothesPartType.cshtml" />
     <Content Include="Views\Main\Statistic.cshtml" />
     <Content Include="Views\Statistic\Index.cshtml" />
-    <Content Include="Views\Main\Add.cshtml" />
+    <Content Include="Views\Clothes\Add.cshtml" />
     <Content Include="Views\Main\Test.cshtml" />
-    <Content Include="Views\Main\Detail.cshtml" />
-    <Content Include="Views\Main\Search.cshtml" />
+    <Content Include="Views\Clothes\Detail.cshtml" />
+    <Content Include="Views\Clothes\Search.cshtml" />
     <Content Include="Views\Main\_searchbox.cshtml" />
     <Content Include="Views\Main\Edit.cshtml" />
     <Content Include="Scripts\ui\.jshintrc" />
     <Content Include="Views\ClothesPartTypes\Index.cshtml" />
-    <Content Include="Views\Main\Pics.cshtml" />
+    <Content Include="Views\Clothes\Pics.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Statistic\Pinglei.cshtml" />
     <Content Include="Views\Shared\_head.cshtml" />
     <Content Include="Views\Clothes\SearchByNO.cshtml" />
+    <Content Include="Views\User\Reg.cshtml" />
+    <Content Include="Views\Shared\_AjaxLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

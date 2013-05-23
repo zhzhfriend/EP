@@ -1,4 +1,4 @@
-﻿@model IList<ClothesDetailModel>
+﻿@model PageList<EPManageWeb.Entities.Models.Clothes>
 
 @{
     ViewBag.Title = "搜索结果";
@@ -6,8 +6,15 @@
 }
 @section head{
     <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/pager.css")" rel="stylesheet"/>
 }
-
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SearchResult.js")"></script>
+}
+<div class="alert alert-success">
+    搜索到 @Model.Count() 条记录
+</div>
 <div class="searchResult">
     <div id="container">
         @if (Model != null && Model.Count > 0)
@@ -18,8 +25,8 @@
                     <li class="span2">
                         <div>
                             <div class="pic">
-                                <a href="/Main/Detail/@t.Id" target="_blank">
-                                    <img src="@t.ClothesImages[0]" alt="pic" width="119" height="141"/></a>
+                                <a href="/Clothes/Detail/@t.Id" target="_blank">
+                                    <img src="@Url.Content(@t.FirstClothesPic())" alt="@t.ProductNO" width="200" height="150"/></a>
                             </div>
                             <div class="right">
                                 <div>
@@ -48,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="detailLink">
-                                <a href="/Main/Detail/@t.Id" target="_blank">
+                                <a href="/Clothes/Detail/@t.Id" target="_blank">
                                     <img src="@Url.Content("~/Images/detailLink1.png")" />
                                 </a>
                             </div>
@@ -56,6 +63,10 @@
                     </li>
                 }
             </ul>
+            <div class="clearfix"></div>
+            <div class="pager">
+                @Html.Raw(Html.Pager("page", Model.PageIndex, Model.PageSize, Model.TotalCount))
+            </div>
         }
         else
         {
@@ -67,4 +78,16 @@
     </div>
     <div class="clearfix"></div>
     <img src="@Url.Content("~/Images/bottomBg.png")" />
+</div>
+
+<div id="viewPicsModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="viewPicsModalLabel">图片预览</h3>
+    </div>
+    <div class="modal-body" id="viewPicsModalBody">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
 </div>

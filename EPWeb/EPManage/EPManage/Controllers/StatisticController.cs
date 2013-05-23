@@ -10,40 +10,29 @@ namespace EPManageWeb.Controllers
 {
     public class StatisticController : BaseController
     {
-        [CookiesAuthorize]
-        public ActionResult Index(int id)
+        private const int PAGE_SIZE = 5;
+
+        public StatisticController()
         {
-            var clothes = DbContext.Clothes.ToList();
             List<ClothesPartType> pingleis = new List<ClothesPartType>();
             DbContext.ClothesParts.Where(t => t.Name == "品类").ToList().ForEach(t =>
-                {
-                    pingleis.AddRange(t.PartTypes);
-                });
+            {
+                pingleis.AddRange(t.PartTypes);
+            });
 
             ViewBag.Pingleis = pingleis;
-            return View(clothes);
         }
 
         [CookiesAuthorize]
-        public ActionResult Type(String type)
+        public ActionResult Index(string type, int page = 1)
         {
-            List<ClothesPartType> clothesTypes = new List<ClothesPartType>();
-            DbContext.ClothesParts.Where(t => t.Name == "品类").ToList().ForEach(t =>
-            {
-                clothesTypes.AddRange(t.PartTypes);
-            });
+            IEnumerable<Clothes> clothes = DbContext.Clothes;
+            
+            if (!String.IsNullOrEmpty(type)) clothes = clothes.Where(t => t.PingLei == type);
 
-            ViewBag.ClothesTypes = clothesTypes;
-
-            var clothesType = DbContext.ClothesPartTypes.SingleOrDefault(t => t.Name == type);
-            if (clothesType != null)
-            {
-                return View("Index",DbContext.Clothes.Where(t => t.PingLei == type).ToList());
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            int totalCount = clothes.Count();
+            clothes = clothes.OrderByDescending(t => t.Id).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
+            return View(clothes.ToPageList<Clothes>(page, PAGE_SIZE, totalCount));
         }
 
         [CookiesAuthorize]

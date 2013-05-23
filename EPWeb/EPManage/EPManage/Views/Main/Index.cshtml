@@ -1,6 +1,6 @@
 ﻿@model  EPManageWeb.Entities.Models.ClothesType
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "EP基样检索库";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @section head{
@@ -15,9 +15,6 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.multiselect.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>
 }
 <div class="searchResult">
     <div id="container"></div>
@@ -31,11 +28,10 @@
         <h3 id="myModalLabel">款式信息</h3>
     </div>
     <div class="modal-body" id="divAddClothes">
-        @{Html.RenderPartial("Add", new ClothesEditModel());}
     </div>
     <div class="modal-footer">
         <input type="hidden" name="clothesTypeId" id="clothesTypeId" value="@Model.Id" />
-        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
         @Html.ActionLink("保存", "Add", null, new { @class = "btn btn-primary", id = "btnAddClothes" })
     </div>
 </div>

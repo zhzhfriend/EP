@@ -28,7 +28,7 @@ namespace EPManageWeb.Models
                 if (sb.Length > 0)
                     sb.Append(" AND ");
 
-                sb.AppendFormat("Tags:{0}", Tags.Replace(',', ' '));
+                sb.AppendFormat("Tags:{0}", System.Text.RegularExpressions.Regex.Replace(Tags.Replace(',', ' '), "\\(.*\\)", ""));
             }
             return sb.ToString();
         }
