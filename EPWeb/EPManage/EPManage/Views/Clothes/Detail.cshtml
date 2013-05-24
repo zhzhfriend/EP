@@ -5,12 +5,13 @@
 }
 
 @section Css{
+    <link href="@Styles.Url("~/Content/site.css")" rel="stylesheet"/>
     <link href="@Styles.Url("~/Content/detail.css")" rel="stylesheet"/>
+
 }
 @section Js
 {
     <script type="text/javascript" src="@Url.Content("~/Scripts/detail.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>
 }
 <div class="row bottomline">
     <div class="span1">
@@ -102,7 +103,7 @@
             </td>
             <th>尺寸表</th>
             <td class="clothSizeTd">
-                <table id="clothSizeTable" class="clothesSizeTable table table-bordered table-condensed">
+                <table class="clothesSizeTable table table-bordered table-condensed">
                     <tr>
                         <th>部位</th>
                         <th>尺寸</th>
@@ -165,8 +166,8 @@
     </div>
     <div class="modal-footer">
         <input type="hidden" id="clothesId" value="@Model.Id" />
-        @Html.ActionLink("删除", "Del", null, new { @class = "btn btn-danger", id = "btnDelClothes" })
-        @Html.ActionLink("保存", "Edit", null, new { @class = "btn btn-info", id = "btnEditClothes" })
+        @Html.ActionLink("删除", "Del", "Clothes", new { id = Model.Id }, new { @class = "btn btn-danger", id = "btnDelClothes" })
+        @Html.ActionLink("保存", "Edit", "Clothes", new { @id = Model.Id }, new { @class = "btn btn-info", id = "btnAddClothes" })
         <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
     </div>
 </div>

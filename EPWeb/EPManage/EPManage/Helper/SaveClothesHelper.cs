@@ -62,8 +62,12 @@ namespace EPManageWeb.Helper
             parser.DefaultOperator = QueryParser.Operator.OR;
             Query query = parser.Parse(searchCondition.ToSearchDocument());
             IndexSearcher searcher = new IndexSearcher(directory);
-            TopDocs hits = searcher.Search(query, 100);
-            foreach (var t in hits.ScoreDocs)
+            var sortBy = new Sort(new SortField(Fields.Id.ToString(), SortField.INT, true));
+            var collector = TopFieldCollector.Create(sortBy, 100, false, false, false, false);
+            searcher.Search(query, collector);
+            var docs = collector.TopDocs();
+
+            foreach (var t in docs.ScoreDocs)
             {
                 clothes.Add(new Clothes()
                 {

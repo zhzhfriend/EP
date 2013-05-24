@@ -49,19 +49,58 @@ namespace EPManageWeb.Controllers
         }
 
         [HttpGet]
+        [CookiesAuthorize]
         public ActionResult Add()
         {
             return View();
         }
 
         [HttpGet]
+        [CookiesAuthorize]
         public ActionResult Edit(int id)
         {
             var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
-            return View("Add", clothes);
+            return View(clothes);
+        }
+
+        [CookiesAuthorize]
+        [HttpPost]
+        public ActionResult Edit(Clothes model)
+        {
+
+            Clothes c = DbContext.Clothes.SingleOrDefault(t => t.Id == model.Id);
+            if (c != null)
+            {
+                c.Comment = model.Comment;
+                c.ProductedCount = model.ProductedCount;
+                c.SaledCount = model.SaledCount;
+                c.SampleNO = c.SampleNO;
+                c.ProductNO = c.ProductNO;
+                c.AssessoriesFile = model.AssessoriesFile ?? string.Empty;
+                c.ClothesPics = model.ClothesPics ?? string.Empty;
+                c.ClothesSize = model.ClothesSize ?? string.Empty;
+                c.ModelVersionPics = model.ModelVersionPics ?? string.Empty;
+                c.SampleFile = model.SampleFile ?? string.Empty;
+                c.StylePics = model.StylePics ?? string.Empty;
+                c.TechnologyFile = model.TechnologyFile ?? string.Empty;
+
+                DbContext.OperationLogs.Add(new OperationLog()
+                {
+                    User = CurrentUser,
+                    Clothes = c,
+                    OperationType = OperationType.EditClothes.ToString()
+                });
+
+                DbContext.SaveChanges();
+                SaveClothesHelper.RemoveDocument(c.Id);
+                SaveClothesHelper.Save(c);
+                return new ContentResult() { Content = "true" };
+            }
+            return new ContentResult() { Content = "false" };
         }
 
         [HttpGet]
+        [CookiesAuthorize]
         public ActionResult Del(int id)
         {
             var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
@@ -69,6 +108,7 @@ namespace EPManageWeb.Controllers
             {
                 clothes.IsDeleted = true;
                 SaveClothesHelper.RemoveDocument(id);
+                DbContext.OperationLogs.Add(new OperationLog() { Clothes = clothes, User = CurrentUser, OperationType = OperationType.DelClothes.ToString() });
             }
             DbContext.SaveChanges();
             return new ContentResult() { Content = "true" };

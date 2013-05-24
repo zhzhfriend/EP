@@ -25,7 +25,17 @@
         {
             <tr>
                 <td class="imgTd">
-                    <img src="@Url.Content(@t.Clothes.FirstClothesPic())" width="200" height="150" /></td>
+                    @if (!t.IsDeleted)
+                    {
+                        <a href="/Clothes/Detail/@t.Id" target="_blank">
+                            <img src="@Url.Content(@t.Clothes.FirstClothesPic())" width="200" height="150" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(@t.Clothes.FirstClothesPic())" width="200" height="150" />
+                    }
+                </td>
                 <td>@t.Clothes.SampleNO</td>
                 <td>@t.Clothes.ProductNO</td>
                 <td class="dateTd">@t.CreateDT</td>
