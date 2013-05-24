@@ -78,6 +78,21 @@ namespace EPManageWeb.Helper
             return clothes;
         }
 
+        public static void RemoveDocument(int id)
+        {
+            QueryParser parser = new QueryParser(version, Fields.Tags.ToString(), new WhitespaceAnalyzer());
+            parser.DefaultOperator = QueryParser.Operator.OR;
+            Query query = parser.Parse(string.Format("{0}:{1}", Fields.Id.ToString(), id));
+            IndexSearcher searcher = new IndexSearcher(directory);
+            using (IndexReader reader = IndexReader.Open(directory, false))
+            {
+                TopDocs hits = searcher.Search(query, 100);
+                var term = new Term(Fields.Id.ToString(), id.ToString());
+                reader.DeleteDocuments(term);
+            }
+
+        }
+
         private static string ExtractYearFromTags(Clothes clothes)
         {
             if (!String.IsNullOrEmpty(clothes.Tags))

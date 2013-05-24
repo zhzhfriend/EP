@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EPManageWeb.Entities.Models
 {
-    public class Clothes
+    public class Clothes : BaseModel
     {
         [Key]
         public int Id { get; set; }
@@ -36,7 +36,7 @@ namespace EPManageWeb.Entities.Models
         public int ViewCount { get; set; }
 
         public String PingLei { get; set; }
-        
+
         public virtual ClothesType ClothesType { get; set; }
 
         public virtual List<OperationLog> Logs { get; set; }

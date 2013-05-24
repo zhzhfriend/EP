@@ -7,9 +7,15 @@
 @section Css{
     <link href="@Styles.Url("~/Content/detail.css")" rel="stylesheet"/>
 }
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/detail.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>
+}
 <div class="row bottomline">
     <div class="span1">
-        <img src="@Url.Content("~/Images/logo.gif")" /></div>
+        <img src="@Url.Content("~/Images/logo.gif")" />
+    </div>
     <div class="span9">样板编号：@Model.SampleNO 大货编号： @Model.ProductNO 访问次数：@Model.ViewCount</div>
     <div class="span2">@Html.ActionLink("下载样板文件", "Download", new { id = Model.Id, type = "SampleFile" }, new { @class = "btn btn-primary btn-large" })</div>
 </div>
@@ -144,4 +150,23 @@
             }
         </tr>
     </table>
+</div>
+<div class="text-right span9">
+    <button id="editClothes" class="btn btn-success">编辑</button>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">款式信息</h3>
+    </div>
+    <div class="modal-body" id="divAddClothes">
+    </div>
+    <div class="modal-footer">
+        <input type="hidden" id="clothesId" value="@Model.Id" />
+        @Html.ActionLink("删除", "Del", null, new { @class = "btn btn-danger", id = "btnDelClothes" })
+        @Html.ActionLink("保存", "Edit", null, new { @class = "btn btn-info", id = "btnEditClothes" })
+        <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
 </div>

@@ -11,7 +11,7 @@ namespace EPManageWeb.Controllers
     {
         public ActionResult Index()
         {
-            var clothes = DbContext.Clothes.ToList();
+            var clothes = DbContext.Clothes.Where(t => t.IsDeleted == false).ToList();
             SaveClothesHelper.RemovePreviousIndex();
             clothes.ForEach(c =>
                 {

@@ -17,7 +17,7 @@ namespace EPManageWeb.Controllers
         public ActionResult SearchByNO(string no, int page = 1)
         {
             IEnumerable<Clothes> clothes = DbContext.Clothes;
-            if (!String.IsNullOrEmpty(no)) clothes = clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no));
+            if (!String.IsNullOrEmpty(no)) clothes = clothes.Where(t => (t.ProductNO.Contains(no) || t.SampleNO.Contains(no)) && t.IsDeleted == false);
             int totalCount = clothes.Count();
             clothes = clothes.OrderByDescending(t => t.Id).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
             return View(clothes.ToPageList<Clothes>(page, PAGE_SIZE, totalCount));
@@ -34,7 +34,7 @@ namespace EPManageWeb.Controllers
         [HttpPost]
         public ActionResult Pics(int id, string type)
         {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
             if (clothes != null)
             {
                 switch (type)
@@ -55,10 +55,30 @@ namespace EPManageWeb.Controllers
         }
 
         [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
+            return View("Add", clothes);
+        }
+
+        [HttpGet]
+        public ActionResult Del(int id)
+        {
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
+            if (clothes != null)
+            {
+                clothes.IsDeleted = true;
+                SaveClothesHelper.RemoveDocument(id);
+            }
+            DbContext.SaveChanges();
+            return new ContentResult() { Content = "true" };
+        }
+
+        [HttpGet]
         [CookiesAuthorize]
         public ActionResult Detail(int id)
         {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
             if (clothes != null)
             {
                 ViewBag.CurrentClothesType = clothes.ClothesType;
@@ -74,7 +94,7 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Download(int id, string type)
         {
-            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id);
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
             if (clothes == null || String.IsNullOrEmpty(type))
                 return new HttpNotFoundResult();
             else
