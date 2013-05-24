@@ -24,10 +24,12 @@ namespace EPManageWeb.Controllers
         }
 
         [CookiesAuthorize]
-        public ActionResult Index(string type, int page = 1)
+        public ActionResult Index(string type, string no, int page = 1)
         {
             IEnumerable<Clothes> clothes = DbContext.Clothes;
-            
+            if (!String.IsNullOrEmpty(no))
+                clothes = DbContext.Clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no));
+
             if (!String.IsNullOrEmpty(type)) clothes = clothes.Where(t => t.PingLei == type);
 
             int totalCount = clothes.Count();

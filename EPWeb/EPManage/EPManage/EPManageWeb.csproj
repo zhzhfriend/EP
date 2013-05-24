@@ -629,6 +629,8 @@
     <Content Include="Views\Clothes\SearchByNO.cshtml" />
     <Content Include="Views\User\Reg.cshtml" />
     <Content Include="Views\Shared\_AjaxLayout.cshtml" />
+    <Content Include="Views\Log\_head.cshtml" />
+    <Content Include="Views\Statistic\_head.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
