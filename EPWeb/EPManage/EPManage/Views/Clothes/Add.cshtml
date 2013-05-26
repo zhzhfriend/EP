@@ -2,8 +2,13 @@
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
+@section Css
+{
+    <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
+}
 @section Js
 {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>

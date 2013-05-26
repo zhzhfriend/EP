@@ -1,16 +1,10 @@
-﻿function bindRemoveIcon() {
-    $('.itemclose').click(function (item) {
-        $('input[name="' + $(this).parent().attr('data') + '"]').click()
-        $('input[value="' + $(this).parent().attr('data') + '"]').click()
-    });
-}
-$(document).ready(function () {
-    bindRemoveIcon();
+﻿$(document).ready(function () {
+    //bindSelectedItemRemoveIcon();
     $('input[type="checkbox"]').click(function (item) {
         var name = $(this).attr('name');
         if ($(this)[0].checked) {
             $('#searchParameters').append('<li data="' + name + '" class="btn btn-success">' + name + '<button class="close itemclose">&times;</button></li>');
-            bindRemoveIcon();
+            bindSelectedItemRemoveIcon();
         }
         else {
             $('#searchParameters li').each(function (index, item) {
@@ -33,8 +27,7 @@ $(document).ready(function () {
     $('.dropdown-select').multiselect({
         header: false,
         minWidth: '130',
-        'class': 'a',
-        selectedList: 4,
+        selectedList: 2,
         'noneSelectedText': 'None'
     });
 
@@ -42,7 +35,7 @@ $(document).ready(function () {
         if (ui.value != '0') {
             if (ui.checked) {
                 $('#searchParameters').append('<li data="' + ui.value + '" class="btn btn-success">' + ui.value + '<button class="close itemclose">&times;</button></li>');
-                bindRemoveIcon();
+                bindSelectedItemRemoveIcon();
             }
             else {
                 $('#searchParameters li').each(function (index, item) {
@@ -60,8 +53,29 @@ $(document).ready(function () {
         return false;
     });
 
+    $('#search').click(function () {
+        searchClothes(function () {
+            return { 'tags': getUserSelectedItems(), 'clothesTypeId': $('#clothesTypeId').val() };
+        });
+        return false;
+    });
+
+    $('#imgSearch').click(function () {
+        searchClothes(function () {
+            return { 'NO': $('#txtSearchNO').val(), 'clothesTypeId': $('#clothesTypeId').val() };
+        });
+        return false;
+    });
+
     $('#search').click();
 });
+
+function bindSelectedItemRemoveIcon() {
+    $('.itemclose').click(function (item) {
+        $('input[name="' + $(this).parent().attr('data') + '"]').click();
+        $('input[value="' + $(this).parent().attr('data') + '"]').click();
+    });
+}
 
 function searchClothes(getDataParamsFunc) {
     $('#container').html('<div class="alert alert-info">正在加载数据</div>');
@@ -69,7 +83,6 @@ function searchClothes(getDataParamsFunc) {
     $.post($('#search').attr('href'), data, function (data) {
         $('#container').empty();
         $('#container').append(data);
-        bindDetailIcon();
     }).fail(function () {
         $('#container').html('<div class="alert alert-error">加载数据失败</div>');
     });
