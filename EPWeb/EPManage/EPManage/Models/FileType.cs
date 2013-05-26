@@ -11,7 +11,7 @@ namespace EPManageWeb.Models
         ModelVersionPic,
         ClothesPic,
         TechnologyFile,
-        AccessoriesFile,
+        AssessoriesFile,
         SampleFile
     }
 }

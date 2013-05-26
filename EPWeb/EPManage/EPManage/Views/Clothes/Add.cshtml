@@ -1,4 +1,4 @@
-﻿@model EPManageWeb.Models.ClothesEditModel
+﻿@model EPManageWeb.Entities.Models.Clothes
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
@@ -66,10 +66,10 @@
                     <div id="file_TechnologyFile"></div>
                     <div>@Html.HiddenFor(t => t.TechnologyFile)</div>
                 </div>
-                <div>@Html.LabelFor(t => t.AccessoriesFile)
-                    <div data="AccessoriesFileIds" type="AccessoriesFile" class="uploadbutton btn btn-info">上传</div>
-                    <div id="file_AccessoriesFile"></div>
-                    <div>@Html.HiddenFor(t => t.AccessoriesFile)</div>
+                <div>@Html.LabelFor(t => t.AssessoriesFile)
+                    <div data="AssessoriesFileIds" type="AssessoriesFile" class="uploadbutton btn btn-info">上传</div>
+                    <div id="file_AssessoriesFile"></div>
+                    <div>@Html.HiddenFor(t => t.AssessoriesFile)</div>
                 </div>
             </td>
         </tr>

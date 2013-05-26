@@ -12,6 +12,16 @@ namespace EPManageWeb.Models
         public String Tags { get; set; }
         public int ClothesTypeId { get; set; }
 
+        public Field OrderByField { get; set; }
+
+        public enum Field
+        {
+            Id,
+            Year,
+            SaledCount,
+            ViewedCount
+        }
+
         public String ToSearchDocument()
         {
             StringBuilder sb = new StringBuilder();
@@ -28,7 +38,7 @@ namespace EPManageWeb.Models
                 if (sb.Length > 0)
                     sb.Append(" AND ");
 
-                sb.AppendFormat("Tags:{0}", System.Text.RegularExpressions.Regex.Replace(Tags.Replace(',', ' '), "\\(.*\\)", ""));
+                sb.AppendFormat("Tags:{0}", System.Text.RegularExpressions.Regex.Replace(Tags.Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
             }
             return sb.ToString();
         }

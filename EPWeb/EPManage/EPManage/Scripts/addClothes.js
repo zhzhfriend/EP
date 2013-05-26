@@ -25,14 +25,14 @@
             'StylePics': getImages('#images_StylePics'),
             'ClothesPics': getImages('#images_ClothesPics'),
             'ModelVersionPics': getImages('#images_ModelVersionPics'),
-            'clothSize': getClothesSize(),
+            'clothesSize': getClothesSize(),
             'ProductedCount': $('#ProductedCount').val(),
             'SaledCount': $('#SaledCount').val(),
             'Comment': $('#Comment').val(),
             'TechnologyFile': $('#TechnologyFile').val(),
-            'AccessoriesFile': $('#AccessoriesFile').val(),
+            'AssessoriesFile': $('#AssessoriesFile').val(),
             'SampleFile': $('#SampleFile').val(),
-            'ClothesTags': getUserSelectedItems(),
+            'Tags': getUserSelectedItems(),
             'clothesTypeId': $('#clothesTypeId').val()
         };
         $.post($('#btnAddClothes').attr('href'), data, function (data) {

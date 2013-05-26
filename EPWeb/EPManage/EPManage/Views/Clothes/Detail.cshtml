@@ -89,7 +89,7 @@
                         @foreach (var t in Model.ModelVersionPicFiles())
                         {
                             <div class="item">
-                                <img src="@Url.Content(t)" width="500" />
+                                <img src="@Url.Content(t)" />
                             </div>
                         }
                     </div>
@@ -152,10 +152,12 @@
         </tr>
     </table>
 </div>
-<div class="text-right span9">
-    <button id="editClothes" class="btn btn-success">编辑</button>
-</div>
-
+@if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
+{
+    <div class="text-right span9">
+        <button id="editClothes" class="btn btn-success">编辑</button>
+    </div>
+}
 <!-- Modal -->
 <div id="myModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">

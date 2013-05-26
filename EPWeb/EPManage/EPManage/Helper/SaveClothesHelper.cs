@@ -63,6 +63,19 @@ namespace EPManageWeb.Helper
             Query query = parser.Parse(searchCondition.ToSearchDocument());
             IndexSearcher searcher = new IndexSearcher(directory);
             var sortBy = new Sort(new SortField(Fields.Id.ToString(), SortField.INT, true));
+            switch (searchCondition.OrderByField)
+            {
+                case SearchDocument.Field.SaledCount:
+                    sortBy = new Sort(new SortField(Fields.SaledCount.ToString(), SortField.INT, true));
+                    break;
+                case SearchDocument.Field.ViewedCount:
+                    sortBy = new Sort(new SortField(Fields.UsedCount.ToString(), SortField.INT, true));
+                    break;
+                case SearchDocument.Field.Year:
+                    sortBy = new Sort(new SortField(Fields.Year.ToString(), SortField.STRING, true));
+                    break;
+
+            }
             var collector = TopFieldCollector.Create(sortBy, 100, false, false, false, false);
             searcher.Search(query, collector);
             var docs = collector.TopDocs();

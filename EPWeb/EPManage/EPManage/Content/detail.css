@@ -2,7 +2,7 @@
     width: 200px;
     margin:5px auto 5px auto;
     min-height:150px;
-    height:150px;
+    height:auto;
 }
 
 #myCarousel .carousel-control, #myCarousel2 .carousel-control {
@@ -23,8 +23,8 @@
 
 #myCarousel3 {
     width:700px;
-    height:300px;
     min-height:300px;
+    height:auto;
     margin:2px auto 2px auto;
 }
 

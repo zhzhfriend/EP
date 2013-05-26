@@ -8,6 +8,7 @@
 }
 @section Js
 {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
@@ -18,8 +19,8 @@
         <tr>
             <th class="width20">基本信息</th>
             <td>
-                <div>@Html.LabelFor(t => t.SampleNO) @Html.TextBoxFor(t => t.SampleNO)</div>
-                <div>@Html.LabelFor(t => t.ProductNO) @Html.TextBoxFor(t => t.ProductNO)</div>
+                <div>@Html.LabelFor(t => t.SampleNO) @Html.TextBoxFor(t => t.SampleNO, new { @readonly = "true" })</div>
+                <div>@Html.LabelFor(t => t.ProductNO) @Html.TextBoxFor(t => t.ProductNO, new { @readonly = "true" })</div>
                 <div>@Html.LabelFor(t => t.StylePics)
                     <div data="StylePics" type="StylePic" class="uploadbutton btn btn-info">上传</div>
                     <div>已上传:@Html.HiddenFor(t => t.StylePics)</div>
@@ -27,7 +28,8 @@
                         @foreach (var t in Model.StylePicFiles())
                         {
                             <li>
-                                <img src="@Url.Content(t)" width="75"/><p class="delImg">删除</p>
+                                <img src="@Url.Content(t)" width="75"/>
+                                <button class="delImg close tdCloseIcon">&times;</button>
                             </li>
                         }
                     </ul>
@@ -39,7 +41,8 @@
                         @foreach (var t in Model.ClothesPicFiles())
                         {
                             <li>
-                                <img src="@Url.Content(t)" width="75"/><p class="delImg">删除</p>
+                                <img src="@Url.Content(t)" width="75"/>
+                                <button class="delImg close tdCloseIcon">&times;</button>
                             </li>
                         }
                     </ul>
@@ -51,7 +54,8 @@
                         @foreach (var t in Model.ModelVersionPicFiles())
                         {
                             <li>
-                                <img src="@Url.Content(t)" width="75"/><p class="delImg">删除</p>
+                                <img src="@Url.Content(t)" width="75"/>
+                                <button class="delImg close tdCloseIcon">&times;</button>
                             </li>
                         }
                     </ul>
@@ -67,8 +71,10 @@
                     @foreach (var t in Model.ClothesSize())
                     {
                         <tr>
-                            <td>@t.Key</td>
-                            <td>@t.Value
+                            <td>
+                                <input type="text" class="input-mini" name="name" value="@t.Key" /></td>
+                            <td>
+                                <input type="text" class="input-mini" name="size" value="@t.Value" />
                                 <button class="close tdCloseIcon">&times;</button></td>
                         </tr>
                     }
@@ -92,12 +98,12 @@
                 <div>@Html.TextAreaFor(t => t.Comment)</div>
                 <div>@Html.LabelFor(t => t.TechnologyFile)
                     <div data="TechnologyFile" type="TechnologyFile" class="uploadbutton btn btn-info">上传</div>
-                    <div id="file_TechnologyFile"></div>
+                    <div id="file_TechnologyFile">@Html.ValueFor(t => t.TechnologyFile)</div>
                     <div>@Html.HiddenFor(t => t.TechnologyFile)</div>
                 </div>
                 <div>@Html.LabelFor(t => t.AssessoriesFile)
-                    <div data="AccessoriesFileIds" type="AccessoriesFile" class="uploadbutton btn btn-info">上传</div>
-                    <div id="file_AccessoriesFile"></div>
+                    <div data="AssessoriesFileIds" type="AssessoriesFile" class="uploadbutton btn btn-info">上传</div>
+                    <div id="file_AssessoriesFile">@Html.ValueFor(t => t.AssessoriesFile)</div>
                     <div>@Html.HiddenFor(t => t.AssessoriesFile)</div>
                 </div>
             </td>
@@ -105,7 +111,7 @@
         <tr>
             <td colspan="5">上传样板文件: 添加文件：
         <div data="TechnologyFileIds" type="SampleFile" class="uploadbutton btn btn-info">上传</div>
-                <div id="file_SampleFile"></div>
+                <div id="file_SampleFile">@Html.ValueFor(t => t.SampleFile)</div>
                 <div>@Html.HiddenFor(t => t.SampleFile)</div>
             </td>
         </tr>

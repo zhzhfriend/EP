@@ -48,12 +48,12 @@ namespace EPManageWeb.Controllers
 
         [CookiesAuthorize]
         [HttpPost]
-        public ActionResult Add(ClothesEditModel model)
+        public ActionResult Add(Clothes model, int clothesTypeId)
         {
-            if (!ValidClothesSize(model.ClothSize)) return new JsonResult() { Data = false };
+            if (!ValidClothesSize(model.ClothesSize)) return new JsonResult() { Data = false };
 
 
-            var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == model.ClothesTypeId);
+            var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == clothesTypeId);
 
             Clothes c = new Clothes()
             {
@@ -62,19 +62,19 @@ namespace EPManageWeb.Controllers
                 SaledCount = model.SaledCount,
                 SampleNO = model.SampleNO ?? string.Empty,
                 ProductNO = model.ProductNO ?? string.Empty,
-                AssessoriesFile = model.AccessoriesFile ?? string.Empty,
+                AssessoriesFile = model.AssessoriesFile ?? string.Empty,
                 ClothesPics = model.ClothesPics ?? string.Empty,
-                ClothesSize = model.ClothSize ?? string.Empty,
+                ClothesSize = model.ClothesSize ?? string.Empty,
                 ModelVersionPics = model.ModelVersionPics ?? string.Empty,
                 SampleFile = model.SampleFile ?? string.Empty,
                 StylePics = model.StylePics ?? string.Empty,
                 TechnologyFile = model.TechnologyFile ?? string.Empty,
-                Tags = model.ClothesTags ?? string.Empty,
-                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == model.ClothesTypeId)
+                Tags = model.Tags ?? string.Empty,
+                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId)
             };
             if (pinglei != null)
             {
-                var tags = model.ClothesTags.Split(new char[] { ',' }).ToList();
+                var tags = model.Tags.Split(new char[] { ',' }).ToList();
                 var pingleiType = pinglei.PartTypes.SingleOrDefault(t => tags.Contains(t.Name));
                 if (pingleiType != null)
                     c.PingLei = pingleiType.Name;
@@ -155,11 +155,11 @@ namespace EPManageWeb.Controllers
             return new JsonResult() { Data = true };
         }
 
-        
 
-        
 
-        
+
+
+
         private bool ValidClothesSize(string size)
         {
             return true;

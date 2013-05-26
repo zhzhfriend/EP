@@ -24,7 +24,7 @@
                 this.enable();
                 if (response.Success) {
                     if ($(button).attr('type') == 'TechnologyFile' ||
-                        $(button).attr('type') == 'AccessoriesFile' ||
+                        $(button).attr('type') == 'AssessoriesFile' ||
                         $(button).attr('type') == 'SampleFile') {
                         $(('#file_' + $(button).attr('type'))).html('上传文件:' + response.FileName);
                         var hiddenField = '#' + $(button).attr('type');
@@ -32,7 +32,7 @@
                     }
                     else {
                         var img = $('#images_' + button.attr('data'));
-                        $('<li><img src="' + response.FileName + '" width="75"/><p class="delImg">删除</p></li>').appendTo(img);
+                        $('<li><img src="' + response.FileName + '" width="75"/><button class="delImg close tdCloseIcon">&times;</button>').appendTo(img);
 
                         bindImageEvent();
                     }

@@ -26,6 +26,19 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Search(SearchDocument doc)
         {
+            if (doc.Tags.Contains("年份"))
+            {
+                doc.OrderByField = SearchDocument.Field.Year;
+            }
+            if (doc.Tags.Contains("使用频率"))
+            {
+                doc.OrderByField = SearchDocument.Field.Year;
+            }
+            if (doc.Tags.Contains("销量"))
+            {
+                doc.OrderByField = SearchDocument.Field.Year;
+            }
+            doc.Tags = System.Text.RegularExpressions.Regex.Replace(doc.Tags, "(年份|使用频率|销量)", "");
             List<Clothes> clothes = SaveClothesHelper.Search(doc);
             return View(clothes);
         }

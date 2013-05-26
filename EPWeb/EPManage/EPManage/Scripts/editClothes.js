@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    bindImageEvent();
+
     $('#btnAddClothes').click(function () {
         if ($('#SampleNO').val().length == 0) {
             alert('样板编号必须填写');
@@ -22,12 +24,12 @@
             'StylePics': getImages('#images_StylePics'),
             'ClothesPics': getImages('#images_ClothesPics'),
             'ModelVersionPics': getImages('#images_ModelVersionPics'),
-            'clothSize': getClothesSize(),
+            'ClothesSize': getClothesSize(),
             'ProductedCount': $('#ProductedCount').val(),
             'SaledCount': $('#SaledCount').val(),
             'Comment': $('#Comment').val(),
             'TechnologyFile': $('#TechnologyFile').val(),
-            'AccessoriesFile': $('#AccessoriesFile').val(),
+            'AssessoriesFile': $('#AssessoriesFile').val(),
             'SampleFile': $('#SampleFile').val()
         };
         $.post($('#btnAddClothes').attr('href'), data, function (data) {
@@ -53,7 +55,7 @@ function getClothesSize() {
     var values = Array();
     var r = '';
     $('#clothSizeTable input[name="name"]').each(function (index, item) { names.push($(item).val()); });
-    $('#clothSizeTable input[type="text"]').each(function (index, item) { values.push($(item).val()); });
+    $('#clothSizeTable input[name="size"]').each(function (index, item) { values.push($(item).val()); });
     for (var i = 0; i < names.length; i++) {
         r = r + names[i] + '=' + values[i] + ',';
     }
