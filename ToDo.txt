@@ -1,0 +1,3 @@
+1. validate tags when user try to create a new clothes
+2. Test
+3. refactor search codes, the current codes are very bad
