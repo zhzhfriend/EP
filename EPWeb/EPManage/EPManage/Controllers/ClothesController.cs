@@ -26,6 +26,8 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Search(SearchDocument doc)
         {
+            doc.Tags = doc.Tags ?? String.Empty;
+
             if (doc.Tags.Contains("年份"))
             {
                 doc.OrderByField = SearchDocument.Field.Year;
