@@ -31,7 +31,7 @@
                     <ul id="nav_@type.Children[0].Id" class="nav items">
                         @foreach (var t in type.Children[0].PartTypes)
                         {
-                            <li typeId="@t.Id" class="btn btn-success btnType">@t.Name
+                            <li typeId="@t.Id" class="btn btnType">@t.Name
                                 <button data="@t.Id" class="close">&times;</button>
                                 @if (t.Children != null && t.Children.Count > 0)
                                 {
@@ -55,7 +55,7 @@
 
                             @foreach (var t in type.Children[i].PartTypes)
                             {
-                                <li typeId="@t.Id" class="btn btn-success btnType">@t.Name
+                                <li typeId="@t.Id" class="btn btnType">@t.Name
                                     <button data="@t.Id" class="close">&times;</button>
                                     @if (t.Children != null && t.Children.Count > 0)
                                     {
@@ -82,7 +82,7 @@
                     <ul id="nav_@type.Id" class="nav items">
                         @foreach (var t in type.PartTypes)
                         {
-                            <li typeId="@t.Id" class="btn btn-success btnType">@t.Name
+                            <li typeId="@t.Id" class="btn btnType">@t.Name
                                 <button data="@t.Id" class="close">&times;</button>
                                 @if (t.Children != null && t.Children.Count > 0)
                                 {

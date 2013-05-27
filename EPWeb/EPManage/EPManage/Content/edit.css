@@ -1,9 +1,6 @@
 ﻿.items li{
     margin-right:5px;
 }
-div.searchbox table td li {
-    color:white;
-}
 
 .sortable {
     list-style-type: none;
