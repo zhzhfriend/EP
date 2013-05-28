@@ -93,3 +93,7 @@
 #addClothTemplate {
     display: none;
 }
+
+table .nav {
+    margin-top:5px;
+}

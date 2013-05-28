@@ -8,7 +8,7 @@
         }
         else {
             $('#searchParameters li').each(function (index, item) {
-                if ($(item).html().indexOf(name) > -1)
+                if ($(item).text().indexOf(name) > -1)
                     $(item).remove();
             });
         }
