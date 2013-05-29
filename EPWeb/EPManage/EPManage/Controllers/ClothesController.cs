@@ -138,6 +138,15 @@ namespace EPManageWeb.Controllers
             {
                 ViewBag.CurrentClothesType = clothes.ClothesType;
                 clothes.ViewCount = clothes.ViewCount + 1;
+
+                OperationLog log = new OperationLog()
+                {
+                    Clothes = clothes,
+                    OperationType = OperationType.ViewClothes.ToString(),
+                    User = CurrentUser
+                };
+                DbContext.OperationLogs.Add(log);
+
                 DbContext.SaveChanges();
                 return View(clothes);
             }

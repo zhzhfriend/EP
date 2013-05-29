@@ -13,8 +13,9 @@ namespace EPManageWeb.Controllers
         private const int PAGE_SIZE = 3;
 
         [CookiesAuthorize]
-        public ActionResult Index(string no, int page = 1)
+        public ActionResult Index(string no,  int page = 1)
         {
+
             IEnumerable<OperationLog> logs = DbContext.OperationLogs;
             if (!String.IsNullOrEmpty(no))
             {

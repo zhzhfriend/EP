@@ -9,11 +9,24 @@
     <link href="@Styles.Url("~/Content/pager.css")" rel="stylesheet"/>
 }
 @section head{}
+@section Js
+{
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ui/jquery-ui.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/log.js")"></script>
+}
 
 <div class="alert alert-success">
     在本页面，你可统计每件衣服或每个品类的使用次数 
 </div>
-
+<div class="container text-center">
+    <form action="/Statistic/">
+        编号：<input type="text" placeholder="编号" name="no" value="@ViewBag.No" />
+        开始日期：<input type="text" class="date-picker" placeholder="开始日期" name="startDT" value="@ViewBag.StartDT.ToString("MM/dd/yyyy")" />
+        结束日期：<input type="text" class="date-picker" placeholder="结束日期" name="endDT" value="@ViewBag.EndDT.ToString("MM/dd/yyyy")" />
+        <button class="btn">查询</button>
+    </form>
+</div>
 <table class="table table-striped table-bordered">
     <tr class="trhead">
         <td class="trhead">
@@ -41,7 +54,7 @@
             <td>@t.PingLei</td>
             <td>@t.SampleNO</td>
             <td>@t.ProductNO</td>
-            <td>@t.ViewCount</td>
+            <td>@t.Count(EPManageWeb.Entities.Models.OperationType.ViewClothes, (DateTime)ViewBag.StartDT, (DateTime)ViewBag.EndDT)</td>
         </tr>
     }
 </table>

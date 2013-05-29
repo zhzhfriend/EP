@@ -72,6 +72,12 @@ namespace EPManageWeb.Helper
             }
             return sizes;
         }
+
+        public static int Count(this Clothes clothes, OperationType logType, DateTime startDT, DateTime endDT)
+        {
+            var type = logType.ToString();
+            return clothes.Logs.Count(t => t.OperationType == type && t.CreateDT > startDT && t.CreateDT < endDT);
+        }
     }
 
     public class ClothesSize

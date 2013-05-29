@@ -24,6 +24,7 @@ namespace EPManageWeb.Entities.Models
         DownLoadFile,
         AddClothes,
         DelClothes,
-        EditClothes
+        EditClothes,
+        ViewClothes
     }
 }

@@ -24,8 +24,22 @@ namespace EPManageWeb.Controllers
         }
 
         [CookiesAuthorize]
-        public ActionResult Index(string type, string no, int page = 1)
+        public ActionResult Index(string type, string startDT, string endDT, string no, int page = 1)
         {
+            DateTime startDateTime = DateTime.Now.AddDays(-30);
+            DateTime endDateTime = DateTime.Now;
+            if (!String.IsNullOrEmpty(startDT))
+                if (!DateTime.TryParse(startDT, out startDateTime))
+                    startDateTime = DateTime.Now.AddDays(-30);
+
+            if (!String.IsNullOrEmpty(endDT))
+                if (!DateTime.TryParse(endDT, out endDateTime))
+                    endDateTime = DateTime.Now;
+
+            ViewBag.StartDT = startDateTime;
+            ViewBag.EndDT = endDateTime;
+            ViewBag.No = no;
+
             IEnumerable<Clothes> clothes = DbContext.Clothes;
             if (!String.IsNullOrEmpty(no))
                 clothes = DbContext.Clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no));
