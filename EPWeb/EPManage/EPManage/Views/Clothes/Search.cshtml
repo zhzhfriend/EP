@@ -1,4 +1,4 @@
-﻿@model IList<EPManageWeb.Entities.Models.Clothes>
+﻿@model PageList<EPManageWeb.Entities.Models.Clothes>
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
@@ -6,6 +6,7 @@
 @section css
 {
     <link href="@Styles.Url("~/Content/searchresult.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/pager.css")" rel="stylesheet"/>
 }
 @section Js
 {
@@ -57,6 +58,11 @@
             </li>
         }
     </ul>
+    <div class="clearfix"></div>
+    <div class="pager">
+        @Html.Raw(Html.Pager("page", Model.PageIndex, Model.PageSize, Model.TotalCount))
+    </div>
+
 }
 else
 {

@@ -46,12 +46,12 @@
         }
     });
 
-    $('#search').click(function () {
-        searchClothes(function () {
-            return { 'tags': getUserSelectedItems(), 'clothesTypeId': $('#clothesTypeId').val() };
-        });
-        return false;
-    });
+    //$('#search').click(function () {
+    //    searchClothes(function () {
+    //        return { 'tags': getUserSelectedItems(), 'clothesTypeId': $('#clothesTypeId').val() };
+    //    });
+    //    return false;
+    //});
 
     $('#search').click(function () {
         searchClothes(function () {

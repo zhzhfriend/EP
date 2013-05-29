@@ -41,8 +41,11 @@ namespace EPManageWeb.Controllers
                 doc.OrderByField = SearchDocument.Field.Year;
             }
             doc.Tags = System.Text.RegularExpressions.Regex.Replace(doc.Tags, "(年份|使用频率|销量)", "");
-            List<Clothes> clothes = SaveClothesHelper.Search(doc);
-            return View(clothes);
+            int totalCount = 0;
+            List<Clothes> clothes = SaveClothesHelper.Search(doc, out totalCount);
+            //return View(clothes);
+
+            return View(clothes.ToPageList<Clothes>(doc.PageIndex, SearchDocument.PAGE_SIZE, totalCount));
         }
 
 

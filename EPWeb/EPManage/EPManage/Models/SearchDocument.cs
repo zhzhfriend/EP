@@ -8,11 +8,17 @@ namespace EPManageWeb.Models
 {
     public class SearchDocument
     {
+        public const int PAGE_SIZE = 5;
+
+        public SearchDocument() { PageIndex = 1; }
+
         public String NO { get; set; }
         public String Tags { get; set; }
         public int ClothesTypeId { get; set; }
 
         public Field OrderByField { get; set; }
+
+        public int PageIndex { get; set; }
 
         public enum Field
         {

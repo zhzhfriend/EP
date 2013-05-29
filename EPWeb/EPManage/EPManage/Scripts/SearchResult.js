@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     bindDetailIcon();
+    bindPagerLinks();
 });
 
 function bindDetailIcon() {
@@ -8,5 +9,15 @@ function bindDetailIcon() {
             $('#viewPicsModalBody').html(data);
             $('#viewPicsModal').modal();
         }).fail(function (data) { alert('加载失败'); });
+    });
+}
+
+function bindPagerLinks() {
+    $('.pager a').click(function () {
+        var page = $(this).attr('href').substring($(this).attr('href').indexOf('page=') + 5);
+        searchClothes(function () {
+            return { 'tags': getUserSelectedItems(), 'pageIndex': page, 'clothesTypeId': $('#clothesTypeId').val() };
+        });
+        return false;
     });
 }

@@ -27,7 +27,7 @@ namespace EPManageWeb.Controllers
         public ActionResult Index(string type, string startDT, string endDT, string no, int page = 1)
         {
             DateTime startDateTime = DateTime.Now.AddDays(-30);
-            DateTime endDateTime = DateTime.Now;
+            DateTime endDateTime = DateTime.Now.AddDays(1);
             if (!String.IsNullOrEmpty(startDT))
                 if (!DateTime.TryParse(startDT, out startDateTime))
                     startDateTime = DateTime.Now.AddDays(-30);

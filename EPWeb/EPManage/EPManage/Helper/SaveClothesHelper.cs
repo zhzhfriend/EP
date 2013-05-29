@@ -50,12 +50,15 @@ namespace EPManageWeb.Helper
             }
         }
 
-        public static List<Clothes> Search(SearchDocument searchCondition)
+        public static List<Clothes> Search(SearchDocument searchCondition, out int totalCount)
         {
             List<Clothes> clothes = new List<Clothes>();
 
             if (!System.IO.Directory.Exists(HttpContext.Current.Server.MapPath(INDEX_PATH)) || System.IO.Directory.GetFiles(HttpContext.Current.Server.MapPath(INDEX_PATH)).Length == 0)
+            {
+                totalCount = 0;
                 return clothes;
+            }
 
 
             QueryParser parser = new QueryParser(version, Fields.Tags.ToString(), new WhitespaceAnalyzer());
@@ -78,19 +81,24 @@ namespace EPManageWeb.Helper
             }
             var collector = TopFieldCollector.Create(sortBy, 100, false, false, false, false);
             searcher.Search(query, collector);
-            var docs = collector.TopDocs();
+            totalCount = collector.TotalHits;
+
+            var docs = collector.TopDocs((searchCondition.PageIndex - 1) * SearchDocument.PAGE_SIZE, SearchDocument.PAGE_SIZE);
 
             foreach (var t in docs.ScoreDocs)
             {
-                clothes.Add(new Clothes()
+                if (t != null)
                 {
-                    Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Id.ToString()).StringValue),
-                    ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue,
-                    SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue,
-                    ClothesPics = searcher.Doc(t.Doc).GetField(Fields.ClothesPics.ToString()).StringValue,
-                    StylePics = searcher.Doc(t.Doc).GetField(Fields.StylePics.ToString()).StringValue,
-                    ModelVersionPics = searcher.Doc(t.Doc).GetField(Fields.ModelVersionPics.ToString()).StringValue
-                });
+                    clothes.Add(new Clothes()
+                    {
+                        Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Id.ToString()).StringValue),
+                        ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue,
+                        SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue,
+                        ClothesPics = searcher.Doc(t.Doc).GetField(Fields.ClothesPics.ToString()).StringValue,
+                        StylePics = searcher.Doc(t.Doc).GetField(Fields.StylePics.ToString()).StringValue,
+                        ModelVersionPics = searcher.Doc(t.Doc).GetField(Fields.ModelVersionPics.ToString()).StringValue
+                    });
+                }
             }
             return clothes;
         }
