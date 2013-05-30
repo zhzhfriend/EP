@@ -18,6 +18,9 @@
         if (getUserSelectedItems().length == 0) {
             alert('您尚未选择特征信息');
         }
+        else if (!validSelectItems()) {
+            return false;
+        }
         else {
             $('#myModal').modal();
             $('#myModal #divAddClothes').load('/Clothes/Add');
@@ -97,3 +100,13 @@ function getUserSelectedItems() {
     return items.join(',');
 }
 
+function validSelectItems() {
+    var r = true;
+    $('ul.nav').each(function (index, item) {
+        if ($(item).find('input[type="checkbox"]:checked').length > 1) {
+            alert('一个属性只可选择一个值');
+            r = false;
+        }
+    })
+    return r;
+}

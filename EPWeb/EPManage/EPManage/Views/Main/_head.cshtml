@@ -54,7 +54,7 @@
             }
             @if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
             {
-                <li><span><a href="#myModal" id="lnkAddClothes" data-toggle="modal">添加款式</a></span></li>
+                <li><span><a href="#myModal" id="lnkAddClothes">添加款式</a></span></li>
                 <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
                 <li><span>@Html.ActionLink("日志记录", "Index", "Log")</span></li>
                 <li><span>@Html.ActionLink("编辑记录", "Edit", "Main", new { id = Model.Id }, new { target = "_blank" })</span></li>
