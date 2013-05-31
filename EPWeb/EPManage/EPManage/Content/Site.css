@@ -1,5 +1,5 @@
 ﻿body, .container {
-    background-color: rgb(248,249,246);
+    background-image:url('../images/main_bodybg.png');
     width: 1326px;
     margin: 0px auto 0px auto;
 }
