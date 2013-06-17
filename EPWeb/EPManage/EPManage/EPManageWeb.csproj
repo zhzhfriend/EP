@@ -321,6 +321,7 @@
     <Content Include="Images\dropdownBg.png" />
     <Content Include="Images\logo.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\main_bodybg.png" />
     <Content Include="Images\nopic.jpg" />
     <Content Include="Images\quickBoxBG.png" />
     <Content Include="Images\search.png" />
