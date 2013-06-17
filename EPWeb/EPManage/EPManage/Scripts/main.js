@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     //bindSelectedItemRemoveIcon();
+    $('input[type="checkbox"]').attr('checked', false);
     $('input[type="checkbox"]').click(function (item) {
         var name = $(this).attr('name');
         if ($(this)[0].checked) {
