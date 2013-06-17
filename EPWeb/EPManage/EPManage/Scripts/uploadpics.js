@@ -26,9 +26,10 @@
                     if ($(button).attr('type') == 'TechnologyFile' ||
                         $(button).attr('type') == 'AssessoriesFile' ||
                         $(button).attr('type') == 'SampleFile') {
-                        $(('#file_' + $(button).attr('type'))).html('上传文件:' + response.FileName);
+                        $(('#file_' + $(button).attr('type'))).html('上传文件:' + response.FileName + '<button class="delText close tdCloseIcon">&times;</button>');
                         var hiddenField = '#' + $(button).attr('type');
                         $(hiddenField).val(response.FileName);
+                        bindImageEvent();
                     }
                     else {
                         var img = $('#images_' + button.attr('data'));
@@ -51,5 +52,10 @@ function bindImageEvent() {
     });
     $('.delImg').click(function (item) {
         $(this.parentNode).remove();
+    });
+    $('.delText').click(function (item) {
+        var type = $(this).parent().attr('id').substr(5);
+        $('#file_' + type).html('');
+        $('#' + type).val('');
     });
 }

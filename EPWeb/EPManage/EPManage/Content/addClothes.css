@@ -18,3 +18,6 @@ table.addClothes td {
     width: 1000px;
     margin-left: -500px;
 }
+div#file_SampleFile {
+    width:300px;
+}
