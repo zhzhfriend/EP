@@ -30,7 +30,7 @@
     });
     $('.dropdown-select').multiselect({
         header: false,
-        minWidth: '130',
+        minWidth: '150',
         selectedList: 2,
         'noneSelectedText': 'None'
     });
@@ -103,7 +103,7 @@ function getUserSelectedItems() {
 
 function validSelectItems() {
     var r = true;
-    $('ul.nav').each(function (index, item) {
+    $('ul.nav[multiple!="true"]').each(function (index, item) {
         if ($(item).find('input[type="checkbox"]:checked').length > 1) {
             alert('一个属性只可选择一个值');
             r = false;

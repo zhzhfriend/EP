@@ -39,7 +39,7 @@
                 <tr>
                     <td class="subTitle">@type.Children[i].Name</td>
                     <td colspan="3">
-                        <ul class="nav width210">
+                        <ul class="nav width210" @Html.Raw((type.Children[i].Name == "造型特征") ? "multiple=\"true\"" : "")>
                             @foreach (var t in type.Children[i].PartTypes)
                             {
                                 <li>

@@ -8,7 +8,7 @@ namespace EPManageWeb.Models
 {
     public class SearchDocument
     {
-        public const int PAGE_SIZE = 5;
+        public const int PAGE_SIZE = 20;
 
         public SearchDocument() { PageIndex = 1; }
 
