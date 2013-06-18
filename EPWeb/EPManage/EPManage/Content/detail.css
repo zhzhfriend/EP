@@ -5,6 +5,10 @@
     height:auto;
 }
 
+.center {
+    padding-top:10px;
+}
+
 #myCarousel .carousel-control, #myCarousel2 .carousel-control {
     width: 20px;
     height: 20px;
@@ -84,4 +88,9 @@ table.comments {
 }
 .clothesSizeTable {
     width:150px;
+}
+
+.pictures {
+    min-height:200px;
+    height:auto;
 }

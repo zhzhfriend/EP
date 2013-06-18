@@ -17,7 +17,7 @@
     <div class="span1">
         <img src="@Url.Content("~/Images/logo.gif")" />
     </div>
-    <div class="span9">样板编号：@Model.SampleNO 大货编号： @Model.ProductNO 访问次数：@Model.ViewCount</div>
+    <div class="span9 center">样板编号：@Model.SampleNO 大货编号： @Model.ProductNO 访问次数：@Model.ViewCount</div>
     <div class="span2">@Html.ActionLink("下载样板文件", "Download", new { id = Model.Id, type = "SampleFile" }, new { @class = "btn btn-primary btn-large" })</div>
 </div>
 <div class="dvleft">

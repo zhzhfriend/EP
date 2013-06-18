@@ -6,6 +6,10 @@
 .head {
     width: 100%;
     margin: 0 auto 0 auto;
+    background-color:#f8f6f9;
+    background-image:none;
+    height:auto;
+    min-height:109px;
 }
 
     .head .left {
@@ -14,8 +18,10 @@
     }
 
     .head .center {
-        margin: 0px 180px 0px 225px;
+        margin: 0px 175px 0px 220px;
         padding-top: 15px;
+        background-color:#f8f6f9;
+        min-height:94px;
     }
 
         .head .center .quickSearch .title {
