@@ -31,7 +31,7 @@
     <tr class="trhead">
         <td class="trhead">
             <div class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">品类<span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">@Html.Raw((String.IsNullOrEmpty(Request.QueryString["type"])?"品类":Request.QueryString["type"]))<span class="caret"></span></a>
 
                 @if (ViewBag.Pingleis != null && (ViewBag.Pingleis as IList<EPManageWeb.Entities.Models.ClothesPartType>).Count > 0)
                 {

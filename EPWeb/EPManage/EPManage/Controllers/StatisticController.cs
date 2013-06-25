@@ -11,7 +11,7 @@ namespace EPManageWeb.Controllers
     public class StatisticController : BaseController
     {
         private const int PAGE_SIZE = 5;
-
+        private String[] ClothesType = { "裙子", "裤子", "毛衫" };
         public StatisticController()
         {
             List<ClothesPartType> pingleis = new List<ClothesPartType>();
@@ -19,7 +19,10 @@ namespace EPManageWeb.Controllers
             {
                 pingleis.AddRange(t.PartTypes);
             });
-
+            Array.ForEach(ClothesType, t =>
+                {
+                    pingleis.Add(new ClothesPartType() { Name = t });
+                });
             ViewBag.Pingleis = pingleis;
         }
 
@@ -44,7 +47,18 @@ namespace EPManageWeb.Controllers
             if (!String.IsNullOrEmpty(no))
                 clothes = DbContext.Clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no));
 
-            if (!String.IsNullOrEmpty(type)) clothes = clothes.Where(t => t.PingLei == type);
+            if (!String.IsNullOrEmpty(type))
+            {
+                if (Array.Exists(ClothesType, t => t == type))
+                {
+                    var clothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Name == type);
+                    clothes = clothes.Where(t => t.ClothesType == clothesType);
+                }
+                else
+                {
+                    clothes = clothes.Where(t => t.PingLei == type);
+                }
+            }
 
             int totalCount = clothes.Count();
             clothes = clothes.OrderByDescending(t => t.Id).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
