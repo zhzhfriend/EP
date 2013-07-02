@@ -3,6 +3,7 @@
 </div>
 <div class="right">
     @HttpContext.Current.Items["RealName"] @Html.ActionLink("退出", "logout", "Home")
+    <a href="/Main/Edit/@Model.Id"><img src="@Url.Content("~/Images/Edit.jpg")" /></a>
 </div>
 <div class="center">
     <div class="quickSearch">
@@ -37,7 +38,6 @@
                 <li><span><a href="#myModal" data-toggle="modal">添加款式</a></span></li>
                 <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
                 <li><span>@Html.ActionLink("日志记录", "Index", "Log")</span></li>
-                <li><span><a href="#">编辑记录</a></span></li>
             }
         </ul>
     </div>

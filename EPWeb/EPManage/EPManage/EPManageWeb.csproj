@@ -319,6 +319,8 @@
     <Content Include="Images\detailLink.png" />
     <Content Include="Images\detailLink1.png" />
     <Content Include="Images\dropdownBg.png" />
+    <Content Include="Images\edit.jpg" />
+    <Content Include="Images\edit.png" />
     <Content Include="Images\logo.gif" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\main_bodybg.png" />
