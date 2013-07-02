@@ -187,6 +187,7 @@
     <Compile Include="Entities\Models\SessionUser.cs" />
     <Compile Include="Entities\Models\UploadFile.cs" />
     <Compile Include="Entities\Models\User.cs" />
+    <Compile Include="Filters\BrowserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -309,6 +310,7 @@
     <Content Include="Images\activeNavBG.png" />
     <Content Include="Images\adminInfo.png" />
     <Content Include="Images\body_bg.jpg" />
+    <Content Include="Images\bottomBg.jpg" />
     <Content Include="Images\bottomBg.png" />
     <Content Include="Images\cloth.png" />
     <Content Include="Images\clothes0.png" />
@@ -646,7 +648,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
     <Folder Include="LuceneIndex\" />
     <Folder Include="Upload\" />
   </ItemGroup>
