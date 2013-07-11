@@ -51,7 +51,7 @@ namespace EPManageWeb.Controllers
         public ActionResult Add(Clothes model, int clothesTypeId)
         {
             if (!ValidClothesSize(model.ClothesSize)) return new JsonResult() { Data = false };
-
+            if (!ValidateClothes(model)) return new JsonResult() { Data = "大货编号或样板编号已存在" };
 
             var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == clothesTypeId);
 
@@ -163,6 +163,11 @@ namespace EPManageWeb.Controllers
         private bool ValidClothesSize(string size)
         {
             return true;
+        }
+
+        private bool ValidateClothes(Clothes clothes)
+        {
+            return DbContext.Clothes.SingleOrDefault(t => t.ProductNO == clothes.ProductNO || t.SampleNO == clothes.SampleNO) == null;
         }
     }
 }

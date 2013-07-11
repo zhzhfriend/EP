@@ -36,8 +36,12 @@
             'clothesTypeId': $('#clothesTypeId').val()
         };
         $.post($('#btnAddClothes').attr('href'), data, function (data) {
-            alert('保存成功');
-            $('#btnClose').click();
+            if (data == true) {
+                alert('保存成功');
+                $('#btnClose').click();
+            }
+            else
+                alert('保存失败，失败原因:' + data);
         }, 'json').fail(function () { alert('保存失败'); });
         return false;
     });

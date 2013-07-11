@@ -39,12 +39,15 @@ namespace EPManageWeb.Models
 
                 sb.AppendFormat("(SampleNO:{0} OR ProductNO:{0})", NO);
             }
+
+            Tags = System.Text.RegularExpressions.Regex.Replace(Tags.Trim().Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0").Trim();
             if (!String.IsNullOrEmpty(Tags))
             {
                 if (sb.Length > 0)
                     sb.Append(" AND ");
 
-                sb.AppendFormat("(Tags:{0})", System.Text.RegularExpressions.Regex.Replace(Tags.Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
+                if (!String.IsNullOrEmpty(Tags))
+                    sb.AppendFormat("(Tags:{0})", Tags);
             }
             return sb.ToString();
         }

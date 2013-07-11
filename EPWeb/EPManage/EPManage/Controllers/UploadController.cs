@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using EPManageWeb.Helper;
 using EPManageWeb.Models;
+using System.Text;
+
 
 namespace EPManageWeb.Controllers
 {
@@ -18,7 +20,7 @@ namespace EPManageWeb.Controllers
             FileType fileType = FileType.StylePic;
             if (Enum.TryParse<FileType>(type, out fileType))
             {
-                String[] validExts = { ".jpg", ".gif", ".png", ".swf", ".avi", ".mpg" };
+                String[] validExts = { ".jpg", ".gif", ".png", ".swf", ".avi", ".mpg", ".rar", ".zip", ".doc", ".docx", ".xls", ".xlsx" };
                 if (Request.Files.Count > 0)
                 {
                     try
@@ -29,7 +31,10 @@ namespace EPManageWeb.Controllers
                             ext = file.FileName.Substring(file.FileName.LastIndexOf(@"."));
                         if (!validExts.Contains(ext.ToLower()))
                         {
-                            throw new Exception("上传文件不合法，仅能上传图片、FLASH与视频文件");
+                            StringBuilder sb = new StringBuilder();
+                            Array.ForEach(validExts, t => sb.AppendFormat("{0},", t));
+                            if (sb.Length > 0) sb.Remove(sb.Length - 1, 1);
+                            throw new Exception("上传文件不合法，仅能上传图片、FLASH与视频文件，后缀名为：" + sb.ToString());
                         }
                         String filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + ext;
                         file.SaveAs(Server.MapPath("~/Upload/" + filename));
