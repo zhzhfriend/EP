@@ -26,7 +26,7 @@
         <div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
                 <div class="active item">
-                    <img src="@Model.FirstStylePic()" />
+                    <img src="@Url.Content(Model.FirstStylePic())" />
                 </div>
                 @foreach (var t in Model.StylePicFiles())
                 {
@@ -47,7 +47,7 @@
         <div id="myCarousel2" class="carousel slide">
             <div class="carousel-inner">
                 <div class="active item">
-                    <img src="@Model.FirstClothesPic()" />
+                    <img src="@Url.Content(Model.FirstClothesPic())" />
                 </div>
                 @foreach (var t in Model.ClothesPicFiles())
                 {
@@ -84,7 +84,7 @@
                 <div id="myCarousel3" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="active item">
-                            <img src="@Model.FirstModelVersionPic()" />
+                            <img src="@Url.Content(Model.FirstModelVersionPic())" />
                         </div>
                         @foreach (var t in Model.ModelVersionPicFiles())
                         {
