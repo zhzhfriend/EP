@@ -14,9 +14,6 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/edit.js")"></script>
 }
 
-<div class="alert alert-success">
-    在本页面，您可通过拖动，双击等操作修改每个属性的可选项，以及添加每个属性的子属性。
-</div>
 <div class="searchbox">
     @foreach (var type in Model.ClothesParts)
     {
@@ -130,4 +127,8 @@
         <button class="btn btnclose" data-dismiss="modal" aria-hidden="true">关闭</button>
         @Html.ActionLink("保存", "SaveClothesPartTypes", "ClothesPartTypes", new { @class = "btn btn-primary", id = "btnSaveClothesPartType" })
     </div>
+</div>
+
+<div class="alert alert-success">
+   操作提示： 在本页面，您可通过拖动，双击等操作修改每个属性的可选项，以及添加每个属性的子属性。
 </div>
