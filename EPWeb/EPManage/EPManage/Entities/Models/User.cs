@@ -13,6 +13,9 @@ namespace EPManageWeb.Entities.Models
         public String Password { get; set; }
         public String RealName { get; set; }
         public String UserType { get; set; }
+        public String Department { get; set; }
+
+        public virtual DbSet<Clothes> CreatedClothes { get; set; }
 
         public DbSet<SessionUser> Sessions { get; set; }
 

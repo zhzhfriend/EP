@@ -152,7 +152,8 @@
         </tr>
     </table>
 </div>
-@if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
+@if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin ||
+    Model.Owner.Id.ToString() == HttpContext.Current.Items["UserId"].ToString())
 {
     <div class="text-right span9">
         <button id="editClothes" class="btn btn-success">编辑</button>

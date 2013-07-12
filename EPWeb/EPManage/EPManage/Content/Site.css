@@ -21,7 +21,7 @@
     }
 
     .head .center {
-        margin: 0px 175px 0px 220px;
+        margin: 0 0 0 220px;
         padding-top: 15px;
         background-color:#f8f6f9;
         min-height:94px;
@@ -59,7 +59,7 @@
         }
 
             .head .center .nav li {
-                width: 14%;
+                width: 12%;
                 text-align: left;
             }
 
@@ -87,9 +87,7 @@
         width: 175px;
         float: right;
         background-image:url(../Images/AdminInfo.png);
-        min-height:51px;
-        height:51px;
-        padding-top:60px;
+        padding-top:25px;
         font-size:16px;
         font-weight:900;
     }

@@ -15,5 +15,6 @@
             }).fail(function () { alert('删除失败'); });
             return false;
         }
+        return false;
     });
 });

@@ -49,6 +49,8 @@ namespace EPManageWeb.Entities.Models
 
         public String PingLei { get; set; }
 
+        public virtual User Owner { get; set; }
+
         public virtual ClothesType ClothesType { get; set; }
 
         public virtual List<OperationLog> Logs { get; set; }

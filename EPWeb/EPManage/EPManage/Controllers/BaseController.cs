@@ -40,8 +40,8 @@ namespace EPManageWeb.Controllers
             base.OnActionExecuted(filterContext);
 
             ViewBag.Errors = Messages.Where(t => t.Type == MessageType.Error).ToList();
-            ViewBag.Warnings = Messages.Where(t => t.Type == MessageType.Error).ToList();
-            ViewBag.Infos = Messages.Where(t => t.Type == MessageType.Error).ToList();
+            ViewBag.Warnings = Messages.Where(t => t.Type == MessageType.Warning).ToList();
+            ViewBag.Infos = Messages.Where(t => t.Type == MessageType.Info).ToList();
         }
 
         protected User CurrentUser

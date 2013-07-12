@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201305241124181_add_something.Designer.cs">
       <DependentUpon>201305241124181_add_something.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307121446254_create_user_clothes_relation.cs" />
+    <Compile Include="Migrations\201307121446254_create_user_clothes_relation.Designer.cs">
+      <DependentUpon>201307121446254_create_user_clothes_relation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -238,6 +242,7 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\ChangePassword.css" />
     <Content Include="Content\detail.css" />
     <Content Include="Content\edit.css" />
     <Content Include="Content\jquery.multiselect.css" />
@@ -332,6 +337,7 @@
     <Content Include="Images\submit.png" />
     <Content Include="Scripts\addClothes.js" />
     <Content Include="Scripts\addClothesSize.js" />
+    <Content Include="Scripts\AddUser.js" />
     <Content Include="Scripts\ajaxupload.3.6.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\editClothes.js" />
@@ -645,6 +651,10 @@
     <Content Include="Views\Log\_head.cshtml" />
     <Content Include="Views\Statistic\_head.cshtml" />
     <Content Include="Views\Clothes\Edit.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\User\_head.cshtml" />
+    <Content Include="Views\User\List.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -672,6 +682,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201305241124181_add_something.resx">
       <DependentUpon>201305241124181_add_something.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307121446254_create_user_clothes_relation.resx">
+      <DependentUpon>201307121446254_create_user_clothes_relation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

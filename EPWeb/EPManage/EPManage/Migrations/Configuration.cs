@@ -54,7 +54,7 @@ namespace EPManageWeb.Migrations
                                {
                                       new ClothesPartType(){ Name="Ö±ÉíÈ¹"},
                                       new ClothesPartType(){ Name="A×ÖÈ¹"},
-                                      new ClothesPartType(){ Name="A²¨ÀË"}
+                                      new ClothesPartType(){ Name="²¨ÀË"}
                                 }
                               },
                               new ClothesPart(){ Name="¿íËÉ·ç¸ñ",
@@ -201,10 +201,10 @@ namespace EPManageWeb.Migrations
                 });
             }
 
-            if (context.ClothesTypes.Count(t => t.Name == "Ã«ÉÀ") == 0)
-            {
-                context.ClothesTypes.Add(new ClothesType() { Name = "Ã«ÉÀ" });
-            }
+            //if (context.ClothesTypes.Count(t => t.Name == "Ã«ÉÀ") == 0)
+            //{
+            //    context.ClothesTypes.Add(new ClothesType() { Name = "Ã«ÉÀ" });
+            //}
         }
 
         private void AddClothType_ShangZhuang(EPManageWeb.Entities.EPDataContext context)
