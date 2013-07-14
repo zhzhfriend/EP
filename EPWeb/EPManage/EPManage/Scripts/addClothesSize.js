@@ -9,9 +9,9 @@
 });
 
 function bindTdCloseIcon() {
-    $('.tdCloseIcon').click(function () {
-        $(this).parentsUntil('tbody').remove();
-    });
+//    $('.tdCloseIcon').click(function () {
+//        $(this).parentsUntil('tbody').remove();
+//    });
     $('input[name="name"] :last').autocomplete({
         source: ['后中长', '胸围', '腰围', '臀围', '摆围', '内长'],
         minLength: 0

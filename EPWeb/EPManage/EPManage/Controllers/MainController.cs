@@ -70,7 +70,8 @@ namespace EPManageWeb.Controllers
                 StylePics = model.StylePics ?? string.Empty,
                 TechnologyFile = model.TechnologyFile ?? string.Empty,
                 Tags = model.Tags ?? string.Empty,
-                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId)
+                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId),
+                Owner=CurrentUser
             };
             if (pinglei != null)
             {
