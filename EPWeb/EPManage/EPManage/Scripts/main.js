@@ -71,6 +71,17 @@
         return false;
     });
 
+    $('input[name^="multiselect_"]').not(':first').click(function (a, source) {
+        var multiName = $(this).attr('name');
+        if ($('input[name="' + multiName + '"]:checked').length > 1) {
+            $($('input[name="' + multiName + '"]')[0]).attr('checked', false);
+        }
+        else if ($('input[name="' + multiName + '"]:checked').length == 0) {
+            $($('input[name="' + multiName + '"]')[0]).click();
+        }
+        return true;
+    });
+
     $('#search').click();
 });
 
