@@ -2,7 +2,7 @@
     $('#btnAddClothesPartType').click(function () {
         var data = { 'name': $('#name').val(), 'partId': $('#clothPartId').val() };
         $.post($('#btnAddClothesPartType').attr('href'), data, function (data) {
-            $('#nav_' + $('#clothPartId').val() + ' li:last').before('<li data="' + data.Id + '" class="btn btn-success">' + data.Name + '<button data="' + data.Id + '" class="close">&times;</button></li>');
+            $('#nav_' + $('#clothPartId').val() + ' li:last').before('<li data="' + data.Id + '" class="btn btnType">' + data.Name + '<button data="' + data.Id + '" class="close">&times;</button></li>');
             $('#myModal').modal('hide');
             $('#name').val('');
             $('#clothPartId').val('');
