@@ -29,13 +29,13 @@ namespace EPManageWeb.Controllers
                         String ext = String.Empty;
                         if (file.FileName.LastIndexOf(".") > -1)
                             ext = file.FileName.Substring(file.FileName.LastIndexOf(@"."));
-                        if (!validExts.Contains(ext.ToLower()))
-                        {
-                            StringBuilder sb = new StringBuilder();
-                            Array.ForEach(validExts, t => sb.AppendFormat("{0},", t));
-                            if (sb.Length > 0) sb.Remove(sb.Length - 1, 1);
-                            throw new Exception("上传文件不合法，仅能上传图片、FLASH与视频文件，后缀名为：" + sb.ToString());
-                        }
+                        //if (!validExts.Contains(ext.ToLower()))
+                        //{
+                        //    StringBuilder sb = new StringBuilder();
+                        //    Array.ForEach(validExts, t => sb.AppendFormat("{0},", t));
+                        //    if (sb.Length > 0) sb.Remove(sb.Length - 1, 1);
+                        //    throw new Exception("上传文件不合法，仅能上传图片、FLASH与视频文件，后缀名为：" + sb.ToString());
+                        //}
                         String filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + ext;
                         file.SaveAs(Server.MapPath("~/Upload/" + filename));
                         r.FileName = "/Upload/" + filename;

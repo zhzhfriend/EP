@@ -45,6 +45,9 @@ namespace EPManageWeb.Entities.Models
         public String ClothesSize { get; set; }
         [MaxLength(1000)]
         public String Tags { get; set; }
+        //[Display(Name = "拥有者的ID")]
+        //public String Owner_Id { get; set; }
+
         public int ViewCount { get; set; }
 
         public String PingLei { get; set; }

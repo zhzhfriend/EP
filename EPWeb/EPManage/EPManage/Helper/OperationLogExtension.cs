@@ -14,6 +14,7 @@ namespace EPManageWeb.Helper
             {
                 case "DownLoadFile": return "下载";
                 case "AddClothes": return "上传";
+                case "ViewClothes": return "查看";
                 case "DelClothes": return "删除";
                 case "EditClothes": return "编辑";
                 default: return "";

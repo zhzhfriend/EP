@@ -147,8 +147,10 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Del(string username)
         {
+            //删除用户，删除用户9527，如果重新添加9527，就会无法进行添加
             var user = DbContext.Users.SingleOrDefault(t => t.UserName == username);
-            user.IsDeleted = true;
+            DbContext.Users.Remove(user);
+            //user.IsDeleted = true;
             DbContext.SaveChanges();
             return RedirectToAction("List");
         }
