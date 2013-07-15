@@ -41,29 +41,22 @@ namespace EPManageWeb.Models
                 sb.AppendFormat("(SampleNO:{0} OR ProductNO:{0})", NO);
             }
 
-            //Tags = System.Text.RegularExpressions.Regex.Replace(Tags.Trim().Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0").Trim();
-            //if (!String.IsNullOrEmpty(Tags))
-            //{
-            //    if (sb.Length > 0)
-            //        sb.Append(" AND ");
-
-            //    if (!String.IsNullOrEmpty(Tags))
-            //        sb.AppendFormat("(Tags:{0})", Tags);
-            //}
-            //12-直身袖,11-无袖
             var tags = Tags.Split(new char[] { ',' });
             Dictionary<string, string> dics = new Dictionary<string, string>();
             Array.ForEach(tags, t =>
                 {
-                    var key = t.Substring(0, t.IndexOf('-'));
-                    var value = t.Substring(t.IndexOf('-') + 1);
-                    if (dics.ContainsKey(key))
+                    if (!String.IsNullOrEmpty(t))
                     {
-                        dics[key] = dics[key] + "," + value;
-                    }
-                    else
-                    {
-                        dics.Add(key, value);
+                        var key = t.Substring(0, t.IndexOf('-'));
+                        var value = t.Substring(t.IndexOf('-') + 1);
+                        if (dics.ContainsKey(key))
+                        {
+                            dics[key] = dics[key] + "," + value;
+                        }
+                        else
+                        {
+                            dics.Add(key, value);
+                        }
                     }
                 });
             dics.Keys.ToList().ForEach(k =>
