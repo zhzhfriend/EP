@@ -16,6 +16,7 @@
             <th>用户名</th>
             <th>姓名</th>
             <th>所在部门</th>
+            <th>用户状态</th>
             <th>用户类型</th>
             <th>操作</th>
         </tr>
@@ -25,9 +26,11 @@
                 <td>@t.UserName</td>
                 <td>@t.RealName</td>
                 <td>@t.Department</td>
+                <td>@Html.Raw((t.IsDeleted == true) ? "已删除" : "正常")</td>
                 <td>@Html.Raw((t.UserType == "Admin") ? "管理员" : "普通用户")</td>
                 <td>@Html.ActionLink("重置密码", "ResetPassword", new { username = @t.UserName })
                     @Html.ActionLink("删除", "Del", new { username = @t.UserName })
+                    @Html.ActionLink("恢复", "Rel", new { username = @t.UserName })
                 </td>
             </tr>
         }
@@ -42,7 +45,7 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">添加新用户</h3>
+        <h3 id="myModalLabel"><img src="@Url.Content("~/Images/logo.gif")" />添加新用户</h3>
     </div>
     <div class="modal-body">
     </div>

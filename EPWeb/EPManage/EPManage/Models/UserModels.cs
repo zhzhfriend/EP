@@ -45,5 +45,9 @@ namespace EPManageWeb.Models
         [Required]
         public String Department { get; set; }
 
+        [Display(Name = "类型")]
+        [Required]
+        public String UserType { get; set; }
+
     }
 }

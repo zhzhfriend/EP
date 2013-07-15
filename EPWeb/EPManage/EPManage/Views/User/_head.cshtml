@@ -37,7 +37,7 @@
             <li><span>@Html.ActionLink("修改密码", "ChangePassword", "User", null, null)</span></li>
             @if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
             {
-                <li><span  class="active">@Html.ActionLink("用户管理", "List", "User")</span></li>
+                <li><span>@Html.ActionLink("用户管理", "List", "User")</span></li>
                 <li><span>@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
                 <li><span>@Html.ActionLink("日志记录", "Index", "Log")</span></li>
                 <li><span><a href="#">界面编辑</a></span></li>

@@ -89,7 +89,7 @@ namespace EPManageWeb.Controllers
         public ActionResult List(int page = 1)
         {
             int pageSize = 10;
-            IEnumerable<User> users = DbContext.Users.Where(t => t.IsDeleted == false);
+            IEnumerable<User> users = DbContext.Users.OrderBy(t=>t.IsDeleted);
             int totalCount = users.Count();
             users = users.OrderByDescending(t => t.Id).Skip((page - 1) * pageSize).Take(pageSize);
             return View(users.ToPageList<User>(page, pageSize, totalCount));
@@ -149,8 +149,28 @@ namespace EPManageWeb.Controllers
         {
             //删除用户，删除用户9527，如果重新添加9527，就会无法进行添加
             var user = DbContext.Users.SingleOrDefault(t => t.UserName == username);
-            DbContext.Users.Remove(user);
-            //user.IsDeleted = true;
+            //return new JsonResult() { Data = "该用户名已存在" };
+            //string strMsg = "管理员无法删除";
+            //if (user.UserType == "Admin")
+            //{
+            //    System.Web.HttpContext.Current.Response.Write("<Script Language='JavaScript'>window.alert('" + strMsg + "');</script>");
+            //    //AddError("管理员无法删除");
+            //    return RedirectToAction("List");
+            //}
+         
+            //DbContext.Users.Remove(user);
+            user.IsDeleted = true;
+            DbContext.SaveChanges();
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        [CookiesAuthorize]
+        public ActionResult Rel(string username)
+        {
+            //删除用户，删除用户9527，如果重新添加9527，就会无法进行添加
+            var user = DbContext.Users.SingleOrDefault(t => t.UserName == username);
+            user.IsDeleted = false;
             DbContext.SaveChanges();
             return RedirectToAction("List");
         }

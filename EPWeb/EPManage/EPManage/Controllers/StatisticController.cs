@@ -42,17 +42,20 @@ namespace EPManageWeb.Controllers
             ViewBag.StartDT = startDateTime;
             ViewBag.EndDT = endDateTime;
             ViewBag.No = no;
+            endDateTime = endDateTime.AddDays(1);
 
             IEnumerable<Clothes> clothes = DbContext.Clothes;
+            clothes = DbContext.Clothes.Where(t=>t.CreateDT >= startDateTime && t.CreateDT <= endDateTime);
             if (!String.IsNullOrEmpty(no))
-                clothes = DbContext.Clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no));
+                clothes = DbContext.Clothes.Where(t => t.ProductNO.Contains(no) || t.SampleNO.Contains(no)
+                    && t.CreateDT >= startDateTime && t.CreateDT<=endDateTime);
 
             if (!String.IsNullOrEmpty(type))
             {
                 if (Array.Exists(ClothesType, t => t == type))
                 {
                     var clothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Name == type);
-                    clothes = clothes.Where(t => t.ClothesType == clothesType);
+                    clothes = clothes.Where(t => t.ClothesType == clothesType && t.CreateDT >= startDateTime && t.CreateDT <= endDateTime);
                 }
                 else
                 {
