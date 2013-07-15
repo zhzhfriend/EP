@@ -62,7 +62,7 @@ function getClothesSize() {
     var values = Array();
     var r = '';
     $('#clothSizeTable input[name="name"]').each(function (index, item) { names.push($(item).val()); });
-    $('#clothSizeTable input[type="text"]').each(function (index, item) { values.push($(item).val()); });
+    $('#clothSizeTable input[name="size"]').each(function (index, item) { values.push($(item).val()); });
     for (var i = 0; i < names.length; i++) {
         r = r + names[i] + '=' + values[i] + ',';
     }

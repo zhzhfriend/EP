@@ -15,7 +15,7 @@
                         {
                             <li>
                                 <label>
-                                    <input type="checkbox" name="@t.Name" />
+                                    <input type="checkbox" name="@t.Name" partId="@type.Children[0].Id" />
                                     @t.Name</label>
                                 @if (t.Children != null && t.Children.Count > 0)
                                 {
@@ -44,7 +44,7 @@
                             {
                                 <li>
                                     <label>
-                                        <input type="checkbox" name="@t.Name" />
+                                        <input type="checkbox" name="@t.Name"  partId="@type.Children[i].Id" />
                                         @t.Name</label>
                                     @if (t.Children != null && t.Children.Count > 0)
                                     {
@@ -77,7 +77,7 @@
                             t.Children = t.Children.OrderBy(t1 => t1.Order).ToList();
                             <li>
                                 <label>
-                                    <input type="checkbox" name="@t.Name" />
+                                    <input type="checkbox" name="@t.Name" partId="@type.Id" />
                                     @t.Name</label>
                                 @if (t.Children != null && t.Children.Count > 0)
                                 {

@@ -3,8 +3,9 @@
     $('input[type="checkbox"]').attr('checked', false);
     $('input[type="checkbox"]').click(function (item) {
         var name = $(this).attr('name');
+        var partId = $(this).attr('partId');
         if ($(this)[0].checked) {
-            $('#searchParameters').append('<li data="' + name + '" class="btn btn-success">' + name + '<button class="close itemclose">&times;</button></li>');
+            $('#searchParameters').append('<li data="' + name + '" partId="' + partId + '" class="btn btn-success">' + name + '<button class="close itemclose">&times;</button></li>');
             bindSelectedItemRemoveIcon();
         }
         else {
@@ -49,13 +50,6 @@
             }
         }
     });
-
-    //$('#search').click(function () {
-    //    searchClothes(function () {
-    //        return { 'tags': getUserSelectedItems(), 'clothesTypeId': $('#clothesTypeId').val() };
-    //    });
-    //    return false;
-    //});
 
     $('#search').click(function () {
         searchClothes(function () {
@@ -106,8 +100,8 @@ function searchClothes(getDataParamsFunc) {
 
 function getUserSelectedItems() {
     var items = Array();
-    $('#searchParameters li').each(function (index, item) {
-        items.push($(item).attr('data'));
+    $('#searchParameters li').not(':first').each(function (index, item) {
+        items.push($(item).attr('partId') + '-' + $(item).attr('data'));
     });
     return items.join(',');
 }
