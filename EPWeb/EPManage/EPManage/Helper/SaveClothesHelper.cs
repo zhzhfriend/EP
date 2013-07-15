@@ -45,6 +45,28 @@ namespace EPManageWeb.Helper
                 document.Add(new Field(Fields.ModelVersionPics.ToString(), clothes.ModelVersionPics ?? string.Empty, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.StylePics.ToString(), clothes.StylePics ?? string.Empty, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.UsedCount.ToString(), clothes.ViewCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
+
+                //store Tags
+                var tags = clothes.Tags.Split(new char[] { ',' });
+                Dictionary<string, string> dics = new Dictionary<string, string>();
+                Array.ForEach(tags, t =>
+                {
+                    var key = t.Substring(0, t.IndexOf('-'));
+                    var value = t.Substring(t.IndexOf('-') + 1);
+                    if (dics.ContainsKey(key))
+                    {
+                        dics[key] = dics[key] + "," + value;
+                    }
+                    else
+                    {
+                        dics.Add(key, value);
+                    }
+                });
+                dics.Keys.ToList().ForEach(k =>
+                {
+                    document.Add(new Field(k,dics[k],Field.Store.YES,Field.Index.ANALYZED));
+                });
+
                 writer.AddDocument(document);
                 writer.Optimize();
             }

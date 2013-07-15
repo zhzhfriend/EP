@@ -31,14 +31,6 @@ namespace EPManageWeb.Controllers
             return new HttpNotFoundResult();
         }
 
-        //[CookiesAuthorize]
-        //[HttpPost]
-        //public ActionResult Search(SearchDocument searchDocument)
-        //{
-        //    List<Clothes> clothes = SaveClothesHelper.Search(searchDocument);
-        //    return View(clothes);
-        //}
-
         [CookiesAuthorize]
         [HttpGet]
         public ActionResult Add()
