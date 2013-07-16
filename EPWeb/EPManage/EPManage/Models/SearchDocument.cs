@@ -70,7 +70,8 @@ namespace EPManageWeb.Models
                         StringBuilder sb1 = new StringBuilder();
                         Array.ForEach(dics[k].Trim().Split(new char[] { ',' }), t =>
                             {
-                                sb1.AppendFormat("({0}:{1}) OR ", k, t);
+                               // sb1.AppendFormat("({0}:{1}) OR ", k, t);
+                                sb1.AppendFormat("({0}:{1}) OR ", k,Regex.Replace(t, @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
                             });
                         if (sb1.Length > 0) sb1.Remove(sb1.Length - 3,3);
                         sb.Append(sb1);
