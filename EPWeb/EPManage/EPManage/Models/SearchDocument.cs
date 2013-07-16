@@ -61,8 +61,21 @@ namespace EPManageWeb.Models
                 });
             dics.Keys.ToList().ForEach(k =>
                 {
-                    sb.Append(" AND ");
-                    sb.AppendFormat(" ({0}:{1}) ", k, Regex.Replace(dics[k].Trim().Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
+                    if (!String.IsNullOrEmpty(dics[k]))
+                    {
+                        //3-H,X,A,B
+                        //((3:H) OR (3:X))
+                        sb.Append(" AND (");
+                        //sb.AppendFormat(" ({0}:{1}) ", k, Regex.Replace(dics[k].Trim().Replace(',', ' '), @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
+                        StringBuilder sb1 = new StringBuilder();
+                        Array.ForEach(dics[k].Trim().Split(new char[] { ',' }), t =>
+                            {
+                                sb1.AppendFormat("({0}:{1}) OR ", k, t);
+                            });
+                        if (sb1.Length > 0) sb1.Remove(sb1.Length - 3,3);
+                        sb.Append(sb1);
+                        sb.Append(")");
+                    }
                 });
             return sb.ToString();
         }
