@@ -16,6 +16,10 @@
         }
     });
 
+    $('#btnResetSearch').click(function () {
+        document.location.reload();
+    });
+
     $('#lnkAddClothes').click(function () {
         if (getUserSelectedItems().length == 0) {
             alert('您尚未选择特征信息');

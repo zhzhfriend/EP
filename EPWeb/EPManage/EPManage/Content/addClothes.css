@@ -21,3 +21,7 @@ table.addClothes td {
 div#file_SampleFile {
     width:300px;
 }
+.ui-menu {
+    max-height:150px;
+    overflow-y:scroll;
+}
