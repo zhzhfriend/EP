@@ -160,7 +160,7 @@ namespace EPManageWeb.Controllers
 
         private bool ValidateClothes(Clothes clothes)
         {
-            return DbContext.Clothes.FirstOrDefault(t => t.ProductNO == clothes.ProductNO || t.SampleNO == clothes.SampleNO) == null;
+            return DbContext.Clothes.FirstOrDefault(t => (t.ProductNO == clothes.ProductNO || t.SampleNO == clothes.SampleNO)&&t.IsDeleted==false) == null;
         }
     }
 }
