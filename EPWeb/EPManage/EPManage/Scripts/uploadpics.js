@@ -27,7 +27,7 @@
                         $(button).attr('type') == 'AssessoriesFile' ||
                         $(button).attr('type') == 'SampleFile') {
                         $(('#file_' + $(button).attr('type'))).html('上传文件:' + response.FileName + '<button class="delText close tdCloseIcon">&times;</button>');
-                        var hiddenField = '#' + $(button).attr('type');
+                         var hiddenField = '#' + $(button).attr('type');
                         $(hiddenField).val(response.FileName);
                         bindImageEvent();
                     }

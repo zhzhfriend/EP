@@ -1,7 +1,7 @@
 ﻿.carousel {
-    width: 200px;
+    width: 300px;
     margin:5px auto 5px auto;
-    min-height:150px;
+    min-height:200px;
     height:auto;
 }
 
@@ -33,14 +33,14 @@
 }
 #myCarousel img
 {
-	min-width:150px;
+	min-width:200px;
 	width:auto;
 	margin: 0 auto 0 auto;
 }
 #myCarousel2 img
 {
 	text-align:center;
-	min-width:150px;
+	min-width:200px;
 	width:auto;
 	margin: 0 auto 0 auto;
 }
