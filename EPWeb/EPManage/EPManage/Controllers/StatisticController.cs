@@ -10,7 +10,7 @@ namespace EPManageWeb.Controllers
 {
     public class StatisticController : BaseController
     {
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 20;
         private String[] ClothesType = { "裙子", "裤子", "毛衫" };
         public StatisticController()
         {

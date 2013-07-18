@@ -10,7 +10,7 @@ namespace EPManageWeb.Controllers
 {
     public class LogController : BaseController
     {
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 20;
 
         [CookiesAuthorize]
         public ActionResult Index(string no,  int page = 1)
