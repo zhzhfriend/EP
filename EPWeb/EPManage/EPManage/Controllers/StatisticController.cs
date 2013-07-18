@@ -64,7 +64,7 @@ namespace EPManageWeb.Controllers
             }
 
             int totalCount = clothes.Count();
-            clothes = clothes.OrderByDescending(t => t.Id).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
+            clothes = clothes.OrderByDescending(t => t.ViewCount).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
             return View(clothes.ToPageList<Clothes>(page, PAGE_SIZE, totalCount));
         }
 

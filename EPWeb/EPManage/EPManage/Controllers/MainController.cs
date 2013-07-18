@@ -65,12 +65,23 @@ namespace EPManageWeb.Controllers
                 ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId),
                 Owner=CurrentUser
             };
+            string tmp=string.Empty;
             if (pinglei != null)
             {
                 var tags = model.Tags.Split(new char[] { ',' }).ToList();
-                var pingleiType = pinglei.PartTypes.SingleOrDefault(t => tags.Contains(t.Name));
-                if (pingleiType != null)
-                    c.PingLei = pingleiType.Name;
+                foreach (var  t in tags)
+                {
+                    foreach (var pt in pinglei.PartTypes)
+                    {
+                        if (t.Contains(pt.Name))
+                        {
+                            tmp = pt.Name;
+                        }
+                    }
+                }
+
+                if (string.Empty != tmp)
+                    c.PingLei = tmp;
             }
 
             DbContext.Clothes.Add(c);

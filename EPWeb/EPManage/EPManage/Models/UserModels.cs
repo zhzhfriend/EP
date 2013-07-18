@@ -44,10 +44,5 @@ namespace EPManageWeb.Models
         [Display(Name = "部门")]
         [Required]
         public String Department { get; set; }
-
-        [Display(Name = "类型")]
-        [Required]
-        public String UserType { get; set; }
-
     }
 }
