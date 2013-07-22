@@ -44,6 +44,7 @@
         if (ui.value != '0') {
             if (ui.checked) {
                 $('#searchParameters').append('<li data="' + ui.value + '" class="btn btn-success">' + ui.value + '<button class="close itemclose">&times;</button></li>');
+                //$('#searchParameters').append('<li data="' + ui.value + '" partId="' + partId + '" class="btn btn-success">' + ui.value + '<button class="close itemclose">&times;</button></li>');
                 bindSelectedItemRemoveIcon();
             }
             else {

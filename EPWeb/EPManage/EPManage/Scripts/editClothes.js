@@ -11,12 +11,12 @@
             return false;
         }
         if (getClothesSize().length == 0) {
-            alert('衣服尺寸总该要填写吧');
+            alert('衣服尺寸必须填写');
             return false;
         }
-        if (getImages('#images_StylePics').length == 0 && !confirm('确认不上传款式图片?')) return false;
-        if (getImages('#images_ClothesPics').length == 0 && !confirm('确认不上传样衣图片?')) return false;
-        if (getImages('#images_ModelVersionPics').length == 0 && !confirm('确认不上传版型图?')) return false;
+//        if (getImages('#images_StylePics').length == 0 && !confirm('确认不上传款式图片?')) return false;
+//        if (getImages('#images_ClothesPics').length == 0 && !confirm('确认不上传样衣图片?')) return false;
+//        if (getImages('#images_ModelVersionPics').length == 0 && !confirm('确认不上传版型图?')) return false;
         var data = {
             'id': $('#clothesId').val(),
             'SampleNO': $('#SampleNO').val(),

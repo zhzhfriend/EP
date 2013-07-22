@@ -30,9 +30,12 @@
                 </div>
                 @foreach (var t in Model.StylePicFiles())
                 {
+                     if(t != Model.FirstStylePic())
+                    {   
                     <div class="item">
                         <img src="@Url.Content(t)" />
                     </div>
+                    }
                 }
             </div>
             @if (Model.StylePicFiles().Count > 1)
@@ -51,9 +54,12 @@
                 </div>
                 @foreach (var t in Model.ClothesPicFiles())
                 {
+                     if(t != Model.FirstStylePic())
+                    {   
                     <div class="item">
                         <img src="@Url.Content(t)" />
                     </div>
+                    }
                 }
             </div>
             @if (Model.ClothesPicFiles().Count > 1)
@@ -88,9 +94,12 @@
                         </div>
                         @foreach (var t in Model.ModelVersionPicFiles())
                         {
+                            if (t != Model.FirstStylePic())
+                            { 
                             <div class="item">
                                 <img src="@Url.Content(t)" />
                             </div>
+                            }
                         }
                     </div>
                     @if (Model.ModelVersionPicFiles().Count > 1)

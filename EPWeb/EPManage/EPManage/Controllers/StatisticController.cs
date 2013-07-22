@@ -10,7 +10,7 @@ namespace EPManageWeb.Controllers
 {
     public class StatisticController : BaseController
     {
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 20;
         private String[] ClothesType = { "裙子", "裤子", "毛衫" };
         public StatisticController()
         {
@@ -64,7 +64,7 @@ namespace EPManageWeb.Controllers
             }
 
             int totalCount = clothes.Count();
-            clothes = clothes.OrderByDescending(t => t.Id).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
+            clothes = clothes.OrderByDescending(t => t.ViewCount).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
             return View(clothes.ToPageList<Clothes>(page, PAGE_SIZE, totalCount));
         }
 
