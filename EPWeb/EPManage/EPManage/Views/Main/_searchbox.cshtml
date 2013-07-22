@@ -118,14 +118,11 @@
             <td class="right">
                 <select class="dropdown-select">
                     <option value="0">请选择</option>
-                    <option value="2013年秋东">2013年秋东</option>
-                    <option value="2013年春夏">2013年春夏</option>
-                    <option value="2012年秋东">2012年秋东</option>
-                    <option value="2012年春夏">2012年春夏</option>
-                    <option value="2011年秋东">2011年秋东</option>
-                    <option value="2011年春夏">2011年春夏</option>
-                    <option value="2010年秋东">2010年秋东</option>
-                    <option value="2010年春夏">2010年春夏</option>
+                    @for (var i = DateTime.Now.Year + 1; i > 2009; i++)
+                    {
+                        <option value="@String.Format("{0}年秋冬", i)">@String.Format("{0}年秋冬", i)</option>
+                        <option value="@String.Format("{0}年春夏", i)">@String.Format("{0}年春夏", i)</option>
+                    }
                 </select>
             </td>
             <th>排序方式</th>
