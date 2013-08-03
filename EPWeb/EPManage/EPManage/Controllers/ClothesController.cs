@@ -26,6 +26,7 @@ namespace EPManageWeb.Controllers
         [CookiesAuthorize]
         public ActionResult Search(SearchDocument doc)
         {
+            #region "old codes"
             doc.Tags = doc.Tags ?? String.Empty;
 
             if (doc.Tags.Contains("年份"))
@@ -44,7 +45,15 @@ namespace EPManageWeb.Controllers
             int totalCount = 0;
             List<Clothes> clothes = SaveClothesHelper.Search(doc, out totalCount);
             //return View(clothes);
+            #endregion
+            
+            //IEnumerable<Clothes> clothes = DbContext.Clothes.Where(t => t.IsDeleted == false);
+            //if (!string.IsNullOrEmpty(doc.NO)) clothes = clothes.Where(t => t.ProductNO.Contains(doc.NO) || t.SampleNO.Contains(doc.NO));
 
+
+            //var totalCount = clothes.Count();
+            //clothes = clothes.OrderByDescending(t => t.Id).Skip((doc.PageIndex - 1) * PAGE_SIZE).Take(PAGE_SIZE);
+            
             return View(clothes.ToPageList<Clothes>(doc.PageIndex, SearchDocument.PAGE_SIZE, totalCount));
         }
 

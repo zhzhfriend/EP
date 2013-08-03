@@ -17,8 +17,10 @@ namespace EPManageWeb.Helper
 {
     public class SaveClothesHelper
     {
-        static Version version = Version.LUCENE_20;
+        static Version version = Version.LUCENE_30;
         const String INDEX_PATH = "~/LuceneIndex";
+        private const String PREFIX = "^";
+        private const String SUBFIX = "$";
         static Directory directory = FSDirectory.Open(HttpContext.Current.Server.MapPath(INDEX_PATH));
         static Analyzer analyzer = new WhitespaceAnalyzer();
 
@@ -35,9 +37,9 @@ namespace EPManageWeb.Helper
             {
                 Document document = new Document();
                 document.Add(new Field(Fields.Id.ToString(), clothes.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.SampleNO.ToString(), clothes.SampleNO, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.SampleNO.ToString(), PREFIX + clothes.SampleNO + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Tags.ToString(), clothes.Tags.Replace(',', ' '), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ProductNO.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ProductNO.ToString(), PREFIX + clothes.ProductNO + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Year.ToString(), ExtractYearFromTags(clothes), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
@@ -55,16 +57,16 @@ namespace EPManageWeb.Helper
                     var value = t.Substring(t.IndexOf('-') + 1);
                     if (dics.ContainsKey(key))
                     {
-                        dics[key] = dics[key] + "," + value;
+                        dics[key] = dics[key] + "," + PREFIX + value + SUBFIX;
                     }
                     else
                     {
-                        dics.Add(key, value);
+                        dics.Add(key, PREFIX + value + SUBFIX);
                     }
                 });
                 dics.Keys.ToList().ForEach(k =>
                 {
-                    document.Add(new Field(k,dics[k],Field.Store.YES,Field.Index.ANALYZED));
+                    document.Add(new Field(k, dics[k], Field.Store.YES, Field.Index.ANALYZED));
                 });
 
                 writer.AddDocument(document);
@@ -114,8 +116,8 @@ namespace EPManageWeb.Helper
                     clothes.Add(new Clothes()
                     {
                         Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Id.ToString()).StringValue),
-                        ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue,
-                        SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue,
+                        ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue.Replace(PREFIX, "").Replace(SUBFIX, ""),
+                        SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue.Replace(PREFIX, "").Replace(SUBFIX, ""),
                         ClothesPics = searcher.Doc(t.Doc).GetField(Fields.ClothesPics.ToString()).StringValue,
                         StylePics = searcher.Doc(t.Doc).GetField(Fields.StylePics.ToString()).StringValue,
                         ModelVersionPics = searcher.Doc(t.Doc).GetField(Fields.ModelVersionPics.ToString()).StringValue

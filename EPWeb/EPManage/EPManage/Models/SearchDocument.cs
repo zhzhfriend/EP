@@ -10,7 +10,7 @@ namespace EPManageWeb.Models
     public class SearchDocument
     {
         public const int PAGE_SIZE = 20;
-
+        private const String PREFIX = "^";
         public SearchDocument() { PageIndex = 1; }
 
         public String NO { get; set; }
@@ -38,7 +38,7 @@ namespace EPManageWeb.Models
                 if (sb.Length > 0)
                     sb.Append(" AND ");
 
-                sb.AppendFormat("(SampleNO:{0} OR ProductNO:{0})", NO);
+                sb.AppendFormat("(SampleNO:\\" + PREFIX + "*{0}* OR ProductNO:\\" + PREFIX + "*{0}*)", NO);
             }
 
             var tags = Tags.Split(new char[] { ',' });
@@ -70,10 +70,10 @@ namespace EPManageWeb.Models
                         StringBuilder sb1 = new StringBuilder();
                         Array.ForEach(dics[k].Trim().Split(new char[] { ',' }), t =>
                             {
-                               // sb1.AppendFormat("({0}:{1}) OR ", k, t);
-                                sb1.AppendFormat("({0}:{1}) OR ", k,Regex.Replace(t, @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
+                                // sb1.AppendFormat("({0}:{1}) OR ", k, t);
+                                sb1.AppendFormat("({0}:\\" + PREFIX + "*{1}*) OR ", k, Regex.Replace(t, @"[\(\)|+\-\!\{\}\[\}\^\""\~\*\?\:\\]", @"\$0"));
                             });
-                        if (sb1.Length > 0) sb1.Remove(sb1.Length - 3,3);
+                        if (sb1.Length > 0) sb1.Remove(sb1.Length - 3, 3);
                         sb.Append(sb1);
                         sb.Append(")");
                     }
