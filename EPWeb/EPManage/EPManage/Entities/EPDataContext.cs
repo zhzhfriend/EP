@@ -22,6 +22,8 @@ namespace EPManageWeb.Entities
         public DbSet<UploadFile> UploadFiles { get; set; }
         public DbSet<ClothesPartType> ClothesPartTypes { get; set; }
         public DbSet<OperationLog> OperationLogs { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
 
     }
 }

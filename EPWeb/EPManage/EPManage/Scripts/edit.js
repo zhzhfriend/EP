@@ -14,6 +14,22 @@
         $('#clothPartId').val($(this).attr('data'));
     });
 
+    $('button[data-target="#styleModal"]').click(function () {
+        $('#styleType').val($(this).attr('data'));
+    });
+
+    $('#btnAddClothesClassicOrBestSelling').click(function () {
+        var data = { 'ClassicOrBestSelling': $('#styleModal #ClassicOrBestSelling').val(), 'styleType': $('#styleType').val() };
+        $.post($('#btnAddClothesClassicOrBestSelling').attr('href'), data, function (data) {
+            $('#nav_' + $('#styleType').val() + ' li:last').before('<li data="' + data.Id + '" class="btn btnType">' + data.Value + '<!--<button data="' + data.Id + '" class="close">&times;</button>--></li>');
+            $('#styleModal').modal('hide');
+            $('#styleModal #ClassicOrBestSelling').val('');
+            $('#styleType').val('');
+            initAllRemoveButtons();
+        }).fail(function () { alert('添加失败'); });
+        return false;
+    });
+
     initAllRemoveButtons();
 
     $("ul").sortable();
@@ -88,7 +104,7 @@ function initAddNewClothesPartTypeBtn() {
 
 function initAllRemoveButtons() {
 
-    $('button.close').click(function () {
+    $('li button.close').click(function () {
         $('body').data('id', $(this).attr('data'));
         $.post('/Main/DeleteClothesPartType', { id: $(this).attr('data') }, function (data) {
             if (data == true)

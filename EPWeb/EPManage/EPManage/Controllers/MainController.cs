@@ -22,6 +22,8 @@ namespace EPManageWeb.Controllers
                 clothesType = clothesType.Children[0];
 
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").ToList();
 
             if (clothesType != null)
             {
@@ -63,13 +65,13 @@ namespace EPManageWeb.Controllers
                 TechnologyFile = model.TechnologyFile ?? string.Empty,
                 Tags = model.Tags ?? string.Empty,
                 ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId),
-                Owner=CurrentUser
+                Owner = CurrentUser
             };
-            string tmp=string.Empty;
+            string tmp = string.Empty;
             if (pinglei != null)
             {
                 var tags = model.Tags.Split(new char[] { ',' }).ToList();
-                foreach (var  t in tags)
+                foreach (var t in tags)
                 {
                     foreach (var pt in pinglei.PartTypes)
                     {
@@ -114,6 +116,8 @@ namespace EPManageWeb.Controllers
         public ActionResult Edit(int id)
         {
             ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.Children.PartTypes.Children").Include("ClothesParts.PartTypes").Include("ClothesParts.PartTypes.Children").SingleOrDefault(t => t.Id == id);
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").ToList();
 
             if (clothesType == null) return new HttpNotFoundResult();
 
@@ -160,6 +164,31 @@ namespace EPManageWeb.Controllers
         }
 
 
+        [CookiesAuthorize]
+        [HttpPost]
+        public ActionResult AddClothesClassicOrBestSelling(String ClassicOrBestSelling, String styleType)
+        {
+            var tag = DbContext.Tags.SingleOrDefault(t => t.Value == ClassicOrBestSelling && t.Type == styleType);
+            if (tag == null)
+            {
+                tag = new Tag()
+                {
+                    Type = styleType,
+                    Value = ClassicOrBestSelling,
+                    IsDeleted = false,
+                    CreateDT = DateTime.Now,
+                    ModifiedDT = DateTime.Now
+                };
+                DbContext.Tags.Add(tag);
+                DbContext.SaveChanges();
+                return new JsonResult() { Data = tag };
+            }
+            else
+            {
+                return new JsonResult() { Data = "该名称已存在" };
+            }
+        }
+
 
 
 
@@ -171,7 +200,7 @@ namespace EPManageWeb.Controllers
 
         private bool ValidateClothes(Clothes clothes)
         {
-            return DbContext.Clothes.FirstOrDefault(t => (t.ProductNO == clothes.ProductNO || t.SampleNO == clothes.SampleNO)&&t.IsDeleted==false) == null;
+            return DbContext.Clothes.FirstOrDefault(t => (t.ProductNO == clothes.ProductNO || t.SampleNO == clothes.SampleNO) && t.IsDeleted == false) == null;
         }
     }
 }

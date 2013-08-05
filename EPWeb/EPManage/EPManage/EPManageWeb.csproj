@@ -185,6 +185,7 @@
     <Compile Include="Entities\Models\ClothesType.cs" />
     <Compile Include="Entities\Models\OperationLog.cs" />
     <Compile Include="Entities\Models\SessionUser.cs" />
+    <Compile Include="Entities\Models\Tag.cs" />
     <Compile Include="Entities\Models\UploadFile.cs" />
     <Compile Include="Entities\Models\User.cs" />
     <Compile Include="Filters\BrowserFilter.cs" />
@@ -227,6 +228,10 @@
     <Compile Include="Migrations\201307121446254_create_user_clothes_relation.cs" />
     <Compile Include="Migrations\201307121446254_create_user_clothes_relation.Designer.cs">
       <DependentUpon>201307121446254_create_user_clothes_relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308051504068_Add_Tags.cs" />
+    <Compile Include="Migrations\201308051504068_Add_Tags.Designer.cs">
+      <DependentUpon>201308051504068_Add_Tags.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
@@ -658,6 +663,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="LuceneIndex\" />
     <Folder Include="Upload\" />
   </ItemGroup>
@@ -685,6 +691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307121446254_create_user_clothes_relation.resx">
       <DependentUpon>201307121446254_create_user_clothes_relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308051504068_Add_Tags.resx">
+      <DependentUpon>201308051504068_Add_Tags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

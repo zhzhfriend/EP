@@ -106,11 +106,15 @@
             <td>
                 <select class="dropdown-select">
                     <option value="0">请选择</option>
-                    <option value="EP">EP</option>
+                    @foreach (var t in ViewBag.ClassicStyles as IList<EPManageWeb.Entities.Models.Tag>)
+                    {
+                        <option value="@t.Value">@t.Value</option>
+                    }
+                    @*<option value="EP">EP</option>
                     <option value="EPC">EPC</option>
                     <option value="EPB">EPB</option>
                     <option value="EPC">EPC</option>
-                    <option value="EP-JEANS">EP-JEANS</option>
+                    <option value="EP-JEANS">EP-JEANS</option>*@
                 </select>
             </td>
             <th class="left">历年畅销款</th>
@@ -118,10 +122,9 @@
             <td class="right">
                 <select class="dropdown-select">
                     <option value="0">请选择</option>
-                    @for (var i = DateTime.Now.Year + 1; i > 2009; i--)
+                    @foreach (var t in ViewBag.BestSellingStyles as IList<EPManageWeb.Entities.Models.Tag>)
                     {
-                        <option value="@String.Format("{0}年秋冬", i)">@String.Format("{0}年秋冬", i)</option>
-                        <option value="@String.Format("{0}年春夏", i)">@String.Format("{0}年春夏", i)</option>
+                        <option value="@t.Value">@t.Value</option>
                     }
                 </select>
             </td>
