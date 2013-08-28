@@ -22,8 +22,8 @@ namespace EPManageWeb.Controllers
                 clothesType = clothesType.Children[0];
 
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
-            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").ToList();
-            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").ToList();
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t=>t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t=>t.Order).ToList();
 
             if (clothesType != null)
             {
@@ -116,8 +116,8 @@ namespace EPManageWeb.Controllers
         public ActionResult Edit(int id)
         {
             ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.Children.PartTypes.Children").Include("ClothesParts.PartTypes").Include("ClothesParts.PartTypes.Children").SingleOrDefault(t => t.Id == id);
-            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").ToList();
-            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").ToList();
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t=>t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t=>t.Order).ToList();
 
             if (clothesType == null) return new HttpNotFoundResult();
 
@@ -179,12 +179,19 @@ namespace EPManageWeb.Controllers
             return new JsonResult() { Data = true };
         }
 
-        //[HttpGet]
-        //[CookiesAuthorize]
-        //public ActionResult StyleOrder(string style, string items)
-        //{
-
-        //}
+        [HttpPost]
+        [CookiesAuthorize]
+        public ActionResult StyleOrder(string style, string items)
+        {
+            var itemsIds = items.Split(new char[] { ',' }).Where(t => !String.IsNullOrEmpty(t)).Select(t => int.Parse(t)).ToList();
+            var tags = DbContext.Tags.Where(t => t.Type == style).ToList();
+            for (int i = 0; i < itemsIds.Count; i++)
+            {
+                tags.Single(t => t.Id == itemsIds[i]).Order = i;
+            }
+            DbContext.SaveChanges();
+            return new JsonResult() { Data = true };
+        }
 
 
         [CookiesAuthorize]

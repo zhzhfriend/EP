@@ -35,7 +35,7 @@
 
     $("ul").sortable();
 
-    $('table.tblPartItems btn.sortbtn').click(function () {
+    $('table.tblPartItems button.sortbtn').click(function () {
         var items = Array();
         $('ul#nav_' + $(this).attr('data') + '').children().each(function (index, item) {
             items.push($(item).attr('typeId'));
@@ -46,12 +46,12 @@
         return false;
     });
 
-    $('table.tblStyleItems btn.sortbtn').click(function () {
+    $('table.tblStyleItems button.sortbtn').click(function () {
         var items = Array();
-        $('ul#nav_' + $(this).attr('data') + '').children().each(function (index, item) {
+        $('ul#nav_' + $(this).attr('data') + ' li[data]').each(function (index, item) {
             items.push($(item).attr('data'));
         });
-        $.post('/Main/style', { 'style': $(this).attr('data'), 'items': items.join(',') }, function (data) {
+        $.post('/Main/StyleOrder', { 'style': $(this).attr('data'), 'items': items.join(',') }, function (data) {
             alert('保存成功');
         }).fail(function () { alert('保存失败'); });
         return false;

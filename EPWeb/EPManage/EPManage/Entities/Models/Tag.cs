@@ -16,5 +16,7 @@ namespace EPManageWeb.Entities.Models
         
         [MaxLength(20)]
         public String Value { get; set; }
+
+        public int Order { get; set; }
     }
 }

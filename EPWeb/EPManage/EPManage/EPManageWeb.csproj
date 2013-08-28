@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201308051504068_Add_Tags.Designer.cs">
       <DependentUpon>201308051504068_Add_Tags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308280313110_add_Order_into_Tag.cs" />
+    <Compile Include="Migrations\201308280313110_add_Order_into_Tag.Designer.cs">
+      <DependentUpon>201308280313110_add_Order_into_Tag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClothesModels.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -694,6 +698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308051504068_Add_Tags.resx">
       <DependentUpon>201308051504068_Add_Tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308280313110_add_Order_into_Tag.resx">
+      <DependentUpon>201308280313110_add_Order_into_Tag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -104,7 +104,7 @@
                 <ul id="nav_classic" class="nav items">
                     @foreach (var t in ViewBag.ClassicStyles as IList<EPManageWeb.Entities.Models.Tag>)
                     {
-                        <li class="btn btnType">@t.Value
+                        <li data="@t.Id" class="btn btnType">@t.Value
                             <button data="@t.Id" class="close nav_classic">&times;</button>
                         </li>
                     }
@@ -116,14 +116,14 @@
             </td>
         </tr>
     </table>
-    <table>
+    <table class="tblStyleItems">
         <tr>
             <th>畅销款</th>
             <td>
                 <ul id="nav_bestsell" class="nav items bestsell">
                     @foreach (var t in ViewBag.BestSellingStyles as IList<EPManageWeb.Entities.Models.Tag>)
                     {
-                        <li class="btn btnType">@t.Value
+                        <li  data="@t.Id" class="btn btnType">@t.Value
                             <button data="@t.Id" class="close nav_classic">&times;</button>
                         </li>
                     }
