@@ -151,6 +151,22 @@ namespace EPManageWeb.Controllers
 
         [HttpPost]
         [CookiesAuthorize]
+        public ActionResult DeleteStyleItem(int id)
+        {
+            var item = DbContext.Tags.SingleOrDefault(t => t.Id == id);
+            if (item == null)
+                return new JsonResult() { Data = false };
+            else
+            {
+                item.IsDeleted = true;
+                item.ModifiedDT = DateTime.Now;
+                DbContext.SaveChanges();
+                return new JsonResult() { Data = true };
+            }
+        }
+
+        [HttpPost]
+        [CookiesAuthorize]
         public ActionResult Order(int partId, string items)
         {
             var itemsIds = items.Split(new char[] { ',' }).Where(t => !String.IsNullOrEmpty(t)).Select(t => int.Parse(t)).ToList();
@@ -162,6 +178,13 @@ namespace EPManageWeb.Controllers
             DbContext.SaveChanges();
             return new JsonResult() { Data = true };
         }
+
+        //[HttpGet]
+        //[CookiesAuthorize]
+        //public ActionResult StyleOrder(string style, string items)
+        //{
+
+        //}
 
 
         [CookiesAuthorize]
