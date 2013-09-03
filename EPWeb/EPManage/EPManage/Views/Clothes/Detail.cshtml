@@ -170,6 +170,7 @@
 {
     <div class="text-right span9">
         <button id="editClothes" class="btn btn-success">编辑</button>
+        <button id="editClothesTags" class="btn btn-success">编辑衣服标签</button>
     </div>
 }
 <!-- Modal -->
@@ -185,5 +186,19 @@
         @Html.ActionLink("删除", "Del", "Clothes", new { id = Model.Id }, new { @class = "btn btn-danger", id = "btnDelClothes" })
         @Html.ActionLink("保存", "Edit", "Clothes", new { @id = Model.Id }, new { @class = "btn btn-info", id = "btnAddClothes" })
         <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+
+<!-- Clothes Tags Modal -->
+<div id="tagsModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tagsModelLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="tagsModelLabel">编辑衣服标签</h3>
+    </div>
+    <div class="modal-body" id="divEditClothesTags">
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("保存", "EditTags", "Clothes", new { @id = Model.Id }, new { @class = "btn btn-info", id = "btnEditClothesTags" })
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
     </div>
 </div>

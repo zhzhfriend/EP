@@ -4,6 +4,11 @@
         $('#myModal #divAddClothes').load('/Clothes/edit/' + $('#clothesId').val());
     });
 
+    $('#editClothesTags').click(function () {
+        $('#tagsModal').modal();
+        $('#tagsModal #divEditClothesTags').html('loading ClothesTags.....');
+    });
+
     $('#btnDelClothes').click(function () {
         if (confirm('确认要删除吗？删除后不可恢复')) {
             $.get('/Clothes/Del/' + $('#clothesId').val(), null, function (data) {
