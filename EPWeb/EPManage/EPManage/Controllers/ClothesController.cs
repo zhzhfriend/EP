@@ -194,6 +194,39 @@ namespace EPManageWeb.Controllers
             }
         }
 
+        [CookiesAuthorize]
+        [HttpGet]
+        public ActionResult EditClothesTags(int id)
+        {
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t => t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t => t.Order).ToList();
+
+
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
+            if (clothes != null)
+            {
+                ViewBag.ClothesType = clothes.ClothesType;
+                return View(clothes);
+            }
+            return null;
+        }
+
+        [CookiesAuthorize]
+        [HttpPost]
+        public ActionResult EditClothesTags(string tags, int id)
+        {
+            var clothes = DbContext.Clothes.SingleOrDefault(t => t.Id == id && t.IsDeleted == false);
+            if (clothes != null)
+            {
+                clothes.Tags = tags;
+                DbContext.SaveChanges();
+                SaveClothesHelper.RemoveDocument(clothes.Id);
+                SaveClothesHelper.Save(clothes);
+                return new JsonResult() { Data = true };
+            }
+            return new JsonResult() { Data = false };
+        }
+
         private string GetPathFile(Clothes clothes, string type)
         {
             switch (type)

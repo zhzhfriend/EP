@@ -6,7 +6,7 @@
 
     $('#editClothesTags').click(function () {
         $('#tagsModal').modal();
-        $('#tagsModal #divEditClothesTags').html('loading ClothesTags.....');
+        $('#tagsModal #divEditClothesTags').load('/Clothes/EditClothesTags/' + $('#clothesId').val());;
     });
 
     $('#btnDelClothes').click(function () {

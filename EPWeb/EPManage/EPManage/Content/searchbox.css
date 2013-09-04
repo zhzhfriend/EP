@@ -1,6 +1,7 @@
 ﻿div.searchbox {
-    width: 100%;
+    width: 90%;
     border: 1px solid #9c8855;
+    margin:0 auto 0 auto;
 }
 
     div.searchbox table th {
@@ -13,7 +14,7 @@
 
 
     div.searchbox > div {
-        width: 1280px;
+        width: 100%;
         margin: 0px auto 0px auto;
     }
 

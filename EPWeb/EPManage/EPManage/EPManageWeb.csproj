@@ -352,6 +352,7 @@
     <Content Include="Scripts\editClothes.js" />
     <Content Include="Scripts\detail.js" />
     <Content Include="Scripts\edit.js" />
+    <Content Include="Scripts\editClothesTags.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -664,6 +665,7 @@
     <Content Include="Views\User\_head.cshtml" />
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\Clothes\EditClothesTags.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
