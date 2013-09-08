@@ -57,11 +57,11 @@ namespace EPManageWeb.Helper
                     var value = t.Substring(t.IndexOf('-') + 1);
                     if (dics.ContainsKey(key))
                     {
-                        dics[key] = dics[key] + "," + PREFIX + value + SUBFIX;
+                        dics[key] = dics[key] + "," + PREFIX + value.ToLower() + SUBFIX;
                     }
                     else
                     {
-                        dics.Add(key, PREFIX + value + SUBFIX);
+                        dics.Add(key, PREFIX + value.ToLower() + SUBFIX);
                     }
                 });
                 dics.Keys.ToList().ForEach(k =>
@@ -85,9 +85,10 @@ namespace EPManageWeb.Helper
             }
 
 
-            QueryParser parser = new QueryParser(version, Fields.Tags.ToString(), new WhitespaceAnalyzer());
+            QueryParser parser = new QueryParser(version, Fields.Tags.ToString(), analyzer);
             parser.DefaultOperator = QueryParser.Operator.OR;
-            Query query = parser.Parse(searchCondition.ToSearchDocument());
+            var searchQuery = searchCondition.ToSearchDocument();
+            Query query = parser.Parse(searchQuery);
             IndexSearcher searcher = new IndexSearcher(directory);
             var sortBy = new Sort(new SortField(Fields.Id.ToString(), SortField.INT, true));
             switch (searchCondition.OrderByField)
@@ -103,7 +104,7 @@ namespace EPManageWeb.Helper
                     break;
 
             }
-            var collector = TopFieldCollector.Create(sortBy, 100, false, false, false, false);
+            var collector = TopFieldCollector.Create(sortBy, 100, true, true, true, true);
             searcher.Search(query, collector);
             totalCount = collector.TotalHits;
 
