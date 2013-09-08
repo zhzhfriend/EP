@@ -1,21 +1,31 @@
-﻿$('#btnEditClothesTags').click(function () {
-    if (getUserSelectedItems().length == 0) {
-        alert('您尚未选择特征信息');
-    }
-    else if (!validSelectItems()) {
-        return false;
-    }
-    else {
-        $.post('/Clothes/EditClothesTags', { tags: getUserSelectedItems(), id: $('#clothesId').val() }).success(function (data) {
-            if (data == true) {
-                alert('保存成功');
-                $('#clseBtnEditClothesTags').click();
-            }
-            else
-                alert('保存失败');
-        }).fail(function () { alert('保存失败'); });
-        return false;
-    }
+﻿
+$(document).ready(function () {
+    $('#btnEditClothesTags').click(function () {
+        if (getUserSelectedItems().length == 0) {
+            alert('您尚未选择特征信息');
+        }
+        else if (!validSelectItems()) {
+            return false;
+        }
+        else {
+            $.post('/Clothes/EditClothesTags', { tags: getUserSelectedItems(), id: $('#clothesId').val() }).success(function (data) {
+                if (data == true) {
+                    alert('保存成功');
+                    $('#clseBtnEditClothesTags').click();
+                }
+                else
+                    alert('保存失败');
+            }).fail(function () { alert('保存失败'); });
+            return false;
+        }
+    });
+
+    $('.dropdown-select').multiselect({
+        header: false,
+        minWidth: '150',
+        selectedList: 2,
+        'noneSelectedText': 'None'
+    });
 });
 
 function getUserSelectedItems() {
@@ -37,3 +47,4 @@ function validSelectItems() {
     })
     return r;
 };
+
