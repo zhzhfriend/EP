@@ -49,7 +49,7 @@ function getUserSelectedItems() {
         }
     });
     $('input[name^="multiselect_"][value!="0"]:checked').each(function (index, item) {
-        items.push($(item).attr('value'));
+        items.push('Tag-' + $(item).attr('value'));
     });
     return items.join(',');
 }

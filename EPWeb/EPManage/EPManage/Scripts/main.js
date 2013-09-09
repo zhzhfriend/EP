@@ -106,7 +106,12 @@ function searchClothes(getDataParamsFunc) {
 function getUserSelectedItems() {
     var items = Array();
     $('#searchParameters li').not(':first').each(function (index, item) {
-        items.push($(item).attr('partId') + '-' + $(item).attr('data'));
+        if ($(item).attr('partId') != undefined) {
+            items.push($(item).attr('partId') + '-' + $(item).attr('data'));
+        }
+        else {
+            items.push('Tag-' + $(item).attr('data'));
+        }
     });
     return items.join(',');
 }
