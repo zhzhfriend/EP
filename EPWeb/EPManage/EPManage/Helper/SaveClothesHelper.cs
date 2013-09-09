@@ -53,15 +53,19 @@ namespace EPManageWeb.Helper
                 Dictionary<string, string> dics = new Dictionary<string, string>();
                 Array.ForEach(tags, t =>
                 {
-                    var key = t.Substring(0, t.IndexOf('-'));
-                    var value = t.Substring(t.IndexOf('-') + 1);
-                    if (dics.ContainsKey(key))
+                    
+                    if (t.IndexOf('-') > -1)
                     {
-                        dics[key] = dics[key] + "," + PREFIX + value.ToLower() + SUBFIX;
-                    }
-                    else
-                    {
-                        dics.Add(key, PREFIX + value.ToLower() + SUBFIX);
+                        var key = t.Substring(0, t.IndexOf('-'));
+                        var value = t.Substring(t.IndexOf('-') + 1);
+                        if (dics.ContainsKey(key))
+                        {
+                            dics[key] = dics[key] + "," + PREFIX + value.ToLower() + SUBFIX;
+                        }
+                        else
+                        {
+                            dics.Add(key, PREFIX + value.ToLower() + SUBFIX);
+                        }
                     }
                 });
                 dics.Keys.ToList().ForEach(k =>

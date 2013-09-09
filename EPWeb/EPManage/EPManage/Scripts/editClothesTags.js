@@ -22,16 +22,34 @@ $(document).ready(function () {
 
     $('.dropdown-select').multiselect({
         header: false,
-        minWidth: '150',
+        minWidth: '130',
         selectedList: 2,
         'noneSelectedText': 'None'
+    });
+
+    $('input[name^="multiselect_"]').not(':first').click(function (a, source) {
+        var multiName = $(this).attr('name');
+        if ($('input[name="' + multiName + '"]:checked').length > 1) {
+            $($('input[name="' + multiName + '"]')[0]).attr('checked', false);
+        }
+        else if ($('input[name="' + multiName + '"]:checked').length == 0) {
+            $($('input[name="' + multiName + '"]')[0]).click();
+        }
+        return true;
     });
 });
 
 function getUserSelectedItems() {
     var items = Array();
     $('input[type="checkbox"]:checked').each(function (index, item) {
-        items.push($(item).attr('partId') + '-' + $(item).attr('name'));
+        var name = $(item).attr('partId');
+        if ($(item).attr('partId') != undefined) {
+            var name = $(item).attr('name');
+            items.push($(item).attr('partId') + '-' + name);
+        }
+    });
+    $('input[name^="multiselect_"][value!="0"]:checked').each(function (index, item) {
+        items.push($(item).attr('value'));
     });
     return items.join(',');
 }

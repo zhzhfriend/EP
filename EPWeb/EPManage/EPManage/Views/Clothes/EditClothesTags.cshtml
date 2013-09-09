@@ -16,9 +16,12 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.multiselect.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/editClothesTags.js")"></script>
     <script type="text/javascript">
-        var tags = "@Model.Tags".split(',');
+
+        var tags = "@Html.Raw(Model.Tags)".split(',');
         for (var i = 0; i < tags.length; i++) {
-            $('input[name="' + tags[i].split('-')[tags[i].split('-').length - 1] + '"]').attr('checked', 'checked');
+           
+            var a = tags[i].split('-')[tags[i].split('-').length - 1];
+            $('input[name="' + a + '"]').attr('checked', 'checked');
         }
     </script>
 }
