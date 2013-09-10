@@ -7,6 +7,11 @@
 {
     <link href="@Styles.Url("~/Content/searchbox.css")" rel="stylesheet"/>
     <link href="@Styles.Url("~/Content/jquery.multiselect.css")" rel="stylesheet"/>
+    <style type="text/css">
+        .tdOrder {
+            display: none;
+        }
+    </style>
 }
 
 @section Js
@@ -19,7 +24,7 @@
 
         var tags = "@Html.Raw(Model.Tags)".split(',');
         for (var i = 0; i < tags.length; i++) {
-           
+
             var a = tags[i].split('-')[tags[i].split('-').length - 1];
             $('input[name="' + a + '"]').attr('checked', 'checked');
         }
