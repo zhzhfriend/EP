@@ -23,7 +23,7 @@ namespace EPManageWeb.Controllers
 
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
             ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t=>t.Order).ToList();
-            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t=>t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderByDescending(t=>t.Value).ToList();
 
             if (clothesType != null)
             {
