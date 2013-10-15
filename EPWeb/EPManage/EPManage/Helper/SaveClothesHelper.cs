@@ -37,9 +37,9 @@ namespace EPManageWeb.Helper
             {
                 Document document = new Document();
                 document.Add(new Field(Fields.Id.ToString(), clothes.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.SampleNO.ToString(), PREFIX + clothes.SampleNO + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.SampleNO.ToString(), PREFIX + (clothes.SampleNO ?? "").ToUpper() + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Tags.ToString(), clothes.Tags.Replace(',', ' '), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ProductNO.ToString(), PREFIX + clothes.ProductNO + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ProductNO.ToString(), PREFIX + (clothes.ProductNO ?? "").ToUpper() + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Year.ToString(), ExtractYearFromTags(clothes), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
@@ -53,7 +53,7 @@ namespace EPManageWeb.Helper
                 Dictionary<string, string> dics = new Dictionary<string, string>();
                 Array.ForEach(tags, t =>
                 {
-                    
+
                     if (t.IndexOf('-') > -1)
                     {
                         var key = t.Substring(0, t.IndexOf('-'));

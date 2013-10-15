@@ -38,7 +38,7 @@ namespace EPManageWeb.Models
                 if (sb.Length > 0)
                     sb.Append(" AND ");
 
-                sb.AppendFormat("(SampleNO:\\" + PREFIX + "*{0}* OR ProductNO:\\" + PREFIX + "*{0}*)", NO);
+                sb.AppendFormat("(SampleNO:\\" + PREFIX + "*{0}* OR ProductNO:\\" + PREFIX + "*{0}*)", NO.ToUpper());
             }
 
             var tags = Tags.Split(new char[] { ',' });
