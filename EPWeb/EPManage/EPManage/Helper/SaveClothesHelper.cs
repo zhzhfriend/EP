@@ -37,9 +37,11 @@ namespace EPManageWeb.Helper
             {
                 Document document = new Document();
                 document.Add(new Field(Fields.Id.ToString(), clothes.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.SampleNO.ToString(), PREFIX + (clothes.SampleNO ?? "").ToLower() + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.SampleNoIndex.ToString(), PREFIX + (clothes.SampleNO ?? "").ToLower() + SUBFIX, Field.Store.NO, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.SampleNO.ToString(), clothes.SampleNO, Field.Store.YES, Field.Index.NO));
                 document.Add(new Field(Fields.Tags.ToString(), clothes.Tags.Replace(',', ' '), Field.Store.YES, Field.Index.ANALYZED));
-                document.Add(new Field(Fields.ProductNO.ToString(), PREFIX + (clothes.ProductNO ?? "").ToLower() + SUBFIX, Field.Store.YES, Field.Index.ANALYZED));
+                document.Add(new Field(Fields.ProductNO.ToString(), clothes.ProductNO, Field.Store.YES, Field.Index.NO));
+                document.Add(new Field(Fields.ProductNOIndex.ToString(), PREFIX + (clothes.ProductNO ?? "").ToLower() + SUBFIX, Field.Store.NO, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.Year.ToString(), ExtractYearFromTags(clothes), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.ClothesTypeId.ToString(), clothes.ClothesType.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED));
                 document.Add(new Field(Fields.SaledCount.ToString(), clothes.SaledCount.ToString(), Field.Store.YES, Field.Index.ANALYZED));
@@ -121,8 +123,8 @@ namespace EPManageWeb.Helper
                     clothes.Add(new Clothes()
                     {
                         Id = int.Parse(searcher.Doc(t.Doc).GetField(Fields.Id.ToString()).StringValue),
-                        ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue.Replace(PREFIX, "").Replace(SUBFIX, ""),
-                        SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue.Replace(PREFIX, "").Replace(SUBFIX, ""),
+                        ProductNO = searcher.Doc(t.Doc).GetField(Fields.ProductNO.ToString()).StringValue,
+                        SampleNO = searcher.Doc(t.Doc).GetField(Fields.SampleNO.ToString()).StringValue,
                         ClothesPics = searcher.Doc(t.Doc).GetField(Fields.ClothesPics.ToString()).StringValue,
                         StylePics = searcher.Doc(t.Doc).GetField(Fields.StylePics.ToString()).StringValue,
                         ModelVersionPics = searcher.Doc(t.Doc).GetField(Fields.ModelVersionPics.ToString()).StringValue
@@ -160,7 +162,9 @@ namespace EPManageWeb.Helper
         {
             Id,
             SampleNO,
+            SampleNoIndex,
             ProductNO,
+            ProductNOIndex,
             Tags,
             Year,
             SaledCount,
