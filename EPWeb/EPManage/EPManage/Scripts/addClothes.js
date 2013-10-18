@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    var isAjaxCalling = false;
+
     $('#btnAddClothes').click(function () {
         if ($('#SampleNO').val().length == 0) {
             alert('样板编号必须填写');
@@ -35,15 +37,21 @@
             'Tags': getUserSelectedItems(),
             'clothesTypeId': $('#clothesTypeId').val()
         };
-        $.post($('#btnAddClothes').attr('href'), data, function (data) {
-            if (data == true) {
-                alert('保存成功');
-                $('#btnClose').click();
-            }
-            else
-                alert('保存失败，失败原因:' + data);
-        }, 'json').fail(function () { alert('保存失败'); });
-        return false;
+        if (!isAjaxCalling) {
+            isAjaxCalling = true;
+            $.post($('#btnAddClothes').attr('href'), data, function (data) {
+                if (data == true) {
+                    alert('保存成功');
+                    $('#btnClose').click();
+                    isAjaxCalling = false;
+                }
+                else {
+                    alert('保存失败，失败原因:' + data);
+                    isAjaxCalling = false;
+                }
+            }, 'json').fail(function () { alert('保存失败'); isAjaxCalling = false; });
+            return false;
+        }
     });
 });
 
