@@ -15,6 +15,7 @@ namespace EPManageWeb.Controllers
             SaveClothesHelper.RemovePreviousIndex();
             clothes.ForEach(c =>
                 {
+                    c.Tags = c.Tags.Replace("undefined", "Tag");
                     SaveClothesHelper.Save(c);
                 });
             return new ContentResult() { Content = "Reflowed" };
