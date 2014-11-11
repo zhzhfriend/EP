@@ -11,6 +11,8 @@ namespace EPManageWeb.Controllers
 {
     public class MainController : BaseController
     {
+        private static object _lockObj = new object();
+
         [CookiesAuthorize]
         public ActionResult Index(int id)
         {
@@ -22,8 +24,8 @@ namespace EPManageWeb.Controllers
                 clothesType = clothesType.Children[0];
 
             ViewBag.ClothesTypes = DbContext.ClothesTypes.Where(t => t.Parent == null).ToList();
-            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t=>t.Order).ToList();
-            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderByDescending(t=>t.Value).ToList();
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t => t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderByDescending(t => t.Value).ToList();
 
             if (clothesType != null)
             {
@@ -47,57 +49,63 @@ namespace EPManageWeb.Controllers
             if (!ValidClothesSize(model.ClothesSize)) return new JsonResult() { Data = false };
             if (!ValidateClothes(model)) return new JsonResult() { Data = "大货编号或样板编号已存在" };
 
-            var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == clothesTypeId);
+            lock (_lockObj)
+            {
+                if (!ValidClothesSize(model.ClothesSize)) return new JsonResult() { Data = false };
+                if (!ValidateClothes(model)) return new JsonResult() { Data = "大货编号或样板编号已存在" };
 
-            Clothes c = new Clothes()
-            {
-                Comment = model.Comment,
-                ProductedCount = model.ProductedCount,
-                SaledCount = model.SaledCount,
-                SampleNO = model.SampleNO ?? string.Empty,
-                ProductNO = model.ProductNO ?? string.Empty,
-                AssessoriesFile = model.AssessoriesFile ?? string.Empty,
-                ClothesPics = model.ClothesPics ?? string.Empty,
-                ClothesSize = model.ClothesSize ?? string.Empty,
-                ModelVersionPics = model.ModelVersionPics ?? string.Empty,
-                SampleFile = model.SampleFile ?? string.Empty,
-                StylePics = model.StylePics ?? string.Empty,
-                TechnologyFile = model.TechnologyFile ?? string.Empty,
-                Tags = model.Tags ?? string.Empty,
-                ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId),
-                Owner = CurrentUser
-            };
-            string tmp = string.Empty;
-            if (pinglei != null)
-            {
-                var tags = model.Tags.Split(new char[] { ',' }).ToList();
-                foreach (var t in tags)
+                var pinglei = DbContext.ClothesParts.FirstOrDefault(t => t.Name == "品类" && t.ClothType.Id == clothesTypeId);
+
+                Clothes c = new Clothes()
                 {
-                    foreach (var pt in pinglei.PartTypes)
+                    Comment = model.Comment,
+                    ProductedCount = model.ProductedCount,
+                    SaledCount = model.SaledCount,
+                    SampleNO = model.SampleNO ?? string.Empty,
+                    ProductNO = model.ProductNO ?? string.Empty,
+                    AssessoriesFile = model.AssessoriesFile ?? string.Empty,
+                    ClothesPics = model.ClothesPics ?? string.Empty,
+                    ClothesSize = model.ClothesSize ?? string.Empty,
+                    ModelVersionPics = model.ModelVersionPics ?? string.Empty,
+                    SampleFile = model.SampleFile ?? string.Empty,
+                    StylePics = model.StylePics ?? string.Empty,
+                    TechnologyFile = model.TechnologyFile ?? string.Empty,
+                    Tags = model.Tags ?? string.Empty,
+                    ClothesType = DbContext.ClothesTypes.SingleOrDefault(t => t.Id == clothesTypeId),
+                    Owner = CurrentUser
+                };
+                string tmp = string.Empty;
+                if (pinglei != null)
+                {
+                    var tags = model.Tags.Split(new char[] { ',' }).ToList();
+                    foreach (var t in tags)
                     {
-                        if (t.Contains(pt.Name))
+                        foreach (var pt in pinglei.PartTypes)
                         {
-                            tmp = pt.Name;
+                            if (t.Contains(pt.Name))
+                            {
+                                tmp = pt.Name;
+                            }
                         }
                     }
+
+                    if (string.Empty != tmp)
+                        c.PingLei = tmp;
                 }
 
-                if (string.Empty != tmp)
-                    c.PingLei = tmp;
+                DbContext.Clothes.Add(c);
+
+                DbContext.OperationLogs.Add(new OperationLog()
+                {
+                    User = CurrentUser,
+                    Clothes = c,
+                    OperationType = OperationType.AddClothes.ToString()
+                });
+
+                DbContext.SaveChanges();
+                SaveClothesHelper.Save(c);
+                return new JsonResult() { Data = true };
             }
-
-            DbContext.Clothes.Add(c);
-
-            DbContext.OperationLogs.Add(new OperationLog()
-           {
-               User = CurrentUser,
-               Clothes = c,
-               OperationType = OperationType.AddClothes.ToString()
-           });
-
-            DbContext.SaveChanges();
-            SaveClothesHelper.Save(c);
-            return new JsonResult() { Data = true };
         }
 
         [CookiesAuthorize]
@@ -116,8 +124,8 @@ namespace EPManageWeb.Controllers
         public ActionResult Edit(int id)
         {
             ClothesType clothesType = DbContext.ClothesTypes.Include("Children").Include("ClothesParts").Include("ClothesParts.Children").Include("ClothesParts.Children.PartTypes").Include("ClothesParts.Children.PartTypes.Children").Include("ClothesParts.PartTypes").Include("ClothesParts.PartTypes.Children").SingleOrDefault(t => t.Id == id);
-            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t=>t.Order).ToList();
-            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t=>t.Order).ToList();
+            ViewBag.ClassicStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "Classic").OrderBy(t => t.Order).ToList();
+            ViewBag.BestSellingStyles = DbContext.Tags.Where(t => t.IsDeleted == false && t.Type == "BestSell").OrderBy(t => t.Order).ToList();
 
             if (clothesType == null) return new HttpNotFoundResult();
 
